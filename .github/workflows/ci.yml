@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  format:
+  format-check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
