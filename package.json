@@ -12,6 +12,7 @@
     "prepare": "husky",
     "commitlint": "commitlint --edit",
     "test": "vitest",
+    "test:update": "vitest --update",
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
