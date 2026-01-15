@@ -11,7 +11,12 @@
 				"dbaeumer.vscode-eslint",
 				"esbenp.prettier-vscode",
 				"streetsidesoftware.code-spell-checker",
-				"bradlc.vscode-tailwindcss"
+				"bradlc.vscode-tailwindcss",
+				"eamodio.gitlens",
+				"openai.chatgpt",
+				"github.vscode-github-actions",
+				"GitHub.copilot",
+				"GitHub.copilot-chat"
 			]
 		}
 	}
