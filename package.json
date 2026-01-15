@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "npm run lint && tsc -b && vite build",
     "build:ci": "vite build",
+    "format:check": "prettier --check .",
     "lint": "eslint . --max-warnings=0",
     "preview": "vite preview",
     "prepare": "husky",
