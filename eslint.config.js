@@ -31,10 +31,7 @@ export default defineConfig([
     },
     rules: {
       'no-console': 'error',
-      'max-lines-per-function': [
-        'error',
-        { max: 200 },
-      ],
+      'max-lines-per-function': ['error', { max: 200 }],
     },
   },
 ]);
