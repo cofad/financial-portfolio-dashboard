@@ -13,3 +13,11 @@
 
 ## Testing
 - Include tests for all new features and functionality
+
+## HTTP Request
+- Use axios for all HTTP requests
+- Use react query in components for accessing asynchronous data
+
+## State Management
+- Use redux persist for storing data in localStorage
+- Use redux toolkit for global state management
