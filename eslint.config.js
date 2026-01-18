@@ -32,6 +32,19 @@ export default defineConfig([
     rules: {
       'no-console': 'error',
       'max-lines-per-function': ['error', { max: 200 }],
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: "MemberExpression[object.meta.name='import'][property.name='env']",
+          message:
+            "Do not access 'import.meta.env' directly. Use the central src/services/env.ts instead to ensure type safety and validation.",
+        },
+        {
+          selector: "MemberExpression[object.name='process'][property.name='env']",
+          message:
+            "Do not use 'process.env'. Vite uses 'import.meta.env', but both should be abstracted into a config file.",
+        },
+      ],
     },
   },
 ]);
