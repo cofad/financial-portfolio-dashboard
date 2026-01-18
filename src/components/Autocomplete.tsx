@@ -97,7 +97,7 @@ const Autocomplete = <Item,>({
 
   return (
     <div className="w-full max-w-xl">
-      <label className="text-xs font-semibold tracking-[0.2em] text-slate-500 uppercase">{label}</label>
+      <label className="text-xs font-semibold tracking-[0.2em] uppercase">{label}</label>
       <div className="relative mt-3">
         <input
           value={query}
@@ -149,7 +149,7 @@ const Autocomplete = <Item,>({
           aria-expanded={showDropdown}
           aria-controls="autocomplete-results"
           aria-activedescendant={activeId}
-          className="w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-slate-100 shadow-[0_0_0_1px_rgba(30,41,59,0.2)] transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700"
+          className="w-full rounded-2xl border border-slate-800 px-4 py-3 text-sm text-slate-100 shadow-[0_0_0_1px_rgba(30,41,59,0.2)] transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700"
         />
         {showDropdown && (
           <div className="absolute right-0 left-0 z-10 mt-3 rounded-2xl border border-slate-800 bg-slate-950/95 p-2 shadow-xl shadow-slate-900/40 backdrop-blur">
