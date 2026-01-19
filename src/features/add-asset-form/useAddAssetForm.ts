@@ -2,7 +2,7 @@ import { useEffect, useState, type BaseSyntheticEvent } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm, type FieldErrors, type SubmitHandler, type UseFormRegister } from 'react-hook-form';
+import { useForm, useWatch, type FieldErrors, type SubmitHandler, type UseFormRegister } from 'react-hook-form';
 import { getQuote, type SymbolLookupResult } from '@/services/finnhub/finnhub';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { addHolding, ASSET_TYPES, type AssetType, type Holding } from '@/store/portfolioSlice';
@@ -103,7 +103,7 @@ export const useAddAssetForm = (): UsePortfolioFormResult => {
     register,
     handleSubmit,
     setValue,
-    watch,
+    control,
     reset,
     formState: { errors, isValid, isSubmitting },
   } = useForm<PortfolioFormInput, Record<string, never>, PortfolioFormValues>({
@@ -113,9 +113,8 @@ export const useAddAssetForm = (): UsePortfolioFormResult => {
     reValidateMode: 'onChange',
   });
 
-  const watchedSymbol = watch('symbol') ?? '';
-  const watchedPrice = watch('purchasePrice') ?? '';
-  const watchedQuantity = watch('quantity') ?? '';
+  const watchedPrice = useWatch({ control, name: 'purchasePrice', defaultValue: '' });
+  const watchedQuantity = useWatch({ control, name: 'quantity', defaultValue: '' });
   const quantityNumber =
     typeof watchedQuantity === 'number'
       ? watchedQuantity
@@ -143,19 +142,13 @@ export const useAddAssetForm = (): UsePortfolioFormResult => {
     }
   }, [normalizedSelectedSymbol, quotePrice, setValue]);
 
-  useEffect(() => {
-    if (!selectedSymbol) {
-      return;
-    }
-
-    if (normalizeSymbol(watchedSymbol) !== normalizeSymbol(selectedSymbol)) {
+  const onSymbolChange = (value: string) => {
+    const normalizedValue = normalizeSymbol(value);
+    const normalizedSelected = normalizeSymbol(selectedSymbol);
+    if (selectedSymbol && normalizedValue !== normalizedSelected) {
       setSelectedSymbol('');
       setValue('assetType', '', { shouldValidate: true, shouldDirty: true });
-      setValue('purchasePrice', '', { shouldValidate: true, shouldDirty: true });
     }
-  }, [selectedSymbol, setValue, watchedSymbol]);
-
-  const onSymbolChange = (value: string) => {
     setSymbolQuery(value);
     setValue('symbol', value, { shouldValidate: true, shouldDirty: true });
     setValue('purchasePrice', '', { shouldValidate: true, shouldDirty: true });
@@ -213,7 +206,7 @@ export const useAddAssetForm = (): UsePortfolioFormResult => {
     register,
     onSubmit: (event?: BaseSyntheticEvent) => {
       event?.preventDefault();
-      return handleSubmit(handleFormSubmit)(event);
+      void handleSubmit(handleFormSubmit)(event);
     },
     errors,
     isValid,
