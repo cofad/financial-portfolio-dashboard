@@ -39,8 +39,14 @@ const portfolioSlice = createSlice({
         symbol: normalizedSymbol,
       });
     },
+    removeHolding: (state, action: PayloadAction<string>) => {
+      const normalizedSymbol = action.payload.trim().toUpperCase();
+      state.holdings = state.holdings.filter(
+        (holding) => holding.symbol.trim().toUpperCase() !== normalizedSymbol,
+      );
+    },
   },
 });
 
-export const { addHolding } = portfolioSlice.actions;
+export const { addHolding, removeHolding } = portfolioSlice.actions;
 export default portfolioSlice.reducer;
