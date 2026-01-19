@@ -21,11 +21,24 @@
     }
   }
 
+  @keyframes toast-rise {
+    from {
+      transform: translateY(32px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
   .animate-fade-in {
     animation: fade-in 0.25s ease-out both;
   }
 
   .animate-fade-up {
     animation: fade-up 0.3s ease-out both;
+  }
+
+  .animate-toast-rise {
+    animation: toast-rise 0.35s ease-out both;
   }
 }
