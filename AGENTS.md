@@ -13,6 +13,7 @@
 - No 3rd party UI libraries can be used
 - Prefer small, composable components
 - Keep components to less than 200 lines in length
+- Create a directory for each component and its sub-components and tests
 
 ## HTTP Request
 
