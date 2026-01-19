@@ -23,6 +23,8 @@ export interface HoldingRow {
   totalValue: number | null;
   profitLoss: number | null;
   quoteStatus: 'idle' | 'loading' | 'error' | 'ready';
+  quoteUpdatedAt: number | null;
+  isRecentlyUpdated: boolean;
 }
 
 export type SortToggleHandler = (key: SortKey) => void;

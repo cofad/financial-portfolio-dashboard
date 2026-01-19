@@ -1,6 +1,6 @@
 import type { HoldingRow, SortKey, SortRule, SortToggleHandler } from './portfolioTypes';
 
-const columns: Array<{ key: SortKey; label: string; align?: 'left' | 'right' }> = [
+const columns: { key: SortKey; label: string; align?: 'left' | 'right' }[] = [
   { key: 'symbol', label: 'Symbol', align: 'left' },
   { key: 'quantity', label: 'Quantity', align: 'right' },
   { key: 'purchasePrice', label: 'Purchase Price', align: 'right' },
@@ -67,7 +67,9 @@ const HoldingsTable = ({
               >
                 <button
                   type="button"
-                  onClick={() => onSortToggle(column.key)}
+                  onClick={() => {
+                    onSortToggle(column.key);
+                  }}
                   className="inline-flex items-center transition hover:text-slate-200"
                   title="Click to sort."
                 >
@@ -88,7 +90,17 @@ const HoldingsTable = ({
               <td className="px-4 py-4 text-sm font-semibold text-slate-100">{row.symbol}</td>
               <td className="px-4 py-4 text-right text-sm text-slate-200">{formatQuantity(row.quantity)}</td>
               <td className="px-4 py-4 text-right text-sm text-slate-200">{formatCurrency(row.purchasePrice)}</td>
-              <td className="px-4 py-4 text-right text-sm text-slate-200">{getCurrentPriceText(row)}</td>
+              <td className="px-4 py-4 text-right text-sm text-slate-200">
+                <span className="inline-flex items-center justify-end gap-2">
+                  {getCurrentPriceText(row)}
+                  {row.isRecentlyUpdated ? (
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/70" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-300" />
+                    </span>
+                  ) : null}
+                </span>
+              </td>
               <td className="px-4 py-4 text-right text-sm text-slate-200">{formatCurrency(row.totalValue)}</td>
               <td className={`px-4 py-4 text-right text-sm font-semibold ${getProfitLossTone(row.profitLoss)}`}>
                 {formatCurrency(row.profitLoss)}
@@ -97,7 +109,9 @@ const HoldingsTable = ({
               <td className="px-4 py-4 text-right">
                 <button
                   type="button"
-                  onClick={() => onRemove(row)}
+                  onClick={() => {
+                    onRemove(row);
+                  }}
                   className="rounded-2xl border border-slate-800 px-3 py-2 text-xs font-semibold text-rose-200 transition hover:border-rose-400/70 hover:text-rose-100"
                 >
                   Remove

@@ -33,7 +33,9 @@ const HoldingsCards = ({
             </div>
             <button
               type="button"
-              onClick={() => onRemove(row)}
+              onClick={() => {
+                onRemove(row);
+              }}
               className="rounded-2xl border border-slate-800 px-3 py-2 text-xs font-semibold text-rose-200 transition hover:border-rose-400/70 hover:text-rose-100"
             >
               Remove
@@ -51,7 +53,15 @@ const HoldingsCards = ({
             </div>
             <div>
               <p className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">Current Price</p>
-              <p className="text-slate-200">{getCurrentPriceText(row)}</p>
+              <p className="flex items-center gap-2 text-slate-200">
+                {getCurrentPriceText(row)}
+                {row.isRecentlyUpdated && (
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/70" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-300" />
+                  </span>
+                )}
+              </p>
             </div>
             <div>
               <p className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">Total Value</p>

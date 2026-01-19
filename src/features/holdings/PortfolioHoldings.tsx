@@ -1,10 +1,8 @@
 import { useMemo, useState } from 'react';
-import { useQueries } from '@tanstack/react-query';
 import ConfirmDialog from '@/components/confirm-dialog/ConfirmDialog';
 import HoldingsCards from './HoldingsCards';
 import HoldingsTable from './HoldingsTable';
 import { useToast } from '@components/toast/useToast';
-import { getQuote } from '@/services/finnhub/finnhub';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { removeHolding } from '@/store/portfolioSlice';
 import type { HoldingRow, SortKey, SortRule } from './portfolioTypes';
@@ -19,6 +17,7 @@ import {
   holdingsColumns,
   updateSortRules,
 } from './portfolioUtils';
+import { usePortfolioQuotes } from './usePortfolioQuotes';
 
 const PortfolioHoldings = () => {
   const holdings = useAppSelector((state) => state.portfolio.holdings);
@@ -26,39 +25,7 @@ const PortfolioHoldings = () => {
   const { pushToast } = useToast();
   const [sortRules, setSortRules] = useState<SortRule[]>([{ key: 'symbol', direction: 'asc' }]);
   const [pendingRemove, setPendingRemove] = useState<HoldingRow | null>(null);
-
-  const quoteQueries = useQueries({
-    queries: holdings.map((holding) => ({
-      queryKey: ['quote', holding.symbol] as const,
-      queryFn: () => getQuote(holding.symbol),
-      staleTime: 30_000,
-    })),
-  });
-
-  const rows = useMemo<HoldingRow[]>(
-    () =>
-      holdings.map((holding, index) => {
-        const quote = quoteQueries[index];
-        const price = typeof quote?.data?.c === 'number' && Number.isFinite(quote.data.c) ? quote.data.c : null;
-        const totalValue = price !== null ? price * holding.quantity : null;
-        const profitLoss = price !== null ? (price - holding.purchasePrice) * holding.quantity : null;
-        const quoteStatus = quote?.isFetching
-          ? 'loading'
-          : quote?.isError
-            ? 'error'
-            : price !== null
-              ? 'ready'
-              : 'idle';
-        return {
-          ...holding,
-          currentPrice: price,
-          totalValue,
-          profitLoss,
-          quoteStatus,
-        };
-      }),
-    [holdings, quoteQueries],
-  );
+  const { rows, secondsSinceUpdate, hasErrors, retryAll } = usePortfolioQuotes(holdings);
 
   const sortedRows = useMemo(() => {
     if (sortRules.length === 0) {
@@ -110,7 +77,32 @@ const PortfolioHoldings = () => {
           <h2 className="text-xl font-semibold text-slate-100">Portfolio Holdings</h2>
           <p className="text-xs text-slate-400">Click a column to toggle sort direction.</p>
         </div>
+        <div className="flex items-center gap-3 rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-xs text-slate-300">
+          <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-emerald-300" />
+          <span>
+            Last updated:{' '}
+            {secondsSinceUpdate === null
+              ? '—'
+              : `${String(secondsSinceUpdate)} second${secondsSinceUpdate === 1 ? '' : 's'} ago`}
+          </span>
+        </div>
       </div>
+
+      {hasErrors ? (
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-sm text-rose-100">
+          <div>
+            <p className="font-semibold">Some prices failed to refresh.</p>
+            <p className="text-xs text-rose-200">Retry or check your connection.</p>
+          </div>
+          <button
+            type="button"
+            onClick={retryAll}
+            className="rounded-full border border-rose-300/60 px-3 py-1 text-xs font-semibold text-rose-100 transition hover:border-rose-200 hover:text-white"
+          >
+            Retry now
+          </button>
+        </div>
+      ) : null}
 
       <div className="flex flex-wrap gap-2 md:hidden">
         {holdingsColumns.map((column) => {
@@ -121,7 +113,9 @@ const PortfolioHoldings = () => {
             <button
               key={column.key}
               type="button"
-              onClick={() => handleSortToggle(column.key)}
+              onClick={() => {
+                handleSortToggle(column.key);
+              }}
               className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold transition ${
                 rule
                   ? 'border-slate-500 bg-slate-900 text-slate-100'
@@ -174,7 +168,9 @@ const PortfolioHoldings = () => {
         confirmLabel="Remove"
         cancelLabel="Cancel"
         onConfirm={confirmRemove}
-        onCancel={() => setPendingRemove(null)}
+        onCancel={() => {
+          setPendingRemove(null);
+        }}
       />
     </section>
   );
