@@ -1,7 +1,9 @@
 import { z } from 'zod';
 import log from 'loglevel';
 
-export const envSchema = z.object({});
+export const envSchema = z.object({
+  VITE_ALPHA_VANTAGE_API_KEY: z.string().min(1),
+});
 
 // eslint-disable-next-line no-restricted-syntax
 const _env = envSchema.safeParse(import.meta.env);
