@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { z } from 'zod';
-import { env } from '@/services/env/env';
 
 const symbolLookupResultSchema = z.object({
   description: z.string().optional(),
