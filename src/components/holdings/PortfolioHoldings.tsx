@@ -39,8 +39,7 @@ const PortfolioHoldings = () => {
     () =>
       holdings.map((holding, index) => {
         const quote = quoteQueries[index];
-        const price =
-          typeof quote?.data?.c === 'number' && Number.isFinite(quote.data.c) ? quote.data.c : null;
+        const price = typeof quote?.data?.c === 'number' && Number.isFinite(quote.data.c) ? quote.data.c : null;
         const totalValue = price !== null ? price * holding.quantity : null;
         const profitLoss = price !== null ? (price - holding.purchasePrice) * holding.quantity : null;
         const quoteStatus = quote?.isFetching
@@ -170,9 +169,7 @@ const PortfolioHoldings = () => {
         open={Boolean(pendingRemove)}
         title="Remove holding?"
         description={
-          pendingRemove
-            ? `Remove ${pendingRemove.symbol} from your portfolio? This cannot be undone.`
-            : undefined
+          pendingRemove ? `Remove ${pendingRemove.symbol} from your portfolio? This cannot be undone.` : undefined
         }
         confirmLabel="Remove"
         cancelLabel="Cancel"

@@ -26,9 +26,7 @@ const portfolioSlice = createSlice({
   reducers: {
     addHolding: (state, action: PayloadAction<Holding>) => {
       const normalizedSymbol = action.payload.symbol.trim().toUpperCase();
-      const exists = state.holdings.some(
-        (holding) => holding.symbol.trim().toUpperCase() === normalizedSymbol,
-      );
+      const exists = state.holdings.some((holding) => holding.symbol.trim().toUpperCase() === normalizedSymbol);
 
       if (exists) {
         return;

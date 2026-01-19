@@ -89,11 +89,7 @@ type NextDirection = 'asc' | 'desc' | 'none';
 
 export const updateSortRules = (rules: SortRule[], key: SortKey): SortRule[] => {
   const existingRule = rules.find((rule) => rule.key === key) ?? null;
-  const nextDirection: NextDirection = !existingRule
-    ? 'asc'
-    : existingRule.direction === 'asc'
-      ? 'desc'
-      : 'none';
+  const nextDirection: NextDirection = !existingRule ? 'asc' : existingRule.direction === 'asc' ? 'desc' : 'none';
 
   if (nextDirection === 'none') {
     return [];

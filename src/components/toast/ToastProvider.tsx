@@ -1,7 +1,6 @@
 import { useCallback, useMemo, useState, type ReactNode } from 'react';
 import { ToastContext, type Toast, type ToastContextValue } from './useToast';
 
-
 const createToastId = (): string => {
   return crypto.randomUUID();
   return `toast-${Date.now().toString()}-${Math.random().toString(16).slice(2)}`;
@@ -24,11 +23,11 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
   return (
     <ToastContext value={value}>
       {children}
-      <div className="pointer-events-none fixed bottom-6 left-6 right-6 z-50 flex w-full max-w-xs flex-col gap-3 sm:right-auto">
+      <div className="pointer-events-none fixed right-6 bottom-6 left-6 z-50 flex w-full max-w-xs flex-col gap-3 sm:right-auto">
         {toasts.map((toast) => (
           <div
             key={toast.id}
-            className={`pointer-events-auto rounded-2xl border px-4 py-3 text-sm shadow-lg backdrop-blur animate-toast-rise ${
+            className={`animate-toast-rise pointer-events-auto rounded-2xl border px-4 py-3 text-sm shadow-lg backdrop-blur ${
               toast.variant === 'success'
                 ? 'border-emerald-500/40 bg-emerald-500/15 text-emerald-100'
                 : 'border-rose-500/40 bg-rose-500/15 text-rose-100'

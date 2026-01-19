@@ -58,7 +58,7 @@ const HoldingsTable = ({
   return (
     <div className="overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/70 shadow-xl shadow-slate-900/40">
       <table className="w-full border-separate border-spacing-0 text-left text-sm">
-        <thead className="bg-slate-950/60 text-xs uppercase tracking-[0.2em] text-slate-400">
+        <thead className="bg-slate-950/60 text-xs tracking-[0.2em] text-slate-400 uppercase">
           <tr>
             {columns.map((column) => (
               <th
@@ -83,7 +83,7 @@ const HoldingsTable = ({
           {rows.map((row) => (
             <tr
               key={row.symbol}
-              className="border-t border-slate-900/60 text-slate-100 transition hover:bg-slate-900/40 motion-safe:animate-fade-up"
+              className="motion-safe:animate-fade-up border-t border-slate-900/60 text-slate-100 transition hover:bg-slate-900/40"
             >
               <td className="px-4 py-4 text-sm font-semibold text-slate-100">{row.symbol}</td>
               <td className="px-4 py-4 text-right text-sm text-slate-200">{formatQuantity(row.quantity)}</td>

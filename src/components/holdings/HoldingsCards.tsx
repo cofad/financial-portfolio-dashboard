@@ -24,7 +24,7 @@ const HoldingsCards = ({
       {rows.map((row) => (
         <div
           key={row.symbol}
-          className="rounded-3xl border border-slate-800 bg-slate-950/70 p-5 shadow-xl shadow-slate-900/40 transition hover:-translate-y-0.5 hover:border-slate-700 motion-safe:animate-fade-up"
+          className="motion-safe:animate-fade-up rounded-3xl border border-slate-800 bg-slate-950/70 p-5 shadow-xl shadow-slate-900/40 transition hover:-translate-y-0.5 hover:border-slate-700"
         >
           <div className="flex items-start justify-between gap-4">
             <div>
