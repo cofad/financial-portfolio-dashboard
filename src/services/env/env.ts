@@ -1,9 +1,7 @@
 import { z } from 'zod';
 import log from 'loglevel';
 
-export const envSchema = z.object({
-  VITE_FINNHUB_API_KEY: z.string(),
-});
+export const envSchema = z.object({});
 
 // eslint-disable-next-line no-restricted-syntax
 const _env = envSchema.safeParse(import.meta.env);
