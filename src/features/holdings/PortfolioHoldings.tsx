@@ -1,11 +1,12 @@
 import { useMemo, useState } from 'react';
-import ConfirmDialog from '@/components/confirm-dialog/ConfirmDialog';
+import ConfirmDialog from '@components/confirm-dialog/ConfirmDialog';
 import HoldingsCards from './HoldingsCards';
 import HoldingsTable from './HoldingsTable';
 import { useToast } from '@components/toast/useToast';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { removeHolding } from '@/store/portfolioSlice';
+import { useAppDispatch } from '@store/hooks';
+import { removeHolding } from '@store/portfolioSlice';
 import type { HoldingRow, SortKey, SortRule } from './portfolioTypes';
+import { useHoldings } from '@features/holdings/useHoldings';
 import {
   compareValues,
   formatCurrency,
@@ -17,15 +18,13 @@ import {
   holdingsColumns,
   updateSortRules,
 } from './portfolioUtils';
-import { usePortfolioQuotes } from './usePortfolioQuotes';
 
 const PortfolioHoldings = () => {
-  const holdings = useAppSelector((state) => state.portfolio.holdings);
   const dispatch = useAppDispatch();
   const { pushToast } = useToast();
   const [sortRules, setSortRules] = useState<SortRule[]>([{ key: 'symbol', direction: 'asc' }]);
   const [pendingRemove, setPendingRemove] = useState<HoldingRow | null>(null);
-  const { rows, secondsSinceUpdate, hasErrors, retryAll } = usePortfolioQuotes(holdings);
+  const { holdings, rows, secondsSinceUpdate, hasErrors, retryAll } = useHoldings();
 
   const sortedRows = useMemo(() => {
     if (sortRules.length === 0) {
@@ -108,7 +107,14 @@ const PortfolioHoldings = () => {
         {holdingsColumns.map((column) => {
           const ruleIndex = sortRules.findIndex((rule) => rule.key === column.key);
           const rule = ruleIndex >= 0 ? sortRules[ruleIndex] : null;
-          const directionLabel = rule?.direction === 'asc' ? '↑' : rule?.direction === 'desc' ? '↓' : '';
+          let directionLabel = '';
+
+          if (rule?.direction === 'asc') {
+            directionLabel = '↑';
+          } else if (rule?.direction === 'desc') {
+            directionLabel = '↓';
+          }
+
           return (
             <button
               key={column.key}

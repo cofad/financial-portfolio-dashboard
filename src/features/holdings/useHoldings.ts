@@ -1,18 +1,20 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useQueries, type UseQueryResult } from '@tanstack/react-query';
-import { getQuote } from '@services/finnhub/finnhub';
-import type { QuoteResponse } from '@services/finnhub/finnhub';
-import type { Holding } from '@store/portfolioSlice';
-import type { HoldingRow } from './portfolioTypes';
+import { getQuote, type QuoteResponse } from '@services/finnhub/finnhub';
+import { useAppSelector } from '@/store/hooks';
+import type { Holding } from '@/store/portfolioSlice';
+import type { HoldingRow } from '@/features/holdings/portfolioTypes';
 
-interface PortfolioQuotesResult {
+export interface HoldingsResult {
+  holdings: Holding[];
   rows: HoldingRow[];
   secondsSinceUpdate: number | null;
   hasErrors: boolean;
   retryAll: () => void;
 }
 
-export const usePortfolioQuotes = (holdings: Holding[]): PortfolioQuotesResult => {
+export const useHoldings = (): HoldingsResult => {
+  const holdings = useAppSelector((state) => state.portfolio.holdings);
   const [now, setNow] = useState(() => Date.now());
 
   useEffect(() => {
@@ -78,6 +80,7 @@ export const usePortfolioQuotes = (holdings: Holding[]): PortfolioQuotesResult =
   }, [holdings, quoteQueries, now]);
 
   const hasErrors = quoteQueries.some((query) => query.isError);
+
   const retryAll = useCallback(() => {
     quoteQueries.forEach((query) => {
       void query.refetch();
@@ -85,6 +88,7 @@ export const usePortfolioQuotes = (holdings: Holding[]): PortfolioQuotesResult =
   }, [quoteQueries]);
 
   return {
+    holdings,
     rows,
     secondsSinceUpdate,
     hasErrors,
