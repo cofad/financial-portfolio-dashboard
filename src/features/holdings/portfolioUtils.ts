@@ -16,7 +16,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
   day: '2-digit',
 });
 
-export const holdingsColumns: Array<{ key: SortKey; label: string }> = [
+export const holdingsColumns: { key: SortKey; label: string }[] = [
   { key: 'symbol', label: 'Symbol' },
   { key: 'quantity', label: 'Quantity' },
   { key: 'purchasePrice', label: 'Purchase Price' },
