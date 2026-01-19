@@ -1,7 +1,7 @@
 import SymbolAutocomplete from './SymbolAutocomplete';
 import { usePortfolioForm } from '@/hooks/usePortfolioForm';
 
-const PortfolioForm = () => {
+const PortfolioAddForm = () => {
   const {
     register,
     onSubmit,
@@ -81,4 +81,4 @@ const PortfolioForm = () => {
   );
 };
 
-export default PortfolioForm;
+export default PortfolioAddForm;

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useQueries } from '@tanstack/react-query';
-import ConfirmDialog from '@components/ConfirmDialog';
+import ConfirmDialog from '@/components/confirm-dialog/ConfirmDialog';
 import HoldingsCards from './HoldingsCards';
 import HoldingsTable from './HoldingsTable';
 import { useToast } from '@components/toast/useToast';
