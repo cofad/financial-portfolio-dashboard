@@ -20,14 +20,16 @@ const getSortMeta = (sortRules: SortRule[], key: SortKey) => {
 
 const formatSortBadge = (sortRules: SortRule[], key: SortKey) => {
   const meta = getSortMeta(sortRules, key);
+
   if (!meta) {
     return null;
   }
+
   const arrow = meta.direction === 'asc' ? '↑' : '↓';
+
   return (
     <span className="ml-2 inline-flex items-center gap-1 rounded-full border border-slate-700 px-2 py-0.5 text-[10px] font-semibold text-slate-200">
-      <span>{meta.index + 1}</span>
-      <span>{arrow}</span>
+      <span className="w-[7.5px]">{arrow}</span>
     </span>
   );
 };
