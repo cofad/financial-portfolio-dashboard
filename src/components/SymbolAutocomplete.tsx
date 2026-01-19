@@ -10,6 +10,8 @@ const DEBOUNCE_MS = 350;
 interface SymbolAutocompleteProps {
   onSelect?: (result: SymbolLookupResult) => void;
   placeholder?: string;
+  value?: string;
+  onValueChange?: (value: string) => void;
 }
 
 const getResultLabel = (result: SymbolLookupResult): string => result.displaySymbol ?? result.symbol ?? '';
@@ -20,8 +22,12 @@ const getResultKey = (result: SymbolLookupResult, index: number): string =>
 const SymbolAutocomplete = ({
   onSelect,
   placeholder = 'Search symbols like AAPL or TSLA',
+  value,
+  onValueChange,
 }: SymbolAutocompleteProps) => {
-  const [query, setQuery] = useState<string>('');
+  const [internalQuery, setInternalQuery] = useState<string>('');
+  const query = value ?? internalQuery;
+  const handleQueryChange = onValueChange ?? setInternalQuery;
   const debouncedQuery = useDebounce<string>(query, DEBOUNCE_MS);
 
   const { data, isFetching, isError } = useQuery({
@@ -38,7 +44,7 @@ const SymbolAutocomplete = ({
       label="Symbol lookup"
       placeholder={placeholder}
       query={query}
-      onQueryChange={setQuery}
+      onQueryChange={handleQueryChange}
       items={results}
       isLoading={isFetching}
       isError={isError}

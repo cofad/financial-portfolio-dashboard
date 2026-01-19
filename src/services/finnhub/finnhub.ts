@@ -14,8 +14,13 @@ const symbolLookupResponseSchema = z.object({
   result: z.array(symbolLookupResultSchema).optional(),
 });
 
+const quoteResponseSchema = z.object({
+  c: z.number().optional(),
+});
+
 export type SymbolLookupResult = z.infer<typeof symbolLookupResultSchema>;
 export type SymbolLookupResponse = z.infer<typeof symbolLookupResponseSchema>;
+export type QuoteResponse = z.infer<typeof quoteResponseSchema>;
 
 const FINNHUB_PROXY = 'https://financial-portfolio-dashboard-server.fly.dev/api/v1';
 
@@ -34,6 +39,22 @@ export const symbolLookup = async (query: string): Promise<SymbolLookupResponse>
 
   if (!parsed.success) {
     throw new Error('Invalid finnhub symbol lookup response');
+  }
+
+  return parsed.data;
+};
+
+export const getQuote = async (symbol: string): Promise<QuoteResponse> => {
+  const response = await finnhubClient.get<unknown>('/quote', {
+    params: {
+      symbol,
+    },
+  });
+
+  const parsed = quoteResponseSchema.safeParse(response.data);
+
+  if (!parsed.success) {
+    throw new Error('Invalid finnhub quote response');
   }
 
   return parsed.data;
