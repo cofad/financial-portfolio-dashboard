@@ -92,7 +92,7 @@ interface UsePortfolioFormResult {
   quoteIsError: boolean;
 }
 
-export const usePortfolioForm = (): UsePortfolioFormResult => {
+export const useAddAssetForm = (): UsePortfolioFormResult => {
   const dispatch = useAppDispatch();
   const holdings = useAppSelector((state) => state.portfolio.holdings);
   const { pushToast } = useToast();

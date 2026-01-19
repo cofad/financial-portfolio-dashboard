@@ -1,5 +1,5 @@
-import PortfolioAddForm from '@/components/portfolio-add-form/PortfolioAddForm';
-import PortfolioHoldings from '@/components/portfolio-holdings/PortfolioHoldings';
+import AddAssetForm from '@/features/add-asset-form/AddAssetForm';
+import PortfolioHoldings from '@/features/holdings/PortfolioHoldings';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
         <p className="text-sm text-slate-400">
           Add assets to your portfolio and keep them synced to local storage.
         </p>
-        <PortfolioAddForm />
+        <AddAssetForm />
         <PortfolioHoldings />
       </div>
     </div>

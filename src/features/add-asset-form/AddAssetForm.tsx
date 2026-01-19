@@ -1,7 +1,7 @@
 import SymbolAutocomplete from './SymbolAutocomplete';
-import { usePortfolioForm } from '@/hooks/usePortfolioForm';
+import { useAddAssetForm } from '@/features/add-asset-form/useAddAssetForm';
 
-const PortfolioAddForm = () => {
+const AddAssetForm = () => {
   const {
     register,
     onSubmit,
@@ -15,7 +15,7 @@ const PortfolioAddForm = () => {
     totalPriceDisplay,
     quoteIsFetching,
     quoteIsError,
-  } = usePortfolioForm();
+  } = useAddAssetForm();
 
   const hasSymbol = symbolQuery.trim().length > 0;
   const totalPriceText = hasSymbol ? totalPriceDisplay || 'Enter quantity' : '-';
@@ -81,4 +81,4 @@ const PortfolioAddForm = () => {
   );
 };
 
-export default PortfolioAddForm;
+export default AddAssetForm;

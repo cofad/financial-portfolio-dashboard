@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { symbolLookup } from '@/services/finnhub/finnhub';
 import type { SymbolLookupResult } from '@/services/finnhub/finnhub';
 import useDebounce from '@/hooks/useDebounce';
-import Autocomplete from '../autocomplete/Autocomplete';
+import Autocomplete from '../../components/autocomplete/Autocomplete';
 
 const DEBOUNCE_MS = 350;
 
