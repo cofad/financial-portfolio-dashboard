@@ -14,7 +14,7 @@ const ranges: { label: string; value: PerformanceRange }[] = [
 
 const PerformanceRangeSelector = ({ value, onChange }: PerformanceRangeSelectorProps) => {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap justify-end gap-2">
       {ranges.map((range) => {
         const isActive = value === range.value;
         return (

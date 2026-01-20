@@ -78,12 +78,7 @@ const Summary = () => {
 
   return (
     <section className="flex flex-col gap-4">
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div>
-          <h2 className="text-xl font-semibold text-slate-100">Summary</h2>
-          <p className="text-xs text-slate-400">Totals refresh every 60 seconds.</p>
-        </div>
-
+      <div className="flex flex-wrap items-start justify-end gap-4">
         <div className="rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-xs text-slate-300">
           Last updated: {lastUpdatedLabel}
           {updatedAgoLabel ? ` (${updatedAgoLabel})` : ''}

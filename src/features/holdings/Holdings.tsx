@@ -71,11 +71,7 @@ const Holdings = () => {
 
   return (
     <section className="flex flex-col gap-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h2 className="text-xl font-semibold text-slate-100">Portfolio Holdings</h2>
-          <p className="text-xs text-slate-400">Click a column to toggle sort direction.</p>
-        </div>
+      <div className="flex flex-wrap items-center justify-end gap-3">
         <div className="flex items-center gap-3 rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-xs text-slate-300">
           <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-emerald-300" />
           <span>
