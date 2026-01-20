@@ -1,5 +1,6 @@
 import AddAssetForm from '@/features/add-asset-form/AddAssetForm';
 import Holdings from '@/features/holdings/Holdings';
+import Performance from '@/features/performance/Performance';
 import Summary from '@/features/summary/Summary';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
           Add assets to your portfolio and keep them synced to local storage.
         </p>
         <Summary />
+        <Performance />
         <AddAssetForm />
         <Holdings />
       </div>
