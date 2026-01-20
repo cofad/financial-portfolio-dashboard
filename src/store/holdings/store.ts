@@ -1,16 +1,16 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import createWebStorage from 'redux-persist/es/storage/createWebStorage';
-import portfolioReducer from './portfolioSlice';
+import holdingsReducer from './slice';
 
 const storage = createWebStorage('local');
 
 const rootReducer = combineReducers({
-  portfolio: portfolioReducer,
+  holdings: holdingsReducer,
 });
 
 const persistConfig = {
-  key: 'portfolio-dashboard',
+  key: 'holdings',
   storage,
   version: 1,
 };
@@ -29,5 +29,5 @@ export const store = configureStore({
 
 export const persistor = persistStore(store);
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type HoldingsState = ReturnType<typeof store.getState>;
+export type HoldingsDispatch = typeof store.dispatch;

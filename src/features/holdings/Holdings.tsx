@@ -3,8 +3,8 @@ import ConfirmDialog from '@components/confirm-dialog/ConfirmDialog';
 import HoldingsCards from './HoldingsCards';
 import HoldingsTable from './HoldingsTable';
 import { useToast } from '@components/toast/useToast';
-import { useAppDispatch } from '@store/hooks';
-import { removeHolding } from '@store/portfolioSlice';
+import { useHoldingsDispatch } from '@store/holdings/hooks';
+import { removeHolding } from '@store/holdings/slice';
 import type { HoldingRow, SortKey, SortRule } from './portfolioTypes';
 import { useHoldings } from '@features/holdings/useHoldings';
 import {
@@ -20,7 +20,7 @@ import {
 } from './portfolioUtils';
 
 const Holdings = () => {
-  const dispatch = useAppDispatch();
+  const dispatch = useHoldingsDispatch();
   const { pushToast } = useToast();
   const [sortRules, setSortRules] = useState<SortRule[]>([{ key: 'symbol', direction: 'asc' }]);
   const [pendingRemove, setPendingRemove] = useState<HoldingRow | null>(null);

@@ -4,8 +4,8 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, useWatch, type FieldErrors, type SubmitHandler, type UseFormRegister } from 'react-hook-form';
 import { getQuote, type SymbolLookupResult } from '@services/finnhub/finnhub';
-import { useAppDispatch, useAppSelector } from '@store/hooks';
-import { addHolding, type Holding } from '@store/portfolioSlice';
+import { useHoldingsDispatch, useHoldingsSelector } from '@store/holdings/hooks';
+import { addHolding, type Holding } from '@store/holdings/slice';
 import { useToast } from '@components/toast/useToast';
 import { normalizeSymbol } from '@utils/symbol';
 import { getNowIso } from '@utils/date';
@@ -58,8 +58,8 @@ interface UseAddAssetForm {
 }
 
 export const useAddAssetForm = (): UseAddAssetForm => {
-  const dispatch = useAppDispatch();
-  const holdings = useAppSelector((state) => state.portfolio.holdings);
+  const dispatch = useHoldingsDispatch();
+  const holdings = useHoldingsSelector((state) => state.holdings.holdings);
 
   const { pushToast } = useToast();
 

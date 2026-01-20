@@ -8,15 +8,15 @@ export interface Holding {
   assetType: string;
 }
 
-interface PortfolioState {
+interface HoldingsState {
   holdings: Holding[];
 }
 
-const initialState: PortfolioState = {
+const initialState: HoldingsState = {
   holdings: [],
 };
 
-const portfolioSlice = createSlice({
+const holdingsSlice = createSlice({
   name: 'portfolio',
   initialState,
   reducers: {
@@ -42,5 +42,5 @@ const portfolioSlice = createSlice({
   },
 });
 
-export const { addHolding, removeHolding } = portfolioSlice.actions;
-export default portfolioSlice.reducer;
+export const { addHolding, removeHolding } = holdingsSlice.actions;
+export default holdingsSlice.reducer;
