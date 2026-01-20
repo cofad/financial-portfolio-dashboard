@@ -1,3 +1,4 @@
+import { normalizeSymbol } from '@utils/symbol';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 export interface Holding {
@@ -21,8 +22,8 @@ const holdingsSlice = createSlice({
   initialState,
   reducers: {
     addHolding: (state, action: PayloadAction<Holding>) => {
-      const normalizedSymbol = action.payload.symbol.trim().toUpperCase();
-      const exists = state.holdings.some((holding) => holding.symbol.trim().toUpperCase() === normalizedSymbol);
+      const normalizedSymbol = normalizeSymbol(action.payload.symbol);
+      const exists = state.holdings.some((holding) => normalizeSymbol(holding.symbol) === normalizedSymbol);
 
       if (exists) {
         return;
@@ -34,10 +35,8 @@ const holdingsSlice = createSlice({
       });
     },
     removeHolding: (state, action: PayloadAction<string>) => {
-      const normalizedSymbol = action.payload.trim().toUpperCase();
-      state.holdings = state.holdings.filter(
-        (holding) => holding.symbol.trim().toUpperCase() !== normalizedSymbol,
-      );
+      const normalizedSymbol = normalizeSymbol(action.payload);
+      state.holdings = state.holdings.filter((holding) => normalizeSymbol(holding.symbol) !== normalizedSymbol);
     },
   },
 });
