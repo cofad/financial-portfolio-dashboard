@@ -2,6 +2,7 @@ import AddAssetForm from '@/features/add-asset-form/AddAssetForm';
 import Holdings from '@/features/holdings/Holdings';
 import Performance from '@/features/performance/Performance';
 import Summary from '@/features/summary/Summary';
+import SectionTabs from '@/components/section-tabs/SectionTabs';
 
 function App() {
   return (
@@ -11,10 +12,31 @@ function App() {
         <p className="text-sm text-slate-400">
           Add assets to your portfolio and keep them synced to local storage.
         </p>
-        <Summary />
-        <Performance />
-        <AddAssetForm />
-        <Holdings />
+        <SectionTabs
+          defaultTabId="summary"
+          tabs={[
+            {
+              id: 'summary',
+              label: 'Summary',
+              content: <Summary />,
+            },
+            {
+              id: 'performance',
+              label: 'Performance',
+              content: <Performance />,
+            },
+            {
+              id: 'add-asset',
+              label: 'Add Asset',
+              content: <AddAssetForm />,
+            },
+            {
+              id: 'holdings',
+              label: 'Holdings',
+              content: <Holdings />,
+            },
+          ]}
+        />
       </div>
     </div>
   );
