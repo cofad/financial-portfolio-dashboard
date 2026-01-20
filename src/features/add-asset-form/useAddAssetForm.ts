@@ -96,7 +96,6 @@ export const useAddAssetForm = (): UseAddAssetForm => {
     queryKey: ['quote', normalizedSelectedSymbol],
     queryFn: () => getQuote(normalizedSelectedSymbol),
     enabled: normalizedSelectedSymbol.length > 0,
-    staleTime: 30_000,
   });
 
   const quotePrice = quoteQuery.data?.c;
