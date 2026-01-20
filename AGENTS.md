@@ -4,6 +4,11 @@
 - Do NOT use `any`
 - Use `unknown` only if absolutely required
 
+## Imports
+
+- Utilize the path aliases listed in the tsconfig
+- Don't use the general `@/` if there's a more specific alias
+
 ## Styling
 
 - Use tailwind CSS for all styling
