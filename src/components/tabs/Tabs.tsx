@@ -1,17 +1,17 @@
 import { useMemo, useRef, useState, type ReactNode } from 'react';
 
-export interface SectionTab {
+export interface Tab {
   id: string;
   label: string;
   content: ReactNode;
 }
 
-interface SectionTabsProps {
-  tabs: SectionTab[];
+interface TabsProps {
+  tabs: Tab[];
   defaultTabId?: string;
 }
 
-const SectionTabs = ({ tabs, defaultTabId }: SectionTabsProps) => {
+const Tabs = ({ tabs, defaultTabId }: TabsProps) => {
   const initialTabId = useMemo(() => {
     if (defaultTabId && tabs.some((tab) => tab.id === defaultTabId)) {
       return defaultTabId;
@@ -21,7 +21,7 @@ const SectionTabs = ({ tabs, defaultTabId }: SectionTabsProps) => {
 
   const [activeTabId, setActiveTabId] = useState(initialTabId);
   const activeTab = tabs.find((tab) => tab.id === activeTabId) ?? null;
-  const tabButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const tabButtonRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   if (tabs.length === 0) {
     return null;
@@ -104,4 +104,4 @@ const SectionTabs = ({ tabs, defaultTabId }: SectionTabsProps) => {
   );
 };
 
-export default SectionTabs;
+export default Tabs;

@@ -2,7 +2,7 @@ import AddAssetForm from '@/features/add-asset-form/AddAssetForm';
 import Holdings from '@/features/holdings/Holdings';
 import Performance from '@/features/performance/Performance';
 import Summary from '@/features/summary/Summary';
-import SectionTabs from '@/components/section-tabs/SectionTabs';
+import Tabs from '@/components/tabs/Tabs';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
         <h1 className="text-3xl font-semibold">Portfolio Dashboard</h1>
 
-        <SectionTabs
+        <Tabs
           defaultTabId="summary"
           tabs={[
             {
