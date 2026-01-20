@@ -25,10 +25,10 @@ const portfolioSchema = z.object({
   assetType: z.string().min(1, 'Asset type is required.'),
 });
 
-type PortfolioFormInput = z.input<typeof portfolioSchema>;
-type PortfolioFormValues = z.infer<typeof portfolioSchema>;
+type AddAssetFormInput = z.input<typeof portfolioSchema>;
+type AddAssetFormValues = z.infer<typeof portfolioSchema>;
 
-const createDefaultValues = (): PortfolioFormInput => ({
+const createDefaultValues = (): AddAssetFormInput => ({
   symbol: '',
   quantity: '',
   purchasePrice: '',
@@ -42,10 +42,10 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 2,
 });
 
-interface UsePortfolioFormResult {
-  register: UseFormRegister<PortfolioFormInput>;
+interface UseAddAssetForm {
+  register: UseFormRegister<AddAssetFormInput>;
   onSubmit: (event?: BaseSyntheticEvent) => void;
-  errors: FieldErrors<PortfolioFormInput>;
+  errors: FieldErrors<AddAssetFormInput>;
   isValid: boolean;
   isSubmitting: boolean;
   symbolQuery: string;
@@ -57,10 +57,12 @@ interface UsePortfolioFormResult {
   quoteIsError: boolean;
 }
 
-export const useAddAssetForm = (): UsePortfolioFormResult => {
+export const useAddAssetForm = (): UseAddAssetForm => {
   const dispatch = useAppDispatch();
   const holdings = useAppSelector((state) => state.portfolio.holdings);
+
   const { pushToast } = useToast();
+
   const [symbolQuery, setSymbolQuery] = useState<string>('');
   const [selectedSymbol, setSelectedSymbol] = useState<string>('');
 
@@ -71,7 +73,7 @@ export const useAddAssetForm = (): UsePortfolioFormResult => {
     control,
     reset,
     formState: { errors, isValid, isSubmitting },
-  } = useForm<PortfolioFormInput, Record<string, never>, PortfolioFormValues>({
+  } = useForm<AddAssetFormInput, Record<string, never>, AddAssetFormValues>({
     resolver: zodResolver(portfolioSchema),
     defaultValues: createDefaultValues(),
     mode: 'onChange',
@@ -137,7 +139,7 @@ export const useAddAssetForm = (): UsePortfolioFormResult => {
     setValue('purchasePrice', '', { shouldValidate: true, shouldDirty: true });
   };
 
-  const handleFormSubmit: SubmitHandler<PortfolioFormValues> = (data) => {
+  const handleFormSubmit: SubmitHandler<AddAssetFormValues> = (data) => {
     const normalizedSymbol = normalizeSymbol(data.symbol);
     const isDuplicate = holdings.some((holding) => holding.symbol.trim().toUpperCase() === normalizedSymbol);
 
@@ -146,6 +148,7 @@ export const useAddAssetForm = (): UsePortfolioFormResult => {
         message: `${normalizedSymbol} already exists in your portfolio.`,
         variant: 'error',
       });
+
       return;
     }
 
