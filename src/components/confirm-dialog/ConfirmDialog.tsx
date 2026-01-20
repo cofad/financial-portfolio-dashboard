@@ -96,7 +96,7 @@ const ConfirmDialog = ({
   return (
     <dialog
       ref={dialogRef}
-      className="motion-safe:animate-fade-up fixed inset-0 z-50 m-auto w-full max-w-md rounded-3xl border border-slate-800 bg-slate-950/75 p-6 shadow-2xl shadow-slate-950/60 backdrop-blur-xl [&::backdrop]:bg-slate-950/80 [&::backdrop]:backdrop-blur-sm"
+      className="motion-safe:animate-fade-up fixed inset-0 z-50 m-auto w-[calc(100%-2rem)] max-w-md rounded-3xl border border-slate-800 bg-slate-950/75 p-6 shadow-2xl shadow-slate-950/60 backdrop-blur-xl [&::backdrop]:bg-slate-950/80 [&::backdrop]:backdrop-blur-sm"
       onCancel={(event) => {
         event.preventDefault();
         onCancel();
