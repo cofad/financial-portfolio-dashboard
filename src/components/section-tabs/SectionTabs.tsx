@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from 'react';
+import { useMemo, useRef, useState, type ReactNode } from 'react';
 
 export interface SectionTab {
   id: string;
@@ -21,6 +21,7 @@ const SectionTabs = ({ tabs, defaultTabId }: SectionTabsProps) => {
 
   const [activeTabId, setActiveTabId] = useState(initialTabId);
   const activeTab = tabs.find((tab) => tab.id === activeTabId) ?? null;
+  const tabButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   if (tabs.length === 0) {
     return null;
@@ -33,7 +34,7 @@ const SectionTabs = ({ tabs, defaultTabId }: SectionTabsProps) => {
         aria-label="Dashboard sections"
         className="flex w-full gap-0 overflow-x-auto border-b border-slate-800 whitespace-nowrap"
       >
-        {tabs.map((tab) => {
+        {tabs.map((tab, index) => {
           const isActive = tab.id === activeTabId;
           return (
             <button
@@ -43,8 +44,39 @@ const SectionTabs = ({ tabs, defaultTabId }: SectionTabsProps) => {
               aria-selected={isActive}
               aria-controls={`${tab.id}-panel`}
               id={`${tab.id}-tab`}
+              tabIndex={isActive ? 0 : -1}
               onClick={() => {
                 setActiveTabId(tab.id);
+              }}
+              onKeyDown={(event) => {
+                const { key } = event;
+                if (key === 'Enter' || key === ' ') {
+                  event.preventDefault();
+                  setActiveTabId(tab.id);
+                  return;
+                }
+
+                let nextIndex: number | null = null;
+
+                if (key === 'ArrowRight') {
+                  nextIndex = (index + 1) % tabs.length;
+                } else if (key === 'ArrowLeft') {
+                  nextIndex = (index - 1 + tabs.length) % tabs.length;
+                } else if (key === 'Home') {
+                  nextIndex = 0;
+                } else if (key === 'End') {
+                  nextIndex = tabs.length - 1;
+                }
+
+                if (nextIndex !== null) {
+                  event.preventDefault();
+                  const nextTab = tabs[nextIndex];
+                  setActiveTabId(nextTab.id);
+                  tabButtonRefs.current[nextIndex]?.focus();
+                }
+              }}
+              ref={(element) => {
+                tabButtonRefs.current[index] = element;
               }}
               className={`-mb-px flex-1 px-3 py-2 text-[14px] font-semibold transition sm:min-w-[140px] sm:px-4 sm:py-3 ${
                 isActive
