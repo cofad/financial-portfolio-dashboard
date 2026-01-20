@@ -78,7 +78,7 @@ const SectionTabs = ({ tabs, defaultTabId }: SectionTabsProps) => {
               ref={(element) => {
                 tabButtonRefs.current[index] = element;
               }}
-              className={`-mb-px flex-1 px-3 py-2 text-[14px] font-semibold transition sm:min-w-[140px] sm:px-4 sm:py-3 ${
+              className={`-mb-px flex-1 px-3 py-2 text-[14px] font-semibold transition focus-visible:bg-slate-900/60 focus-visible:outline-none sm:min-w-[140px] sm:px-4 sm:py-3 ${
                 isActive
                   ? 'border-b-2 border-emerald-300 text-emerald-100'
                   : 'border-b-2 border-transparent text-slate-400 hover:text-slate-100'
