@@ -1,15 +1,11 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-export const ASSET_TYPES = ['Stock', 'ETF', 'Crypto', 'Bond', 'Fund', 'Cash'] as const;
-
-export type AssetType = (typeof ASSET_TYPES)[number];
-
 export interface Holding {
   symbol: string;
   quantity: number;
   purchasePrice: number;
   purchaseDate: string;
-  assetType: AssetType;
+  assetType: string;
 }
 
 interface PortfolioState {

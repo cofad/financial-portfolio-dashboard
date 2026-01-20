@@ -5,40 +5,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, useWatch, type FieldErrors, type SubmitHandler, type UseFormRegister } from 'react-hook-form';
 import { getQuote, type SymbolLookupResult } from '@/services/finnhub/finnhub';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { addHolding, ASSET_TYPES, type AssetType, type Holding } from '@/store/portfolioSlice';
+import { addHolding, type Holding } from '@/store/portfolioSlice';
 import { useToast } from '@components/toast/useToast';
 
 const normalizeSymbol = (value: string): string => value.trim().toUpperCase();
-
-const mapAssetType = (rawType?: string): AssetType | '' => {
-  const normalizedType = (rawType ?? '').toLowerCase();
-
-  if (!normalizedType) {
-    return '';
-  }
-
-  if (normalizedType.includes('etf')) {
-    return 'ETF';
-  }
-
-  if (normalizedType.includes('crypto')) {
-    return 'Crypto';
-  }
-
-  if (normalizedType.includes('bond')) {
-    return 'Bond';
-  }
-
-  if (normalizedType.includes('fund')) {
-    return 'Fund';
-  }
-
-  if (normalizedType.includes('cash')) {
-    return 'Cash';
-  }
-
-  return 'Stock';
-};
 
 const getNowIso = (): string => new Date(Date.now()).toISOString();
 
@@ -56,8 +26,7 @@ const portfolioSchema = z.object({
     .refine((value) => !Number.isNaN(Date.parse(value)), 'Purchase date must be valid.'),
   assetType: z
     .string()
-    .min(1, 'Asset type is required.')
-    .refine((value) => ASSET_TYPES.includes(value as AssetType), 'Asset type is required.'),
+    .min(1, 'Asset type is required.'),
 });
 
 type PortfolioFormInput = z.input<typeof portfolioSchema>;
@@ -156,7 +125,7 @@ export const useAddAssetForm = (): UsePortfolioFormResult => {
 
   const onSymbolSelect = (result: SymbolLookupResult) => {
     const nextSymbol = result.displaySymbol ?? result.symbol ?? '';
-    const nextAssetType = mapAssetType(result.type);
+    const nextAssetType = result.type ?? '';
     setSymbolQuery(nextSymbol);
     setSelectedSymbol(nextSymbol);
     setValue('symbol', nextSymbol, { shouldValidate: true, shouldDirty: true });

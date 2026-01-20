@@ -1,5 +1,3 @@
-import type { AssetType } from '@/store/portfolioSlice';
-
 export type SortKey =
   | 'symbol'
   | 'assetType'
@@ -19,7 +17,7 @@ export interface SortRule {
 
 export interface HoldingRow {
   symbol: string;
-  assetType: AssetType;
+  assetType: string;
   quantity: number;
   purchasePrice: number;
   purchaseDate: string;
