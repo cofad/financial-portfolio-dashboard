@@ -3,14 +3,12 @@ import { useQuery } from '@tanstack/react-query';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, useWatch, type FieldErrors, type SubmitHandler, type UseFormRegister } from 'react-hook-form';
-import { getQuote, type SymbolLookupResult } from '@/services/finnhub/finnhub';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { addHolding, type Holding } from '@/store/portfolioSlice';
+import { getQuote, type SymbolLookupResult } from '@services/finnhub/finnhub';
+import { useAppDispatch, useAppSelector } from '@store/hooks';
+import { addHolding, type Holding } from '@store/portfolioSlice';
 import { useToast } from '@components/toast/useToast';
-
-const normalizeSymbol = (value: string): string => value.trim().toUpperCase();
-
-const getNowIso = (): string => new Date(Date.now()).toISOString();
+import { normalizeSymbol } from '@utils/symbol';
+import { getNowIso } from '@utils/date';
 
 const portfolioSchema = z.object({
   symbol: z
@@ -24,9 +22,7 @@ const portfolioSchema = z.object({
     .string()
     .min(1, 'Purchase date is required.')
     .refine((value) => !Number.isNaN(Date.parse(value)), 'Purchase date must be valid.'),
-  assetType: z
-    .string()
-    .min(1, 'Asset type is required.'),
+  assetType: z.string().min(1, 'Asset type is required.'),
 });
 
 type PortfolioFormInput = z.input<typeof portfolioSchema>;
@@ -84,6 +80,7 @@ export const useAddAssetForm = (): UsePortfolioFormResult => {
 
   const watchedPrice = useWatch({ control, name: 'purchasePrice', defaultValue: '' });
   const watchedQuantity = useWatch({ control, name: 'quantity', defaultValue: '' });
+
   const quantityNumber =
     typeof watchedQuantity === 'number'
       ? watchedQuantity
@@ -92,12 +89,14 @@ export const useAddAssetForm = (): UsePortfolioFormResult => {
         : NaN;
 
   const normalizedSelectedSymbol = normalizeSymbol(selectedSymbol);
+
   const quoteQuery = useQuery({
     queryKey: ['quote', normalizedSelectedSymbol],
     queryFn: () => getQuote(normalizedSelectedSymbol),
     enabled: normalizedSelectedSymbol.length > 0,
     staleTime: 30_000,
   });
+
   const quotePrice = quoteQuery.data?.c;
 
   useEffect(() => {
@@ -113,11 +112,14 @@ export const useAddAssetForm = (): UsePortfolioFormResult => {
 
   const onSymbolChange = (value: string) => {
     const normalizedValue = normalizeSymbol(value);
+
     const normalizedSelected = normalizeSymbol(selectedSymbol);
+
     if (selectedSymbol && normalizedValue !== normalizedSelected) {
       setSelectedSymbol('');
       setValue('assetType', '', { shouldValidate: true, shouldDirty: true });
     }
+
     setSymbolQuery(value);
     setValue('symbol', value, { shouldValidate: true, shouldDirty: true });
     setValue('purchasePrice', '', { shouldValidate: true, shouldDirty: true });
@@ -126,8 +128,10 @@ export const useAddAssetForm = (): UsePortfolioFormResult => {
   const onSymbolSelect = (result: SymbolLookupResult) => {
     const nextSymbol = result.displaySymbol ?? result.symbol ?? '';
     const nextAssetType = result.type ?? '';
+
     setSymbolQuery(nextSymbol);
     setSelectedSymbol(nextSymbol);
+
     setValue('symbol', nextSymbol, { shouldValidate: true, shouldDirty: true });
     setValue('assetType', nextAssetType, { shouldValidate: true, shouldDirty: true });
     setValue('purchasePrice', '', { shouldValidate: true, shouldDirty: true });
@@ -152,10 +156,12 @@ export const useAddAssetForm = (): UsePortfolioFormResult => {
     };
 
     dispatch(addHolding(payload));
+
     pushToast({
       message: `Added ${normalizedSymbol} to your portfolio.`,
       variant: 'success',
     });
+
     reset(createDefaultValues());
     setSymbolQuery('');
     setSelectedSymbol('');
@@ -165,10 +171,12 @@ export const useAddAssetForm = (): UsePortfolioFormResult => {
     typeof watchedPrice === 'number' && Number.isFinite(watchedPrice)
       ? currencyFormatter.format(watchedPrice)
       : '';
+
   const totalPrice =
     typeof watchedPrice === 'number' && Number.isFinite(watchedPrice) && Number.isFinite(quantityNumber)
       ? watchedPrice * quantityNumber
       : null;
+
   const totalPriceDisplay = typeof totalPrice === 'number' ? currencyFormatter.format(totalPrice) : '';
 
   return {
