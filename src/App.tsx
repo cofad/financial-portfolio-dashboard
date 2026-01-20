@@ -19,14 +19,14 @@ function App() {
               content: <Summary />,
             },
             {
-              id: 'performance',
-              label: 'Performance',
-              content: <Performance />,
-            },
-            {
               id: 'add-asset',
               label: 'Add Asset',
               content: <AddAssetForm />,
+            },
+            {
+              id: 'performance',
+              label: 'Performance',
+              content: <Performance />,
             },
             {
               id: 'holdings',
