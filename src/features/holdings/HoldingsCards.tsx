@@ -48,6 +48,10 @@ const HoldingsCards = ({
               <p className="text-slate-200">{formatQuantity(row.quantity)}</p>
             </div>
             <div>
+              <p className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">Type</p>
+              <p className="text-slate-200">{row.assetType}</p>
+            </div>
+            <div>
               <p className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">Purchase Price</p>
               <p className="text-slate-200">{formatCurrency(row.purchasePrice)}</p>
             </div>

@@ -2,6 +2,7 @@ import type { HoldingRow, SortKey, SortRule, SortToggleHandler } from './portfol
 
 const columns: { key: SortKey; label: string; align?: 'left' | 'right' }[] = [
   { key: 'symbol', label: 'Symbol', align: 'left' },
+  { key: 'assetType', label: 'Type', align: 'left' },
   { key: 'quantity', label: 'Quantity', align: 'right' },
   { key: 'purchasePrice', label: 'Purchase Price', align: 'right' },
   { key: 'currentPrice', label: 'Current Price', align: 'right' },
@@ -90,6 +91,7 @@ const HoldingsTable = ({
               className="motion-safe:animate-fade-up border-t border-slate-900/60 text-slate-100 transition hover:bg-slate-900/40"
             >
               <td className="px-4 py-4 text-sm font-semibold text-slate-100">{row.symbol}</td>
+              <td className="px-4 py-4 text-sm text-slate-300">{row.assetType}</td>
               <td className="px-4 py-4 text-right text-sm text-slate-200">{formatQuantity(row.quantity)}</td>
               <td className="px-4 py-4 text-right text-sm text-slate-200">{formatCurrency(row.purchasePrice)}</td>
               <td className="px-4 py-4 text-right text-sm text-slate-200">

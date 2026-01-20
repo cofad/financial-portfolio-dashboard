@@ -18,6 +18,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
 
 export const holdingsColumns: { key: SortKey; label: string }[] = [
   { key: 'symbol', label: 'Symbol' },
+  { key: 'assetType', label: 'Type' },
   { key: 'quantity', label: 'Quantity' },
   { key: 'purchasePrice', label: 'Purchase Price' },
   { key: 'currentPrice', label: 'Current Price' },
@@ -47,6 +48,8 @@ export const getSortValue = (row: HoldingRow, key: SortKey): string | number | n
   switch (key) {
     case 'symbol':
       return row.symbol;
+    case 'assetType':
+      return row.assetType;
     case 'quantity':
       return row.quantity;
     case 'purchasePrice':

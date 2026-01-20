@@ -65,6 +65,7 @@ export const useHoldings = (): HoldingsResult => {
             : 'idle';
       const row: HoldingRow = {
         symbol: holding.symbol,
+        assetType: holding.assetType,
         quantity: holding.quantity,
         purchasePrice: holding.purchasePrice,
         purchaseDate: holding.purchaseDate,
