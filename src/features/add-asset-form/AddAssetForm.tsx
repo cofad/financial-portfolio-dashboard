@@ -62,8 +62,6 @@ const AddAssetForm = () => {
             {purchasePriceText}
           </div>
 
-          <input type="hidden" {...register('purchasePrice')} />
-
           {quoteIsError && <p className="text-xs text-rose-400">Unable to load price from Finnhub.</p>}
         </div>
 
@@ -74,6 +72,7 @@ const AddAssetForm = () => {
 
         <input type="hidden" {...register('purchaseDate')} />
         <input type="hidden" {...register('assetType')} />
+        <input type="hidden" {...register('purchasePrice')} />
 
         <button
           type="submit"
