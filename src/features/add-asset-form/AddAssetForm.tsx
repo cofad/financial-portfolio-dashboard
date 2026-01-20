@@ -35,8 +35,10 @@ const AddAssetForm = () => {
             <SymbolAutocomplete value={symbolQuery} onValueChange={onSymbolChange} onSelect={onSymbolSelect} />
             {errors.symbol?.message && <p className="mt-2 text-xs text-rose-400">{errors.symbol.message}</p>}
           </div>
+
           <div className="flex flex-col gap-2">
             <label className="text-xs font-semibold tracking-[0.2em] text-slate-300 uppercase">Quantity</label>
+
             <input
               type="number"
               step="any"
@@ -45,19 +47,23 @@ const AddAssetForm = () => {
               className="mt-3 rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-slate-100 transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700"
               aria-invalid={Boolean(errors.quantity?.message)}
             />
+
             {errors.quantity?.message && <p className="text-xs text-rose-400">{errors.quantity.message}</p>}
           </div>
         </div>
 
         <div className="flex flex-col gap-2">
           <span className="text-xs font-semibold tracking-[0.2em] text-slate-300 uppercase">Purchase Price</span>
+
           <div
             aria-invalid={Boolean(errors.purchasePrice?.message)}
             className="text-sm font-semibold text-slate-100"
           >
             {purchasePriceText}
           </div>
+
           <input type="hidden" {...register('purchasePrice')} />
+
           {quoteIsError && <p className="text-xs text-rose-400">Unable to load price from Finnhub.</p>}
         </div>
 
