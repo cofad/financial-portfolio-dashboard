@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useHoldings } from '@features/holdings/useHoldings';
-import { formatCurrency } from '@features/holdings/portfolioUtils';
+import { formatCurrency } from '@/features/holdings/holdingsUtils';
 
 const formatPercent = (value: number | null) =>
   typeof value === 'number' && Number.isFinite(value) ? `${value.toFixed(2)}%` : '-';

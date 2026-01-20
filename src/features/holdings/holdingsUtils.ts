@@ -1,4 +1,4 @@
-import type { HoldingRow, SortKey, SortRule } from './portfolioTypes';
+import type { HoldingRow, SortKey, SortRule } from './holdings';
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',

@@ -1,4 +1,4 @@
-import type { HoldingRow, SortKey, SortRule, SortToggleHandler } from './portfolioTypes';
+import type { HoldingRow, SortKey, SortRule, SortToggleHandler } from './holdings';
 
 const columns: { key: SortKey; label: string; align?: 'left' | 'right' }[] = [
   { key: 'symbol', label: 'Symbol', align: 'left' },

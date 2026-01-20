@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useHoldings } from '@features/holdings/useHoldings';
-import { formatCurrency } from '@features/holdings/portfolioUtils';
+import { formatCurrency } from '@/features/holdings/holdingsUtils';
 import PerformanceChart from './PerformanceChart';
 import PerformanceRangeSelector from './PerformanceRangeSelector';
 import { usePerformanceData, type PerformanceRange } from './usePerformanceData';

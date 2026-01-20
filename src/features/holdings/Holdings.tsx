@@ -5,7 +5,7 @@ import HoldingsTable from './HoldingsTable';
 import { useToast } from '@components/toast/useToast';
 import { useHoldingsDispatch } from '@store/holdings/hooks';
 import { removeHolding } from '@store/holdings/slice';
-import type { HoldingRow, SortKey, SortRule } from './portfolioTypes';
+import type { HoldingRow, SortKey, SortRule } from './holdings';
 import { useHoldings } from '@features/holdings/useHoldings';
 import {
   compareValues,
@@ -17,7 +17,7 @@ import {
   getSortValue,
   holdingsColumns,
   updateSortRules,
-} from './portfolioUtils';
+} from './holdingsUtils';
 
 const Holdings = () => {
   const dispatch = useHoldingsDispatch();

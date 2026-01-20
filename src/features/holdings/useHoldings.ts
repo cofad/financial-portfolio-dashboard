@@ -3,7 +3,7 @@ import { useQueries, type UseQueryResult } from '@tanstack/react-query';
 import { getQuote, type QuoteResponse } from '@services/finnhub/finnhub';
 import { useHoldingsSelector } from '@store/holdings/hooks';
 import type { Holding } from '@store/holdings/slice';
-import type { HoldingRow } from '@features/holdings/portfolioTypes';
+import type { HoldingRow } from '@/features/holdings/holdings';
 
 export interface HoldingsResult {
   holdings: Holding[];

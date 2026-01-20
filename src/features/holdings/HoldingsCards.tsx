@@ -1,4 +1,4 @@
-import type { HoldingRow } from './portfolioTypes';
+import type { HoldingRow } from './holdings';
 
 interface HoldingsCardsProps {
   rows: HoldingRow[];

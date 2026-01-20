@@ -1,14 +1,6 @@
-import {
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-  type TooltipProps,
-} from 'recharts';
+import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, type TooltipProps } from 'recharts';
 import type { PerformancePoint } from './usePerformanceData';
-import { formatCurrency } from '@features/holdings/portfolioUtils';
+import { formatCurrency } from '@/features/holdings/holdingsUtils';
 
 interface PerformanceChartProps {
   data: PerformancePoint[];
