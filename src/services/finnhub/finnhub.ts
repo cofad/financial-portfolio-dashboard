@@ -15,6 +15,9 @@ const symbolLookupResponseSchema = z.object({
 
 const quoteResponseSchema = z.object({
   c: z.number().optional(),
+  d: z.number().optional(),
+  dp: z.number().optional(),
+  pc: z.number().optional(),
 });
 
 export type SymbolLookupResult = z.infer<typeof symbolLookupResultSchema>;

@@ -22,6 +22,8 @@ export interface HoldingRow {
   purchasePrice: number;
   purchaseDate: string;
   currentPrice: number | null;
+  dailyChange: number | null;
+  previousClose: number | null;
   totalValue: number | null;
   profitLoss: number | null;
   quoteStatus: 'idle' | 'loading' | 'error' | 'ready';

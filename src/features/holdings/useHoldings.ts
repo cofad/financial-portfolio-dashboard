@@ -9,7 +9,9 @@ export interface HoldingsResult {
   holdings: Holding[];
   rows: HoldingRow[];
   secondsSinceUpdate: number | null;
+  lastUpdatedAt: number | null;
   hasErrors: boolean;
+  isLoading: boolean;
   retryAll: () => void;
 }
 
@@ -52,6 +54,10 @@ export const useHoldings = (): HoldingsResult => {
     return holdings.map((holding: Holding, index: number): HoldingRow => {
       const quote = quoteQueries[index];
       const price = typeof quote.data?.c === 'number' && Number.isFinite(quote.data.c) ? quote.data.c : null;
+      const dailyChange =
+        typeof quote.data?.d === 'number' && Number.isFinite(quote.data.d) ? quote.data.d : null;
+      const previousClose =
+        typeof quote.data?.pc === 'number' && Number.isFinite(quote.data.pc) ? quote.data.pc : null;
       const totalValue = price !== null ? price * holding.quantity : null;
       const profitLoss = price !== null ? (price - holding.purchasePrice) * holding.quantity : null;
       const quoteUpdatedAt = quote.dataUpdatedAt > 0 ? quote.dataUpdatedAt : null;
@@ -70,6 +76,8 @@ export const useHoldings = (): HoldingsResult => {
         purchasePrice: holding.purchasePrice,
         purchaseDate: holding.purchaseDate,
         currentPrice: price,
+        dailyChange,
+        previousClose,
         totalValue,
         profitLoss,
         quoteStatus,
@@ -81,6 +89,7 @@ export const useHoldings = (): HoldingsResult => {
   }, [holdings, quoteQueries, now]);
 
   const hasErrors = quoteQueries.some((query) => query.isError);
+  const isLoading = holdings.length > 0 && quoteQueries.some((query) => query.isLoading);
 
   const retryAll = useCallback(() => {
     quoteQueries.forEach((query) => {
@@ -92,7 +101,9 @@ export const useHoldings = (): HoldingsResult => {
     holdings,
     rows,
     secondsSinceUpdate,
+    lastUpdatedAt: latestUpdatedAt,
     hasErrors,
+    isLoading,
     retryAll,
   };
 };
