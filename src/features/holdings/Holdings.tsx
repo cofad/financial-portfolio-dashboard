@@ -19,7 +19,7 @@ import {
   updateSortRules,
 } from './portfolioUtils';
 
-const PortfolioHoldings = () => {
+const Holdings = () => {
   const dispatch = useAppDispatch();
   const { pushToast } = useToast();
   const [sortRules, setSortRules] = useState<SortRule[]>([{ key: 'symbol', direction: 'asc' }]);
@@ -182,4 +182,4 @@ const PortfolioHoldings = () => {
   );
 };
 
-export default PortfolioHoldings;
+export default Holdings;

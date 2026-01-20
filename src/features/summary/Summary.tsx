@@ -12,7 +12,7 @@ const getChangeTone = (value: number | null) => {
   return value >= 0 ? 'text-emerald-300' : 'text-rose-300';
 };
 
-const PortfolioSummary = () => {
+const Summary = () => {
   const { holdings, rows, secondsSinceUpdate, lastUpdatedAt, hasErrors, retryAll, isLoading } = useHoldings();
 
   const totals = useMemo(() => {
@@ -180,4 +180,4 @@ const PortfolioSummary = () => {
   );
 };
 
-export default PortfolioSummary;
+export default Summary;
