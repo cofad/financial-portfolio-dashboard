@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { z } from 'zod';
+import { number, z } from 'zod';
 
 const symbolLookupResultSchema = z.object({
   description: z.string().optional(),
@@ -14,11 +14,19 @@ const symbolLookupResponseSchema = z.object({
 });
 
 const quoteResponseSchema = z.object({
-  c: z.number().optional(),
-  d: z.number().optional(),
-  dp: z.number().optional(),
-  pc: z.number().optional(),
+  c: z.number(),
+  d: z.number(),
+  dp: z.number(),
+  h: z.number(),
+  l: z.number(),
+  o: z.number(),
+  pc: z.number(),
 });
+
+export interface Quote {
+  symbol: string;
+  currentPrice: number;
+}
 
 export type SymbolLookupResult = z.infer<typeof symbolLookupResultSchema>;
 export type SymbolLookupResponse = z.infer<typeof symbolLookupResponseSchema>;
@@ -60,4 +68,17 @@ export const getQuote = async (symbol: string): Promise<QuoteResponse> => {
   }
 
   return parsed.data;
+};
+
+export const getQuotes = async (symbols: string[]): Promise<Quote[]> => {
+  const quotes: Quote[] = [];
+
+  await Promise.all(
+    symbols.map(async (symbol) => {
+      const quote = await getQuote(symbol);
+      quotes.push({ symbol, currentPrice: quote.c });
+    }),
+  );
+
+  return quotes;
 };
