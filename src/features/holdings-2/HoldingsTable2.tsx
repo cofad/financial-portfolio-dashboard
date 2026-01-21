@@ -3,6 +3,10 @@ import { useMemo, useState } from 'react';
 import { formatCurrency } from '@utils/currency';
 import { formatDate } from '@utils/date';
 import type { LiveHolding } from './useHoldings2';
+import ConfirmDialog from '@components/confirm-dialog/ConfirmDialog';
+import { useToast } from '@components/toast/useToast';
+import { useHoldingsDispatch } from '@store/holdings/hooks';
+import { removeHolding } from '@store/holdings/slice';
 
 interface HoldingsTable2Props {
   liveHoldings: LiveHolding[];
@@ -103,7 +107,10 @@ function sortLiveHoldings(liveHoldings: LiveHolding[], sortState: SortState | nu
 }
 
 export default function HoldingsTable2({ liveHoldings, isUpdating }: HoldingsTable2Props) {
+  const dispatch = useHoldingsDispatch();
+  const { pushToast } = useToast();
   const [sortState, setSortState] = useState<SortState | null>(null);
+  const [pendingRemove, setPendingRemove] = useState<LiveHolding | null>(null);
 
   const sortedLiveHoldings = useMemo(() => sortLiveHoldings(liveHoldings, sortState), [liveHoldings, sortState]);
 
@@ -141,6 +148,7 @@ export default function HoldingsTable2({ liveHoldings, isUpdating }: HoldingsTab
                 </button>
               </th>
             ))}
+            <th className="px-4 py-4 text-right font-semibold">Action</th>
           </tr>
         </thead>
 
@@ -165,10 +173,46 @@ export default function HoldingsTable2({ liveHoldings, isUpdating }: HoldingsTab
                 {formatCurrency(holding.profitLoss)}
               </td>
               <td className="px-4 py-4 text-right text-sm text-slate-300">{formatDate(holding.purchaseDate)}</td>
+              <td className="px-4 py-4 text-right">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPendingRemove(holding);
+                  }}
+                  className="rounded-2xl border border-slate-800 px-3 py-2 text-xs font-semibold text-rose-200 transition hover:border-rose-400/70 hover:text-rose-100"
+                >
+                  Remove
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      <ConfirmDialog
+        open={Boolean(pendingRemove)}
+        title="Remove holding?"
+        description={
+          pendingRemove ? `Remove ${pendingRemove.symbol} from your portfolio? This cannot be undone.` : undefined
+        }
+        confirmLabel="Remove"
+        cancelLabel="Cancel"
+        onConfirm={() => {
+          if (!pendingRemove) return;
+
+          dispatch(removeHolding(pendingRemove.symbol));
+
+          pushToast({
+            message: `Removed ${pendingRemove.symbol} from your portfolio.`,
+            variant: 'success',
+          });
+
+          setPendingRemove(null);
+        }}
+        onCancel={() => {
+          setPendingRemove(null);
+        }}
+      />
     </div>
   );
 }
