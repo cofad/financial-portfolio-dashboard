@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 
 import { useHoldings2Context } from '@features/holdings-2/holdings-2-provider/Holdings2Provider';
+import ProfitOrLoss from '@features/holdings-2/profit-or-loss/ProfitOrLoss';
 import { formatCurrency } from '@utils/currency';
 import { formatDate } from '@utils/date';
 import { type LiveHolding } from './useHoldings2';
@@ -163,8 +164,8 @@ export default function HoldingsTable2() {
               <td className="px-4 py-4 text-right text-sm text-slate-200">
                 {formatCurrency(holding.currentValue)}
               </td>
-              <td className="px-4 py-4 text-right text-sm font-semibold text-slate-200">
-                {formatCurrency(holding.profitLoss)}
+              <td className="px-4 py-4 text-right text-sm font-semibold">
+                <ProfitOrLoss value={holding.profitLoss} />
               </td>
               <td className="px-4 py-4 text-right text-sm text-slate-300">{formatDate(holding.purchaseDate)}</td>
               <td className="px-4 py-4 text-center">

@@ -1,10 +1,7 @@
 import { useHoldings2Context } from '@features/holdings-2/holdings-2-provider/Holdings2Provider';
+import ProfitOrLoss from '@features/holdings-2/profit-or-loss/ProfitOrLoss';
 import { formatCurrency } from '@utils/currency';
 import { formatDate } from '@utils/date';
-
-function getProfitLossTone(value: number): string {
-  return value >= 0 ? 'text-emerald-300' : 'text-rose-300';
-}
 
 export default function HoldingsCards2() {
   const { liveHoldings, requestRemove } = useHoldings2Context();
@@ -65,9 +62,7 @@ export default function HoldingsCards2() {
 
             <div>
               <p className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">P/L</p>
-              <p className={`font-semibold ${getProfitLossTone(holding.profitLoss)}`}>
-                {formatCurrency(holding.profitLoss)}
-              </p>
+              <ProfitOrLoss value={holding.profitLoss} />
             </div>
 
             <div>
