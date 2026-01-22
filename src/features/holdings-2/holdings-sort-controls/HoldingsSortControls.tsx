@@ -1,5 +1,10 @@
 import { useHoldings2Context } from '@features/holdings-2/holdings-2-provider/Holdings2Provider';
-import { SORT_OPTIONS, type SortDirection, type SortKey, type SortState } from '@features/holdings-2/holdings2Sorting';
+import {
+  SORT_OPTIONS,
+  type SortDirection,
+  type SortKey,
+  type SortState,
+} from '@features/holdings-2/holdings2Sorting';
 
 const getNextSortState = (current: SortState | null, nextKey: SortKey | ''): SortState | null => {
   if (!nextKey) {
@@ -14,7 +19,7 @@ export default function HoldingsSortControls() {
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <label className="flex items-center gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300">
+      <label className="flex items-center gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-teal-100">
         <span className="font-semibold tracking-[0.2em] text-slate-400 uppercase">Sort by</span>
         <select
           value={sortState?.key ?? ''}
@@ -33,7 +38,7 @@ export default function HoldingsSortControls() {
         </select>
       </label>
 
-      <label className="flex items-center gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300">
+      <label className="flex items-center gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-teal-100">
         <span className="font-semibold tracking-[0.2em] text-slate-400 uppercase">Order</span>
         <select
           value={sortState?.direction ?? 'asc'}
