@@ -35,6 +35,7 @@ interface SortState {
 
 const COLUMNS = [
   { key: SORT_KEY.symbol, label: 'Symbol', align: 'left' },
+  { key: SORT_KEY.assetType, label: 'Type', align: 'left' },
   { key: SORT_KEY.quantity, label: 'Quantity', align: 'right' },
   { key: SORT_KEY.purchasePrice, label: 'Purchase Price', align: 'right' },
   { key: SORT_KEY.currentPrice, label: 'Current Price', align: 'right' },
@@ -159,6 +160,7 @@ export default function HoldingsTable2({ liveHoldings, isUpdating }: HoldingsTab
               className="motion-safe:animate-fade-up border-t border-slate-900/60 text-slate-100 transition hover:bg-slate-900/40"
             >
               <td className="px-4 py-4 text-sm font-semibold text-slate-100">{holding.symbol}</td>
+              <td className="px-4 py-4 text-sm text-slate-200">{holding.assetType}</td>
               <td className="px-4 py-4 text-right text-sm text-slate-200">{holding.quantity}</td>
               <td className="px-4 py-4 text-right text-sm text-slate-200">
                 {formatCurrency(holding.purchasePrice)}
