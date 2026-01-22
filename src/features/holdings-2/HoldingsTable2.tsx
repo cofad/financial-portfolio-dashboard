@@ -149,7 +149,7 @@ export default function HoldingsTable2({ liveHoldings, isUpdating }: HoldingsTab
                 </button>
               </th>
             ))}
-            <th className="px-4 py-4 text-right font-semibold">Action</th>
+            <th className="px-4 py-4 text-center font-semibold">Action</th>
           </tr>
         </thead>
 
@@ -175,13 +175,13 @@ export default function HoldingsTable2({ liveHoldings, isUpdating }: HoldingsTab
                 {formatCurrency(holding.profitLoss)}
               </td>
               <td className="px-4 py-4 text-right text-sm text-slate-300">{formatDate(holding.purchaseDate)}</td>
-              <td className="px-4 py-4 text-right">
+              <td className="px-4 py-4 text-center">
                 <button
                   type="button"
                   onClick={() => {
                     setPendingRemove(holding);
                   }}
-                  className="rounded-2xl border border-slate-800 px-3 py-2 text-xs font-semibold text-rose-200 transition hover:border-rose-400/70 hover:text-rose-100"
+                  className="inline-flex items-center justify-center rounded-2xl border border-slate-800 px-3 py-2 text-xs font-semibold text-rose-200 transition hover:border-rose-400/70 hover:text-rose-100"
                 >
                   Remove
                 </button>
