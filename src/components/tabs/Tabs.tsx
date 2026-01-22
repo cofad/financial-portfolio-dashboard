@@ -32,7 +32,7 @@ const Tabs = ({ tabs, defaultTabId }: TabsProps) => {
       <div
         role="tablist"
         aria-label="Dashboard sections"
-        className="flex w-full gap-0 overflow-x-auto border-b border-slate-800 whitespace-nowrap"
+        className="flex w-full gap-0 overflow-x-auto overflow-y-hidden border-b border-slate-800 whitespace-nowrap lg:overflow-x-visible"
       >
         {tabs.map((tab, index) => {
           const isActive = tab.id === activeTabId;
