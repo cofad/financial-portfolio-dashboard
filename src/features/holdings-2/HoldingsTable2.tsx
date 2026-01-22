@@ -36,7 +36,7 @@ interface SortState {
 const COLUMNS = [
   { key: SORT_KEY.symbol, label: 'Symbol', align: 'left' },
   { key: SORT_KEY.assetType, label: 'Type', align: 'left' },
-  { key: SORT_KEY.quantity, label: 'Quantity', align: 'right' },
+  { key: SORT_KEY.quantity, label: 'Qty.', align: 'right' },
   { key: SORT_KEY.purchasePrice, label: 'Purchase Price', align: 'right' },
   { key: SORT_KEY.currentPrice, label: 'Current Price', align: 'right' },
   { key: SORT_KEY.currentValue, label: 'Total Value', align: 'right' },
