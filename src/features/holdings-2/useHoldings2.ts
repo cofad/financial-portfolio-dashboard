@@ -1,9 +1,10 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { getQuotes, type Quote } from '@services/finnhub/finnhub';
-import { useHoldingsSelector } from '@store/holdings/hooks';
-import type { Holding } from '@store/holdings/slice';
+import { useHoldingsDispatch, useHoldingsSelector } from '@store/holdings/hooks';
+import { removeHolding, type Holding } from '@store/holdings/slice';
+import { useToast } from '@components/toast/useToast';
 
 export interface LiveHolding extends Holding {
   currentPrice: number;
@@ -19,16 +20,25 @@ function extractCurrentPrice(symbol: string, quotes: Quote[]): number {
   return quote.currentPrice;
 }
 
-interface UseHoldings2 {
+export interface UseHoldings2 {
   liveHoldings: LiveHolding[] | null;
   isLoading: boolean;
   isError: boolean;
   lastUpdatedAt: Date;
   isUpdating: boolean;
+  pendingRemove: LiveHolding | null;
+  requestRemove: (holding: LiveHolding) => void;
+  clearPendingRemove: () => void;
+  confirmRemove: () => void;
 }
 
 export function useHoldings2(): UseHoldings2 {
   const holdings = useHoldingsSelector((state) => state.holdings.holdings);
+  const dispatch = useHoldingsDispatch();
+  const { pushToast } = useToast();
+
+  const [pendingRemove, setPendingRemove] = useState<LiveHolding | null>(null);
+
   const holdingSymbols = holdings.map((h) => h.symbol);
 
   const {
@@ -64,5 +74,29 @@ export function useHoldings2(): UseHoldings2 {
 
   const lastUpdatedAt = new Date(dataUpdatedAt);
 
-  return { liveHoldings, isLoading, isError, lastUpdatedAt, isUpdating: isFetching };
+  return {
+    liveHoldings,
+    isLoading,
+    isError,
+    lastUpdatedAt,
+    isUpdating: isFetching,
+    pendingRemove,
+    requestRemove: (holding) => {
+      setPendingRemove(holding);
+    },
+    clearPendingRemove: () => {
+      setPendingRemove(null);
+    },
+    confirmRemove: () => {
+      if (!pendingRemove) return;
+
+      dispatch(removeHolding(pendingRemove.symbol));
+      setPendingRemove(null);
+
+      pushToast({
+        message: `Removed ${pendingRemove.symbol} from your portfolio.`,
+        variant: 'success',
+      });
+    },
+  };
 }

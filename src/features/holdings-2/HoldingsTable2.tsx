@@ -1,17 +1,9 @@
 import { useMemo, useState } from 'react';
 
+import { useHoldings2Context } from '@features/holdings-2/holdings-2-provider/Holdings2Provider';
 import { formatCurrency } from '@utils/currency';
 import { formatDate } from '@utils/date';
-import type { LiveHolding } from './useHoldings2';
-import ConfirmDialog from '@components/confirm-dialog/ConfirmDialog';
-import { useToast } from '@components/toast/useToast';
-import { useHoldingsDispatch } from '@store/holdings/hooks';
-import { removeHolding } from '@store/holdings/slice';
-
-interface HoldingsTable2Props {
-  liveHoldings: LiveHolding[];
-  isUpdating: boolean;
-}
+import { type LiveHolding } from './useHoldings2';
 
 const SORT_KEY = {
   symbol: 'symbol',
@@ -91,7 +83,8 @@ function getSortIndicator(sortState: SortState | null, key: SortKey): string | n
   return sortState.direction === 'asc' ? '▲' : '▼';
 }
 
-function sortLiveHoldings(liveHoldings: LiveHolding[], sortState: SortState | null): LiveHolding[] {
+function sortLiveHoldings(liveHoldings: LiveHolding[] | null, sortState: SortState | null): LiveHolding[] {
+  if (!liveHoldings) return [];
   if (!sortState) return liveHoldings;
 
   const sorted = [...liveHoldings].sort((a, b) => {
@@ -107,11 +100,10 @@ function sortLiveHoldings(liveHoldings: LiveHolding[], sortState: SortState | nu
   return sorted;
 }
 
-export default function HoldingsTable2({ liveHoldings, isUpdating }: HoldingsTable2Props) {
-  const dispatch = useHoldingsDispatch();
-  const { pushToast } = useToast();
+export default function HoldingsTable2() {
+  const { liveHoldings, requestRemove, isUpdating } = useHoldings2Context();
+
   const [sortState, setSortState] = useState<SortState | null>(null);
-  const [pendingRemove, setPendingRemove] = useState<LiveHolding | null>(null);
 
   const sortedLiveHoldings = useMemo(() => sortLiveHoldings(liveHoldings, sortState), [liveHoldings, sortState]);
 
@@ -119,7 +111,7 @@ export default function HoldingsTable2({ liveHoldings, isUpdating }: HoldingsTab
     <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/70 shadow-xl shadow-slate-900/40">
       <div className="pointer-events-none absolute inset-0 z-10">
         <div
-          className={`h-full w-full bg-gradient-to-r from-transparent via-emerald-300/35 to-transparent ${
+          className={`h-full w-full bg-linear-to-r from-transparent via-emerald-300/35 to-transparent ${
             isUpdating ? 'animate-shimmer-strong opacity-100' : 'opacity-0'
           } transition-opacity duration-200`}
         />
@@ -179,7 +171,7 @@ export default function HoldingsTable2({ liveHoldings, isUpdating }: HoldingsTab
                 <button
                   type="button"
                   onClick={() => {
-                    setPendingRemove(holding);
+                    requestRemove(holding);
                   }}
                   className="inline-flex items-center justify-center rounded-2xl border border-slate-800 px-3 py-2 text-xs font-semibold text-rose-200 transition hover:border-rose-400/70 hover:text-rose-100"
                 >
@@ -190,31 +182,6 @@ export default function HoldingsTable2({ liveHoldings, isUpdating }: HoldingsTab
           ))}
         </tbody>
       </table>
-
-      <ConfirmDialog
-        open={Boolean(pendingRemove)}
-        title="Remove holding?"
-        description={
-          pendingRemove ? `Remove ${pendingRemove.symbol} from your portfolio? This cannot be undone.` : undefined
-        }
-        confirmLabel="Remove"
-        cancelLabel="Cancel"
-        onConfirm={() => {
-          if (!pendingRemove) return;
-
-          dispatch(removeHolding(pendingRemove.symbol));
-
-          pushToast({
-            message: `Removed ${pendingRemove.symbol} from your portfolio.`,
-            variant: 'success',
-          });
-
-          setPendingRemove(null);
-        }}
-        onCancel={() => {
-          setPendingRemove(null);
-        }}
-      />
     </div>
   );
 }

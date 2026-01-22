@@ -1,24 +1,13 @@
-import { useState } from 'react';
-
-import ConfirmDialog from '@components/confirm-dialog/ConfirmDialog';
-import { useToast } from '@components/toast/useToast';
-import { useHoldingsDispatch } from '@store/holdings/hooks';
-import { removeHolding } from '@store/holdings/slice';
+import { useHoldings2Context } from '@features/holdings-2/holdings-2-provider/Holdings2Provider';
 import { formatCurrency } from '@utils/currency';
 import { formatDate } from '@utils/date';
-import { useHoldings2, type LiveHolding } from '../useHoldings2';
 
 function getProfitLossTone(value: number): string {
   return value >= 0 ? 'text-emerald-300' : 'text-rose-300';
 }
 
 export default function HoldingsCards2() {
-  const dispatch = useHoldingsDispatch();
-  const { pushToast } = useToast();
-
-  const { liveHoldings } = useHoldings2();
-
-  const [pendingRemove, setPendingRemove] = useState<LiveHolding | null>(null);
+  const { liveHoldings, requestRemove } = useHoldings2Context();
 
   if (!liveHoldings?.length) {
     return null;
@@ -40,7 +29,7 @@ export default function HoldingsCards2() {
             <button
               type="button"
               onClick={() => {
-                setPendingRemove(holding);
+                requestRemove(holding);
               }}
               className="rounded-2xl border border-slate-800 px-3 py-2 text-xs font-semibold text-rose-200 transition hover:border-rose-400/70 hover:text-rose-100"
             >
@@ -88,28 +77,6 @@ export default function HoldingsCards2() {
           </div>
         </div>
       ))}
-
-      <ConfirmDialog
-        open={Boolean(pendingRemove)}
-        title="Remove holding?"
-        description={
-          pendingRemove ? `Remove ${pendingRemove.symbol} from your portfolio? This cannot be undone.` : undefined
-        }
-        confirmLabel="Remove"
-        cancelLabel="Cancel"
-        onConfirm={() => {
-          if (!pendingRemove) return;
-          dispatch(removeHolding(pendingRemove.symbol));
-          pushToast({
-            message: `Removed ${pendingRemove.symbol} from your portfolio.`,
-            variant: 'success',
-          });
-          setPendingRemove(null);
-        }}
-        onCancel={() => {
-          setPendingRemove(null);
-        }}
-      />
     </div>
   );
 }
