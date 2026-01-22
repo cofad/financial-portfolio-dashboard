@@ -20,11 +20,11 @@ export default function Holdings2() {
         <LastUpdated lastUpdatedAt={lastUpdatedAt} />
       </div>
 
-      <div className="block md:hidden">
+      <div className="block lg:hidden">
         <HoldingsCards2 />
       </div>
 
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <HoldingsTable2 liveHoldings={liveHoldings} isUpdating={isUpdating} />
       </div>
     </div>
