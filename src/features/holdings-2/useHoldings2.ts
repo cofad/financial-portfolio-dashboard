@@ -5,6 +5,7 @@ import { getQuotes, type Quote } from '@services/finnhub/finnhub';
 import { useHoldingsDispatch, useHoldingsSelector } from '@store/holdings/hooks';
 import { removeHolding, type Holding } from '@store/holdings/slice';
 import { useToast } from '@components/toast/useToast';
+import type { SortState } from '@features/holdings-2/holdings2Sorting';
 
 export interface LiveHolding extends Holding {
   currentPrice: number;
@@ -26,6 +27,8 @@ export interface UseHoldings2 {
   isError: boolean;
   lastUpdatedAt: Date;
   isUpdating: boolean;
+  sortState: SortState | null;
+  setSortState: (nextSortState: SortState | null) => void;
   pendingRemove: LiveHolding | null;
   requestRemove: (holding: LiveHolding) => void;
   clearPendingRemove: () => void;
@@ -38,6 +41,7 @@ export function useHoldings2(): UseHoldings2 {
   const { pushToast } = useToast();
 
   const [pendingRemove, setPendingRemove] = useState<LiveHolding | null>(null);
+  const [sortState, setSortState] = useState<SortState | null>(null);
 
   const holdingSymbols = holdings.map((h) => h.symbol);
 
@@ -80,6 +84,8 @@ export function useHoldings2(): UseHoldings2 {
     isError,
     lastUpdatedAt,
     isUpdating: isFetching,
+    sortState,
+    setSortState,
     pendingRemove,
     requestRemove: (holding) => {
       setPendingRemove(holding);
