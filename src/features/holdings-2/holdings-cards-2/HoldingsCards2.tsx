@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
 import { useHoldings2Context } from '@features/holdings-2/holdings-2-provider/Holdings2Provider';
-import HoldingsSortControls from '@features/holdings-2/holdings-sort-controls/HoldingsSortControls';
 import ProfitOrLoss from '@features/holdings-2/profit-or-loss/ProfitOrLoss';
 import { sortHoldings } from '@features/holdings-2/holdings2Sorting';
 import { formatCurrency } from '@utils/currency';
@@ -17,8 +16,6 @@ export default function HoldingsCards2() {
 
   return (
     <div className="grid gap-4">
-      <HoldingsSortControls />
-
       {sortedHoldings.map((holding) => (
         <div
           key={holding.symbol}

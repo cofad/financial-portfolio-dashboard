@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
 import { useHoldings2Context } from '@features/holdings-2/holdings-2-provider/Holdings2Provider';
-import HoldingsSortControls from '@features/holdings-2/holdings-sort-controls/HoldingsSortControls';
 import ProfitOrLoss from '@features/holdings-2/profit-or-loss/ProfitOrLoss';
 import { sortHoldings } from '@features/holdings-2/holdings2Sorting';
 import { formatCurrency } from '@utils/currency';
@@ -24,70 +23,66 @@ export default function HoldingsTable2() {
   const sortedLiveHoldings = useMemo(() => sortHoldings(liveHoldings ?? [], sortState), [liveHoldings, sortState]);
 
   return (
-    <div className="space-y-4">
-      <HoldingsSortControls />
-
-      <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/70 shadow-xl shadow-slate-900/40">
-        <div className="pointer-events-none absolute inset-0 z-10">
-          <div
-            className={`h-full w-full bg-linear-to-r from-transparent via-emerald-300/35 to-transparent ${
-              isUpdating ? 'animate-shimmer-strong opacity-100' : 'opacity-0'
-            } transition-opacity duration-200`}
-          />
-        </div>
-        <table className="relative z-0 w-full border-separate border-spacing-0 p-2 text-left text-sm">
-          <thead className="bg-slate-950/60">
-            <tr>
-              {COLUMNS.map((column) => (
-                <th
-                  key={column.label}
-                  className={`px-4 py-4 font-semibold ${column.align === 'right' ? 'text-right' : 'text-left'}`}
-                >
-                  <span className="text-xs tracking-[0.2em] text-slate-400 uppercase">{column.label}</span>
-                </th>
-              ))}
-              <th className="px-4 py-4 text-center font-semibold">Action</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {sortedLiveHoldings.map((holding) => (
-              <tr
-                key={holding.symbol}
-                className="motion-safe:animate-fade-up border-t border-slate-900/60 text-slate-100 transition hover:bg-slate-900/40"
-              >
-                <td className="px-4 py-4 text-sm font-semibold text-slate-100">{holding.symbol}</td>
-                <td className="px-4 py-4 text-sm text-slate-200">{holding.assetType}</td>
-                <td className="px-4 py-4 text-right text-sm text-slate-200">{holding.quantity}</td>
-                <td className="px-4 py-4 text-right text-sm text-slate-200">
-                  {formatCurrency(holding.purchasePrice)}
-                </td>
-                <td className="px-4 py-4 text-right text-sm text-slate-200">
-                  {formatCurrency(holding.currentPrice)}
-                </td>
-                <td className="px-4 py-4 text-right text-sm text-slate-200">
-                  {formatCurrency(holding.currentValue)}
-                </td>
-                <td className="px-4 py-4 text-right text-sm font-semibold">
-                  <ProfitOrLoss value={holding.profitLoss} />
-                </td>
-                <td className="px-4 py-4 text-right text-sm text-slate-300">{formatDate(holding.purchaseDate)}</td>
-                <td className="px-4 py-4 text-center">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      requestRemove(holding);
-                    }}
-                    className="inline-flex items-center justify-center rounded-2xl border border-slate-800 px-3 py-2 text-xs font-semibold text-rose-200 transition hover:border-rose-400/70 hover:text-rose-100"
-                  >
-                    Remove
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/70 shadow-xl shadow-slate-900/40">
+      <div className="pointer-events-none absolute inset-0 z-10">
+        <div
+          className={`h-full w-full bg-linear-to-r from-transparent via-emerald-300/35 to-transparent ${
+            isUpdating ? 'animate-shimmer-strong opacity-100' : 'opacity-0'
+          } transition-opacity duration-200`}
+        />
       </div>
+      <table className="relative z-0 w-full border-separate border-spacing-0 p-2 text-left text-sm">
+        <thead className="bg-slate-950/60">
+          <tr>
+            {COLUMNS.map((column) => (
+              <th
+                key={column.label}
+                className={`px-4 py-4 font-semibold ${column.align === 'right' ? 'text-right' : 'text-left'}`}
+              >
+                <span className="text-xs tracking-[0.2em] text-slate-400 uppercase">{column.label}</span>
+              </th>
+            ))}
+            <th className="px-4 py-4 text-center font-semibold">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {sortedLiveHoldings.map((holding) => (
+            <tr
+              key={holding.symbol}
+              className="motion-safe:animate-fade-up border-t border-slate-900/60 text-slate-100 transition hover:bg-slate-900/40"
+            >
+              <td className="px-4 py-4 text-sm font-semibold text-slate-100">{holding.symbol}</td>
+              <td className="px-4 py-4 text-sm text-slate-200">{holding.assetType}</td>
+              <td className="px-4 py-4 text-right text-sm text-slate-200">{holding.quantity}</td>
+              <td className="px-4 py-4 text-right text-sm text-slate-200">
+                {formatCurrency(holding.purchasePrice)}
+              </td>
+              <td className="px-4 py-4 text-right text-sm text-slate-200">
+                {formatCurrency(holding.currentPrice)}
+              </td>
+              <td className="px-4 py-4 text-right text-sm text-slate-200">
+                {formatCurrency(holding.currentValue)}
+              </td>
+              <td className="px-4 py-4 text-right text-sm font-semibold">
+                <ProfitOrLoss value={holding.profitLoss} />
+              </td>
+              <td className="px-4 py-4 text-right text-sm text-slate-300">{formatDate(holding.purchaseDate)}</td>
+              <td className="px-4 py-4 text-center">
+                <button
+                  type="button"
+                  onClick={() => {
+                    requestRemove(holding);
+                  }}
+                  className="inline-flex items-center justify-center rounded-2xl border border-slate-800 px-3 py-2 text-xs font-semibold text-rose-200 transition hover:border-rose-400/70 hover:text-rose-100"
+                >
+                  Remove
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
