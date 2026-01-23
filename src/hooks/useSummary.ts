@@ -1,6 +1,11 @@
 import type { AssetType } from '@/services/finnhub/finnhub';
 import { useHoldings, type LiveHolding } from './useHoldings';
 
+export interface Allocations {
+  total: number;
+  groups: { assetType: AssetType; count: number; percentage: number }[];
+}
+
 interface UseSummary {
   isLoading: boolean;
   isError: boolean;
@@ -8,7 +13,28 @@ interface UseSummary {
   lastUpdatedAt: Date;
   totalValue?: number;
   dailyProfitLoss?: number;
-  allocation?: Record<AssetType, number>;
+  allocations?: Allocations;
+}
+
+function generateAllocations(liveHoldings: LiveHolding[]): Allocations {
+  const allocations: Allocations = { total: 0, groups: [] };
+
+  liveHoldings.forEach((holding) => {
+    allocations.total += 1;
+    const group = allocations.groups.find((g) => g.assetType === holding.assetType);
+
+    if (group) {
+      group.count += 1;
+    } else {
+      allocations.groups.push({ assetType: holding.assetType, count: 1, percentage: 0 });
+    }
+  });
+
+  allocations.groups.forEach((group) => {
+    group.percentage = (group.count / allocations.total) * 100;
+  });
+
+  return allocations;
 }
 
 export default function useSummary(): UseSummary {
@@ -22,13 +48,7 @@ export default function useSummary(): UseSummary {
     return acc + holding.profitLoss;
   }, 0);
 
-  const allocation = liveHoldings?.reduce(
-    (acc, holding) => {
-      acc[holding.assetType] = (acc[holding.assetType] || 0) + 1;
-      return acc;
-    },
-    {} as Record<AssetType, number>,
-  );
+  const allocations = liveHoldings ? generateAllocations(liveHoldings) : undefined;
 
   return {
     isLoading,
@@ -37,6 +57,6 @@ export default function useSummary(): UseSummary {
     lastUpdatedAt,
     totalValue,
     dailyProfitLoss,
-    allocation,
+    allocations,
   };
 }
