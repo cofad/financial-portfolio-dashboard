@@ -50,9 +50,10 @@ const Summary = () => {
           <div className="rounded-3xl border border-slate-800 bg-slate-950/70 p-5 shadow-xl shadow-slate-900/40">
             <p className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">Daily P/L</p>
 
-            <div className="mt-4">
-              <ProfitOrLoss value={dailyProfitLoss} className="text-2xl font-semibold" />
-              <ProfitOrLoss value={dailyProfitLoss / totalValue} className="mt-1 text-xs font-semibold" />
+            <div className="mt-4 flex text-2xl font-semibold">
+              <ProfitOrLoss value={dailyProfitLoss} />
+              <span className="mx-3">/</span>
+              <ProfitOrLoss value={dailyProfitLoss / totalValue} type="percent" />
             </div>
           </div>
 
