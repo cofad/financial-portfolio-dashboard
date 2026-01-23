@@ -1,12 +1,13 @@
 import { normalizeSymbol } from '@utils/symbol';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import type { AssetType } from '@/services/finnhub/finnhub';
 
 export interface Holding {
   symbol: string;
   quantity: number;
   purchasePrice: number;
   purchaseDate: string;
-  assetType: string;
+  assetType: AssetType;
 }
 
 interface HoldingsState {

@@ -11,12 +11,12 @@ export interface LiveHolding extends Holding {
   profitLoss: number;
 }
 
-function extractCurrentPrice(symbol: string, quotes: Quote[]): number {
+function extractQuote(symbol: string, quotes: Quote[]): Quote {
   const quote = quotes.find((q) => q.symbol === symbol);
 
   if (!quote) throw new Error(`Quote not found for symbol: ${symbol}`);
 
-  return quote.currentPrice;
+  return quote;
 }
 
 export interface UseHoldings {
@@ -48,16 +48,20 @@ export function useHoldings(): UseHoldings {
   const liveHoldings: LiveHolding[] | null = useMemo(() => {
     return quotes
       ? holdings.map((holding) => {
-          const currentPrice = extractCurrentPrice(holding.symbol, quotes);
+          const quote = extractQuote(holding.symbol, quotes);
+
+          const currentPrice = quote.currentPrice;
           const currentValue = currentPrice * holding.quantity;
           const purchasedValue = holding.purchasePrice * holding.quantity;
           const profitLoss = currentValue - purchasedValue;
+          const dailyProfitLoss = (currentPrice - quote.previousClosePrice) * holding.quantity;
 
           return {
             ...holding,
             currentPrice,
             currentValue,
             profitLoss,
+            dailyProfitLoss,
           };
         })
       : null;
