@@ -5,7 +5,7 @@ const symbolLookupResultSchema = z.object({
   description: z.string(),
   displaySymbol: z.string(),
   symbol: z.string(),
-  type: z.enum(['Common Stock', 'ETP', 'Unknown']).catch('Unknown'),
+  type: z.string(),
 });
 
 const symbolLookupResponseSchema = z.object({
