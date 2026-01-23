@@ -1,11 +1,9 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { getQuotes, type Quote } from '@services/finnhub/finnhub';
-import { useHoldingsDispatch, useHoldingsSelector } from '@store/holdings/hooks';
-import { removeHolding, type Holding } from '@store/holdings/slice';
-import { useToast } from '@components/toast/useToast';
-import type { SortState } from '@features/holdings-2/holdings2Sorting';
+import type { Holding } from '@store/holdings/slice';
+import { useHoldingsSelector } from '@/store/holdings/hooks';
 
 export interface LiveHolding extends Holding {
   currentPrice: number;
@@ -21,27 +19,16 @@ function extractCurrentPrice(symbol: string, quotes: Quote[]): number {
   return quote.currentPrice;
 }
 
-export interface UseHoldings2 {
+export interface UseHoldings {
   liveHoldings: LiveHolding[] | null;
   isLoading: boolean;
+  isFetching: boolean;
   isError: boolean;
   lastUpdatedAt: Date;
-  isUpdating: boolean;
-  sortState: SortState | null;
-  setSortState: (nextSortState: SortState | null) => void;
-  pendingRemove: LiveHolding | null;
-  requestRemove: (holding: LiveHolding) => void;
-  clearPendingRemove: () => void;
-  confirmRemove: () => void;
 }
 
-export function useHoldings2(): UseHoldings2 {
+export function useHoldings(): UseHoldings {
   const holdings = useHoldingsSelector((state) => state.holdings.holdings);
-  const dispatch = useHoldingsDispatch();
-  const { pushToast } = useToast();
-
-  const [pendingRemove, setPendingRemove] = useState<LiveHolding | null>(null);
-  const [sortState, setSortState] = useState<SortState | null>(null);
 
   const holdingSymbols = holdings.map((h) => h.symbol);
 
@@ -81,28 +68,8 @@ export function useHoldings2(): UseHoldings2 {
   return {
     liveHoldings,
     isLoading,
+    isFetching,
     isError,
     lastUpdatedAt,
-    isUpdating: isFetching,
-    sortState,
-    setSortState,
-    pendingRemove,
-    requestRemove: (holding) => {
-      setPendingRemove(holding);
-    },
-    clearPendingRemove: () => {
-      setPendingRemove(null);
-    },
-    confirmRemove: () => {
-      if (!pendingRemove) return;
-
-      dispatch(removeHolding(pendingRemove.symbol));
-      setPendingRemove(null);
-
-      pushToast({
-        message: `Removed ${pendingRemove.symbol} from your portfolio.`,
-        variant: 'success',
-      });
-    },
   };
 }

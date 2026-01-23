@@ -1,10 +1,10 @@
-import { useHoldings2Context } from '@features/holdings-2/holdings-2-provider/Holdings2Provider';
+import { useHoldingsDisplayContext } from '@/features/holdings-display/HoldingsDisplayProvider';
 import {
   SORT_OPTIONS,
   type SortDirection,
   type SortKey,
   type SortState,
-} from '@features/holdings-2/holdings2Sorting';
+} from '@/features/holdings-display/holdingsDisplaySort';
 
 const getNextSortState = (current: SortState | null, nextKey: SortKey | ''): SortState | null => {
   if (!nextKey) {
@@ -14,8 +14,8 @@ const getNextSortState = (current: SortState | null, nextKey: SortKey | ''): Sor
   return { key: nextKey, direction: current?.direction ?? 'asc' };
 };
 
-export default function HoldingsSortControls() {
-  const { sortState, setSortState } = useHoldings2Context();
+export default function HoldingsDisplaySort() {
+  const { sortState, setSortState } = useHoldingsDisplayContext();
 
   return (
     <div className="flex flex-wrap items-center gap-2">

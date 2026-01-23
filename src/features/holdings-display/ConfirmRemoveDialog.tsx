@@ -1,8 +1,8 @@
 import ConfirmDialog from '@components/confirm-dialog/ConfirmDialog';
-import { useHoldings2Context } from '@features/holdings-2/holdings-2-provider/Holdings2Provider';
+import { useHoldingsDisplayContext } from '@/features/holdings-display/HoldingsDisplayProvider';
 
 function ConfirmRemoveDialog() {
-  const { pendingRemove, confirmRemove, clearPendingRemove } = useHoldings2Context();
+  const { pendingRemove, confirmRemove, clearPendingRemove } = useHoldingsDisplayContext();
 
   if (!pendingRemove) {
     return null;

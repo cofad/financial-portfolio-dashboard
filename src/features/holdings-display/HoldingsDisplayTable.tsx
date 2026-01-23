@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 
-import { useHoldings2Context } from '@features/holdings-2/holdings-2-provider/Holdings2Provider';
-import ProfitOrLoss from '@features/holdings-2/profit-or-loss/ProfitOrLoss';
-import { sortHoldings } from '@features/holdings-2/holdings2Sorting';
+import { useHoldingsDisplayContext } from '@/features/holdings-display/HoldingsDisplayProvider';
+import ProfitOrLoss from '@/components/profit-or-loss/ProfitOrLoss';
+import { sortHoldings } from '@/features/holdings-display/holdingsDisplaySort';
 import { formatCurrency } from '@utils/currency';
 import { formatDate } from '@utils/date';
 
@@ -17,8 +17,8 @@ const COLUMNS = [
   { label: 'Purchase Date', align: 'right' },
 ] as const satisfies { label: string; align?: 'left' | 'right' }[];
 
-export default function HoldingsTable2() {
-  const { liveHoldings, requestRemove, isUpdating, sortState } = useHoldings2Context();
+export default function HoldingsDisplayTable() {
+  const { liveHoldings, requestRemove, isFetching, sortState } = useHoldingsDisplayContext();
 
   const sortedLiveHoldings = useMemo(() => sortHoldings(liveHoldings ?? [], sortState), [liveHoldings, sortState]);
 
@@ -27,7 +27,7 @@ export default function HoldingsTable2() {
       <div className="pointer-events-none absolute inset-0 z-10">
         <div
           className={`h-full w-full bg-linear-to-r from-transparent via-emerald-300/35 to-transparent ${
-            isUpdating ? 'animate-shimmer-strong opacity-100' : 'opacity-0'
+            isFetching ? 'animate-shimmer-strong opacity-100' : 'opacity-0'
           } transition-opacity duration-200`}
         />
       </div>

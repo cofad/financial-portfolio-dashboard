@@ -3,7 +3,7 @@ import Holdings from '@/features/holdings/Holdings';
 import Performance from '@/features/performance/Performance';
 import Summary from '@/features/summary/Summary';
 import Tabs from '@/components/tabs/Tabs';
-import Holdings2 from './features/holdings-2/holdings-2';
+import HoldingsDisplay from './features/holdings-display/HoldingsDisplay';
 
 function App() {
   return (
@@ -37,7 +37,7 @@ function App() {
             {
               id: 'holdings2',
               label: 'Holdings2',
-              content: <Holdings2 />,
+              content: <HoldingsDisplay />,
             },
           ]}
         />

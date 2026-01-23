@@ -1,13 +1,13 @@
 import { useMemo } from 'react';
 
-import { useHoldings2Context } from '@features/holdings-2/holdings-2-provider/Holdings2Provider';
-import ProfitOrLoss from '@features/holdings-2/profit-or-loss/ProfitOrLoss';
-import { sortHoldings } from '@features/holdings-2/holdings2Sorting';
+import { useHoldingsDisplayContext } from '@/features/holdings-display/HoldingsDisplayProvider';
+import ProfitOrLoss from '@/components/profit-or-loss/ProfitOrLoss';
+import { sortHoldings } from '@/features/holdings-display/holdingsDisplaySort';
 import { formatCurrency } from '@utils/currency';
 import { formatDate } from '@utils/date';
 
-export default function HoldingsCards2() {
-  const { liveHoldings, requestRemove, sortState } = useHoldings2Context();
+export default function HoldingsDisplayCards() {
+  const { liveHoldings, requestRemove, sortState } = useHoldingsDisplayContext();
   const sortedHoldings = useMemo(() => sortHoldings(liveHoldings ?? [], sortState), [liveHoldings, sortState]);
 
   if (!sortedHoldings.length) {
