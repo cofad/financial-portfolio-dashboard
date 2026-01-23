@@ -32,11 +32,6 @@ function App() {
             {
               id: 'holdings',
               label: 'Holdings',
-              content: <Holdings />,
-            },
-            {
-              id: 'holdings2',
-              label: 'Holdings2',
               content: <HoldingsDisplay />,
             },
           ]}
