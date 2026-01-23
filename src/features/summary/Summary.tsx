@@ -33,7 +33,7 @@ const Summary = () => {
 
   return (
     <section className="flex flex-col gap-4">
-      <LastUpdated lastUpdatedAt={lastUpdatedAt} />
+      <LastUpdated lastUpdatedAt={lastUpdatedAt} className="self-start" />
 
       <div className="flex flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-950/40 p-6">
         <div className="grid gap-4 lg:grid-cols-3">
