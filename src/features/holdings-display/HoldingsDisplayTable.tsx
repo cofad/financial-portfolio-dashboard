@@ -18,19 +18,12 @@ const COLUMNS = [
 ] as const satisfies { label: string; align?: 'left' | 'right' }[];
 
 export default function HoldingsDisplayTable() {
-  const { liveHoldings, requestRemove, isFetching, sortState } = useHoldingsDisplayContext();
+  const { liveHoldings, requestRemove, sortState } = useHoldingsDisplayContext();
 
   const sortedLiveHoldings = useMemo(() => sortHoldings(liveHoldings ?? [], sortState), [liveHoldings, sortState]);
 
   return (
     <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/70 shadow-xl shadow-slate-900/40">
-      <div className="pointer-events-none absolute inset-0 z-10">
-        <div
-          className={`h-full w-full bg-linear-to-r from-transparent via-emerald-300/35 to-transparent ${
-            isFetching ? 'animate-shimmer-strong opacity-100' : 'opacity-0'
-          } transition-opacity duration-200`}
-        />
-      </div>
       <table className="relative z-0 w-full border-separate border-spacing-0 p-2 text-left text-sm">
         <thead className="bg-slate-950/60">
           <tr>
