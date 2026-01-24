@@ -1,10 +1,10 @@
-import { useHoldingsDisplayContext } from '@/features/holdings-display/HoldingsDisplayProvider';
 import {
   SORT_OPTIONS,
   type SortDirection,
   type SortKey,
   type SortState,
 } from '@/features/holdings-display/holdingsDisplaySort';
+import { useHoldingsDisplayContext } from './HoldingsDisplayContext';
 
 const getNextSortState = (current: SortState | null, nextKey: SortKey | ''): SortState | null => {
   if (!nextKey) {

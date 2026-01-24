@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { type Holding } from '@store/holdings/slice';
 import { useHoldingsSelector } from '@store/holdings/hooks';
@@ -22,7 +22,7 @@ function extractQuote(symbol: string, quotes: Quote[]): Quote {
 }
 
 export interface UseHoldings {
-  liveHoldings: LiveHolding[] | null;
+  liveHoldings: LiveHolding[];
   isLoading: boolean;
   isFetching: boolean;
   isError: boolean;
@@ -39,33 +39,31 @@ export function useHoldings(): UseHoldings {
     isError,
     dataUpdatedAt,
     isFetching,
-  } = useQuery({
+  } = useSuspenseQuery({
     queryKey: ['quotes', holdingSymbols.join(',')],
     queryFn: () => fetchQuotes(holdingSymbols),
     refetchInterval: 60_000,
     refetchIntervalInBackground: true,
   });
 
-  const liveHoldings: LiveHolding[] | null = useMemo(() => {
-    return quotes
-      ? holdings.map((holding) => {
-          const quote = extractQuote(holding.symbol, quotes);
+  const liveHoldings: LiveHolding[] = useMemo(() => {
+    return holdings.map((holding) => {
+      const quote = extractQuote(holding.symbol, quotes);
 
-          const currentPrice = quote.currentPrice;
-          const currentValue = currentPrice * holding.quantity;
-          const purchasedValue = holding.purchasePrice * holding.quantity;
-          const profitLoss = currentValue - purchasedValue;
-          const dailyProfitLoss = (currentPrice - quote.previousClosePrice) * holding.quantity;
+      const currentPrice = quote.currentPrice;
+      const currentValue = currentPrice * holding.quantity;
+      const purchasedValue = holding.purchasePrice * holding.quantity;
+      const profitLoss = currentValue - purchasedValue;
+      const dailyProfitLoss = (currentPrice - quote.previousClosePrice) * holding.quantity;
 
-          return {
-            ...holding,
-            currentPrice,
-            currentValue,
-            profitLoss,
-            dailyProfitLoss,
-          };
-        })
-      : null;
+      return {
+        ...holding,
+        currentPrice,
+        currentValue,
+        profitLoss,
+        dailyProfitLoss,
+      };
+    });
   }, [holdings, quotes]);
 
   const lastUpdatedAt = new Date(dataUpdatedAt);

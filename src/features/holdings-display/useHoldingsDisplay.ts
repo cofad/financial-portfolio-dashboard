@@ -3,14 +3,12 @@ import { useState } from 'react';
 import { useHoldingsDispatch } from '@store/holdings/hooks';
 import { removeHolding } from '@store/holdings/slice';
 import { useToast } from '@components/toast/useToast';
-import type { SortState } from '@/features/holdings-display/holdingsDisplaySort';
-import { useHoldings, type LiveHolding } from '@/hooks/useHoldings';
+import type { SortState } from '@features/holdings-display/holdingsDisplaySort';
+import { useHoldings, type LiveHolding } from '@hooks/useHoldings';
 
 export interface UseHoldingsDisplay {
-  liveHoldings: LiveHolding[] | null;
-  isLoading: boolean;
+  liveHoldings: LiveHolding[];
   isFetching: boolean;
-  isError: boolean;
   lastUpdatedAt: Date;
   sortState: SortState | null;
   setSortState: (nextSortState: SortState | null) => void;
@@ -23,7 +21,7 @@ export interface UseHoldingsDisplay {
 export function useHoldingsDisplay(): UseHoldingsDisplay {
   const dispatch = useHoldingsDispatch();
 
-  const { liveHoldings, isLoading, isError, isFetching, lastUpdatedAt } = useHoldings();
+  const { liveHoldings, isFetching, lastUpdatedAt } = useHoldings();
   const { pushToast } = useToast();
 
   const [pendingRemove, setPendingRemove] = useState<LiveHolding | null>(null);
@@ -31,9 +29,7 @@ export function useHoldingsDisplay(): UseHoldingsDisplay {
 
   return {
     liveHoldings,
-    isLoading,
     isFetching,
-    isError,
     lastUpdatedAt,
     sortState,
     setSortState,

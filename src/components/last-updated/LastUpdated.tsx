@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge';
 
 interface LastUpdatedProps {
   lastUpdatedAt: Date;
-  className: string;
+  className?: string;
 }
 
 export default function LastUpdated({ lastUpdatedAt, className }: LastUpdatedProps) {

@@ -1,23 +1,19 @@
+import { Suspense } from 'react';
+
 import {
   HoldingsDisplayProvider,
   useHoldingsDisplayContext,
-} from '@/features/holdings-display/HoldingsDisplayProvider';
-import HoldingsDisplayTable from './HoldingsDisplayTable';
+} from '@features/holdings-display/HoldingsDisplayProvider';
+import HoldingsDisplayTable from '@features/holdings-display/HoldingsDisplayTable';
 import LastUpdated from '@components/last-updated/LastUpdated';
-import HoldingsDisplayCards from './HoldingDisplayCards';
-import ConfirmRemoveDialog from './ConfirmRemoveDialog';
-import HoldingsDisplaySort from '@/features/holdings-display/HoldingsDisplaySort';
+import HoldingsDisplayCards from '@features/holdings-display/HoldingDisplayCards';
+import ConfirmRemoveDialog from '@features/holdings-display/ConfirmRemoveDialog';
+import HoldingsDisplaySort from '@features/holdings-display/HoldingsDisplaySort';
+import HoldingsDisplayErrorBoundary from '@/features/holdings-display/HoldingsDisplayErrorBoundary';
+import HoldingsDisplayLoadingState from '@/features/holdings-display/HoldingsDisplayLoadingState';
 
 function HoldingsDisplayContent() {
-  const { liveHoldings, isLoading, isError, lastUpdatedAt, pendingRemove } = useHoldingsDisplayContext();
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError || !liveHoldings) {
-    return <div>Error loading data</div>;
-  }
+  const { lastUpdatedAt, pendingRemove } = useHoldingsDisplayContext();
 
   return (
     <div className="space-y-4">
@@ -41,8 +37,12 @@ function HoldingsDisplayContent() {
 
 export default function HoldingsDisplay() {
   return (
-    <HoldingsDisplayProvider>
-      <HoldingsDisplayContent />
-    </HoldingsDisplayProvider>
+    <HoldingsDisplayErrorBoundary>
+      <HoldingsDisplayProvider>
+        <Suspense fallback={<HoldingsDisplayLoadingState />}>
+          <HoldingsDisplayContent />
+        </Suspense>
+      </HoldingsDisplayProvider>
+    </HoldingsDisplayErrorBoundary>
   );
 }
