@@ -1,7 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import createWebStorage from 'redux-persist/es/storage/createWebStorage';
-import holdingsReducer from './slice';
+import holdingsReducer, { type Holding } from './slice';
 
 const storage = createWebStorage('local');
 
@@ -31,3 +31,11 @@ export const persistor = persistStore(store);
 
 export type HoldingsState = ReturnType<typeof store.getState>;
 export type HoldingsDispatch = typeof store.dispatch;
+
+export function selectHoldings(state: HoldingsState): Holding[] {
+  return state.holdings.holdings;
+}
+
+export function selectHoldingSymbols(state: HoldingsState): string[] {
+  return state.holdings.holdings.map((holding) => holding.symbol);
+}

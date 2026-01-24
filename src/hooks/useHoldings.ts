@@ -2,13 +2,15 @@ import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { getQuotes, type Quote } from '@services/finnhub/finnhub';
-import type { Holding } from '@store/holdings/slice';
-import { useHoldingsSelector } from '@/store/holdings/hooks';
+import { type Holding } from '@store/holdings/slice';
+import { useHoldingsSelector } from '@store/holdings/hooks';
+import { selectHoldings, selectHoldingSymbols } from '@store/holdings/store';
 
 export interface LiveHolding extends Holding {
   currentPrice: number;
   currentValue: number;
   profitLoss: number;
+  dailyProfitLoss: number;
 }
 
 function extractQuote(symbol: string, quotes: Quote[]): Quote {
@@ -28,9 +30,8 @@ export interface UseHoldings {
 }
 
 export function useHoldings(): UseHoldings {
-  const holdings = useHoldingsSelector((state) => state.holdings.holdings);
-
-  const holdingSymbols = holdings.map((h) => h.symbol);
+  const holdings = useHoldingsSelector(selectHoldings);
+  const holdingSymbols = useHoldingsSelector(selectHoldingSymbols);
 
   const {
     data: quotes,
