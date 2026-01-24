@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 
-import { useHoldingsDisplayContext } from '@/features/holdings-display/HoldingsDisplayProvider';
 import ProfitOrLoss from '@/components/profit-or-loss/ProfitOrLoss';
-import { sortHoldings } from '@/features/holdings-display/holdingsDisplaySort';
+import { sortHoldings } from './holdingsDisplaySort';
 import { formatCurrency } from '@utils/currency';
 import { format } from 'date-fns';
+import { useHoldingsDisplayContext } from './HoldingsDisplayContext';
 
 const COLUMNS = [
   { label: 'Symbol', align: 'left' },
@@ -20,7 +20,7 @@ const COLUMNS = [
 export default function HoldingsDisplayTable() {
   const { liveHoldings, requestRemove, sortState } = useHoldingsDisplayContext();
 
-  const sortedLiveHoldings = useMemo(() => sortHoldings(liveHoldings ?? [], sortState), [liveHoldings, sortState]);
+  const sortedLiveHoldings = useMemo(() => sortHoldings(liveHoldings, sortState), [liveHoldings, sortState]);
 
   return (
     <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-950/70 shadow-xl shadow-slate-900/40">
