@@ -16,7 +16,7 @@ const Summary = () => {
     );
   }
 
-  if (isError || !liveHoldings || !totalValue || !dailyProfitLoss || !allocations) {
+  if (isError || !liveHoldings || !totalValue || !allocations || dailyProfitLoss === undefined) {
     return (
       <section className="rounded-3xl border border-rose-500/40 bg-rose-500/10 p-8 text-center text-sm text-rose-100">
         Failed to load summary. Please try again later.
