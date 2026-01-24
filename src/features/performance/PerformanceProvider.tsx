@@ -1,9 +1,9 @@
 import { useState, type ReactNode } from 'react';
 import { PerformanceContext, type PerformanceRange } from './PerformanceContext';
 import { usePerformance } from './usePerformance';
-import { useHoldingsSelector } from '@/store/holdings/hooks';
-import { selectHoldings } from '@/store/holdings/store';
-import useSummary from '@/hooks/useSummary';
+import useSummary from '@hooks/useSummary';
+import { useHoldingsSelector } from '@store/holdings/hooks';
+import { selectHoldings } from '@store/holdings/store';
 
 interface PerformanceProviderProps {
   children: ReactNode;
@@ -29,21 +29,20 @@ function calculatePercentChange(data: { date: string; value: number }[]): number
 export function PerformanceProvider({ children }: PerformanceProviderProps) {
   const holdings = useHoldingsSelector(selectHoldings);
 
-  const { isError, isLoading, portfolioDailyValue } = usePerformance();
+  const { portfolioDailyValue } = usePerformance();
   const { totalValue } = useSummary();
 
   const [range, setRange] = useState<PerformanceRange>(7);
 
-  const rangedPortfolioDailyValue = portfolioDailyValue?.slice(-range);
+  const rangedPortfolioDailyValue = portfolioDailyValue.slice(-range);
 
-  const percentChange = rangedPortfolioDailyValue && calculatePercentChange(rangedPortfolioDailyValue);
+  const percentChange =
+    rangedPortfolioDailyValue.length > 1 ? calculatePercentChange(rangedPortfolioDailyValue) : undefined;
 
   const value = {
     range,
     setRange,
     ranges,
-    isError,
-    isLoading,
     rangedPortfolioDailyValue,
     holdingsCount: holdings.length,
     totalValue,

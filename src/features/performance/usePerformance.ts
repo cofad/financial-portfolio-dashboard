@@ -1,13 +1,12 @@
-import { fetchHistory, type History } from '@/services/mock-api/mock-api';
-import { useHoldingsSelector } from '@/store/holdings/hooks';
-import { selectHoldings, selectHoldingSymbols } from '@/store/holdings/store';
-import type { TimeString } from '@/utils/date';
-import { useQueries } from '@tanstack/react-query';
+import { useSuspenseQueries } from '@tanstack/react-query';
+import { fetchHistory, type History } from '@services/mock-api/mock-api';
+import { useHoldingsSelector } from '@store/holdings/hooks';
+import { selectHoldings, selectHoldingSymbols } from '@store/holdings/store';
+import type { TimeString } from '@utils/date';
+import { startOfDay } from 'date-fns';
 
 interface UsePerformance {
-  isError: boolean;
-  isLoading: boolean;
-  portfolioDailyValue: { date: TimeString; value: number }[] | undefined;
+  portfolioDailyValue: { date: TimeString; value: number }[];
 }
 
 function mergeTimeSeries(inputs: History[][]): { date: TimeString; history: History[] }[] {
@@ -36,20 +35,16 @@ export function usePerformance(): UsePerformance {
   const holdings = useHoldingsSelector(selectHoldings);
   const holdingSymbols = useHoldingsSelector(selectHoldingSymbols);
 
-  const queryResults = useQueries({
+  const queryResults = useSuspenseQueries({
     queries: holdingSymbols.map((symbol) => ({
       queryKey: ['timeSeries', symbol],
       queryFn: () => fetchHistory(symbol),
       staleTime: Infinity,
-      retries: false,
     })),
   });
 
-  const isLoading = queryResults.some((result) => result.isLoading);
-  const isError = queryResults.some((result) => result.isError);
-
-  const histories = isError || isLoading ? null : queryResults.map((result) => result.data ?? []);
-  const mergedHistory = histories && mergeTimeSeries(histories);
+  const histories = queryResults.map((result) => result.data);
+  const mergedHistory = mergeTimeSeries(histories);
 
   const portfolioDailyValue = mergedHistory.map((history) => {
     const value = history.history.reduce((acc, history) => {
@@ -69,14 +64,12 @@ export function usePerformance(): UsePerformance {
     }, 0);
 
     return {
-      date: series.date,
+      date: history.date,
       value: value,
     };
   });
 
   return {
     portfolioDailyValue,
-    isError,
-    isLoading,
   };
 }

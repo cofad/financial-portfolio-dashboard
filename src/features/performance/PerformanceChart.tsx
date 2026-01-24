@@ -1,10 +1,9 @@
-import { formatCurrency } from '@/utils/currency';
+import { formatCurrency } from '@utils/currency';
 import { format } from 'date-fns';
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, type TooltipProps } from 'recharts';
 
 interface PerformanceChartProps {
   data: { date: string; value: number }[];
-  isLoading: boolean;
 }
 
 const formatAxisDate = (value: string) => {
@@ -35,11 +34,7 @@ const PerformanceTooltip = ({ active, payload, label }: TooltipProps<number, str
   );
 };
 
-const PerformanceChart = ({ data, isLoading }: PerformanceChartProps) => {
-  if (isLoading) {
-    return <div className="h-64 w-full animate-pulse rounded-3xl bg-slate-900/70" />;
-  }
-
+const PerformanceChart = ({ data }: PerformanceChartProps) => {
   if (data.length === 0) {
     return (
       <div className="flex h-64 w-full items-center justify-center rounded-3xl border border-dashed border-slate-800 text-sm text-slate-400">

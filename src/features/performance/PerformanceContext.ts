@@ -1,5 +1,5 @@
-import type { TimeString } from '@/utils/date';
 import { createContext, use } from 'react';
+import type { TimeString } from '@utils/date';
 
 export type PerformanceRange = 7 | 30 | 90;
 
@@ -12,9 +12,7 @@ export interface PerformanceContext {
   range: PerformanceRange;
   setRange: (range: PerformanceRange) => void;
   ranges: { label: string; value: PerformanceRange }[];
-  isLoading: boolean;
-  isError: boolean;
-  rangedPortfolioDailyValue: PerformancePoint[] | undefined;
+  rangedPortfolioDailyValue: PerformancePoint[];
   holdingsCount: number;
   totalValue: number | undefined;
   percentChange: number | undefined;

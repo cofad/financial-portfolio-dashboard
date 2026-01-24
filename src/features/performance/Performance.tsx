@@ -1,32 +1,15 @@
 import PerformanceChart from './PerformanceChart';
 import PerformanceRangeSelector from './PerformanceRangeSelector';
+import PerformanceErrorBoundary from './PerformanceErrorBoundary/PerformanceErrorBoundary';
+import PerformanceLoadingState from './PerformanceLoadingState/PerformanceLoadingState';
 import { PerformanceProvider } from './PerformanceProvider';
 import { usePerformanceContext } from './PerformanceContext';
-import ProfitOrLoss from '@/components/profit-or-loss/ProfitOrLoss';
-import { formatCurrency } from '@/utils/currency';
+import { Suspense } from 'react';
+import ProfitOrLoss from '@components/profit-or-loss/ProfitOrLoss';
+import { formatCurrency } from '@utils/currency';
 
 const PerformanceContent = () => {
-  const { isLoading, isError, rangedPortfolioDailyValue, holdingsCount, totalValue, percentChange } =
-    usePerformanceContext();
-
-  if (isLoading) {
-    return (
-      <section className="flex flex-col gap-4">
-        <div className="flex flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-950/40 p-6">
-          <div className="h-6 w-28 animate-pulse rounded-full bg-slate-800/80" />
-          <div className="h-48 w-full animate-pulse rounded-2xl bg-slate-800/80" />
-        </div>
-      </section>
-    );
-  }
-
-  if (isError || !rangedPortfolioDailyValue) {
-    return (
-      <section className="rounded-3xl border border-dashed border-slate-800 bg-slate-950/40 p-8 text-center text-sm text-slate-400">
-        Unable to load performance data right now.
-      </section>
-    );
-  }
+  const { rangedPortfolioDailyValue, holdingsCount, totalValue, percentChange } = usePerformanceContext();
 
   if (holdingsCount === 0) {
     return (
@@ -45,17 +28,19 @@ const PerformanceContent = () => {
           <div className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-right">
             <p className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">Percent Change</p>
             <div className="mt-3">
-              {percentChange ? <ProfitOrLoss value={percentChange} type="percent" /> : 'N/A'}
+              {percentChange === undefined ? 'N/A' : <ProfitOrLoss value={percentChange} type="percent" />}
             </div>
           </div>
 
           <div className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-right">
             <p className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">Current Value</p>
-            <div className="mt-2 text-lg font-semibold text-slate-100">{formatCurrency(totalValue ?? null)}</div>
+            <div className="mt-2 text-lg font-semibold text-slate-100">
+              {totalValue && formatCurrency(totalValue)}
+            </div>
           </div>
         </div>
 
-        <PerformanceChart data={rangedPortfolioDailyValue} isLoading={isLoading} />
+        <PerformanceChart data={rangedPortfolioDailyValue} />
       </div>
     </section>
   );
@@ -63,9 +48,13 @@ const PerformanceContent = () => {
 
 function Performance() {
   return (
-    <PerformanceProvider>
-      <PerformanceContent />
-    </PerformanceProvider>
+    <PerformanceErrorBoundary>
+      <Suspense fallback={<PerformanceLoadingState />}>
+        <PerformanceProvider>
+          <PerformanceContent />
+        </PerformanceProvider>
+      </Suspense>
+    </PerformanceErrorBoundary>
   );
 }
 
