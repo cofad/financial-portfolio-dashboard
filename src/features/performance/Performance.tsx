@@ -20,40 +20,40 @@ const PerformanceContent = () => {
   }
 
   return (
-    <section className="flex flex-col gap-4">
-      <PerformanceRangeSelector />
-
-      <div className="flex flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-950/40 p-6">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-right">
-            <p className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">Percent Change</p>
-            <div className="mt-3">
-              {percentChange === undefined ? 'N/A' : <ProfitOrLoss value={percentChange} type="percent" />}
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-right">
-            <p className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">Current Value</p>
-            <div className="mt-2 text-lg font-semibold text-slate-100">
-              {totalValue && formatCurrency(totalValue)}
-            </div>
+    <div className="flex flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-950/40 p-6">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-right">
+          <p className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">Percent Change</p>
+          <div className="mt-3">
+            {percentChange === undefined ? 'N/A' : <ProfitOrLoss value={percentChange} type="percent" />}
           </div>
         </div>
 
-        <PerformanceChart data={rangedPortfolioDailyValue} />
+        <div className="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-right">
+          <p className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">Current Value</p>
+          <div className="mt-2 text-lg font-semibold text-slate-100">
+            {totalValue && formatCurrency(totalValue)}
+          </div>
+        </div>
       </div>
-    </section>
+
+      <PerformanceChart data={rangedPortfolioDailyValue} />
+    </div>
   );
 };
 
 function Performance() {
   return (
     <PerformanceErrorBoundary>
-      <Suspense fallback={<PerformanceLoadingState />}>
-        <PerformanceProvider>
-          <PerformanceContent />
-        </PerformanceProvider>
-      </Suspense>
+      <PerformanceProvider>
+        <section className="flex flex-col gap-4">
+          <PerformanceRangeSelector />
+
+          <Suspense fallback={<PerformanceLoadingState />}>
+            <PerformanceContent />
+          </Suspense>
+        </section>
+      </PerformanceProvider>
     </PerformanceErrorBoundary>
   );
 }
