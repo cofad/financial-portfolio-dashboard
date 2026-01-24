@@ -1,8 +1,7 @@
-import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import useDebounce from '@/hooks/useDebounce';
-import Autocomplete from '../../components/autocomplete/Autocomplete';
-import { fetchSearchResults, type SearchResult } from '@/services/mock-api/mock-api';
+import useDebounce from '@hooks/useDebounce';
+import Autocomplete from '@components/autocomplete/Autocomplete';
+import { fetchSearchResults, type SearchResult } from '@services/mock-api/mock-api';
 
 interface SymbolAutocompleteProps {
   onSelect: (result: SearchResult) => void;
