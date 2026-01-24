@@ -1,0 +1,105 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AllocationChart > matches snapshot 1`] = `
+<div>
+  <div
+    class="space-y-4 test-class"
+  >
+    <div
+      class="flex h-3 w-full overflow-hidden rounded-full bg-slate-900"
+    >
+      <div
+        class="bg-emerald-400"
+        style="width: 50%;"
+      />
+      <div
+        class="bg-sky-400"
+        style="width: 25%;"
+      />
+      <div
+        class="bg-amber-400"
+        style="width: 25%;"
+      />
+    </div>
+    <div
+      class="space-y-3"
+    >
+      <dl
+        class="flex items-center justify-between gap-3 rounded-2xl border border-slate-800/80 bg-slate-950/60 px-3 py-2"
+      >
+        <dt
+          class="flex items-center gap-2"
+        >
+          <span
+            class="h-2 w-2 rounded-full bg-emerald-400"
+          />
+          <span
+            class="text-xs text-slate-200"
+          >
+            Stock
+          </span>
+        </dt>
+        <dd
+          class="flex items-baseline gap-2"
+        >
+          <span
+            class="text-[0.7rem] font-semibold tracking-[0.25em] uppercase text-emerald-200"
+          >
+            50.0%
+          </span>
+        </dd>
+      </dl>
+      <dl
+        class="flex items-center justify-between gap-3 rounded-2xl border border-slate-800/80 bg-slate-950/60 px-3 py-2"
+      >
+        <dt
+          class="flex items-center gap-2"
+        >
+          <span
+            class="h-2 w-2 rounded-full bg-sky-400"
+          />
+          <span
+            class="text-xs text-slate-200"
+          >
+            ETF
+          </span>
+        </dt>
+        <dd
+          class="flex items-baseline gap-2"
+        >
+          <span
+            class="text-[0.7rem] font-semibold tracking-[0.25em] uppercase text-sky-200"
+          >
+            25.0%
+          </span>
+        </dd>
+      </dl>
+      <dl
+        class="flex items-center justify-between gap-3 rounded-2xl border border-slate-800/80 bg-slate-950/60 px-3 py-2"
+      >
+        <dt
+          class="flex items-center gap-2"
+        >
+          <span
+            class="h-2 w-2 rounded-full bg-amber-400"
+          />
+          <span
+            class="text-xs text-slate-200"
+          >
+            Crypto
+          </span>
+        </dt>
+        <dd
+          class="flex items-baseline gap-2"
+        >
+          <span
+            class="text-[0.7rem] font-semibold tracking-[0.25em] uppercase text-amber-200"
+          >
+            25.0%
+          </span>
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div>
+`;
