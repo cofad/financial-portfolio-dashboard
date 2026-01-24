@@ -2,8 +2,100 @@
 
 exports[`App > matches snapshot 1`] = `
 <div>
-  <h1>
-    Financial Portfolio Dashboard
-  </h1>
+  <div
+    class="min-h-screen px-6 py-12 text-slate-100"
+  >
+    <div
+      class="mx-auto flex w-full max-w-6xl flex-col gap-8"
+    >
+      <h1
+        class="text-3xl font-semibold"
+      >
+        Portfolio Dashboard
+      </h1>
+      <section
+        class="flex flex-col gap-6"
+      >
+        <div
+          aria-label="Dashboard sections"
+          class="flex w-full gap-0 overflow-x-auto overflow-y-hidden border-b border-slate-800 whitespace-nowrap lg:overflow-x-visible"
+          role="tablist"
+        >
+          <button
+            aria-controls="summary-panel"
+            aria-selected="true"
+            class="-mb-px flex-1 px-3 py-2 text-[14px] font-semibold transition focus-visible:bg-slate-900/60 focus-visible:outline-none sm:min-w-[140px] sm:px-4 sm:py-3 border-b-2 border-emerald-300 text-emerald-100"
+            id="summary-tab"
+            role="tab"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="mx-auto"
+            >
+              Summary
+            </span>
+          </button>
+          <button
+            aria-controls="add-asset-panel"
+            aria-selected="false"
+            class="-mb-px flex-1 px-3 py-2 text-[14px] font-semibold transition focus-visible:bg-slate-900/60 focus-visible:outline-none sm:min-w-[140px] sm:px-4 sm:py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-100"
+            id="add-asset-tab"
+            role="tab"
+            tabindex="-1"
+            type="button"
+          >
+            <span
+              class="mx-auto"
+            >
+              Add Asset
+            </span>
+          </button>
+          <button
+            aria-controls="performance-panel"
+            aria-selected="false"
+            class="-mb-px flex-1 px-3 py-2 text-[14px] font-semibold transition focus-visible:bg-slate-900/60 focus-visible:outline-none sm:min-w-[140px] sm:px-4 sm:py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-100"
+            id="performance-tab"
+            role="tab"
+            tabindex="-1"
+            type="button"
+          >
+            <span
+              class="mx-auto"
+            >
+              Performance
+            </span>
+          </button>
+          <button
+            aria-controls="holdings-panel"
+            aria-selected="false"
+            class="-mb-px flex-1 px-3 py-2 text-[14px] font-semibold transition focus-visible:bg-slate-900/60 focus-visible:outline-none sm:min-w-[140px] sm:px-4 sm:py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-100"
+            id="holdings-tab"
+            role="tab"
+            tabindex="-1"
+            type="button"
+          >
+            <span
+              class="mx-auto"
+            >
+              Holdings
+            </span>
+          </button>
+        </div>
+        <div
+          aria-labelledby="summary-tab"
+          class="flex flex-col gap-4"
+          id="summary-panel"
+          role="tabpanel"
+        >
+          <section
+            class="rounded-3xl border border-rose-500/40 bg-rose-500/10 p-8 text-center text-sm text-rose-100"
+          >
+            Failed to load summary. Please try again later.
+          </section>
+        </div>
+      </section>
+    </div>
+  </div>
 </div>
 `;
