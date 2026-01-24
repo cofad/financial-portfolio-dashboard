@@ -1,28 +1,21 @@
+import { formatCurrency } from '@/utils/currency';
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, type TooltipProps } from 'recharts';
-import type { PerformancePoint } from './usePerformanceData';
-import { formatCurrency } from '@/features/holdings/holdingsUtils';
 
 interface PerformanceChartProps {
-  data: PerformancePoint[];
+  data: { date: string; value: number }[];
   isLoading: boolean;
 }
 
 const formatAxisDate = (value: string) => {
   const date = new Date(value);
-  if (Number.isNaN(date.getTime())) {
-    return value;
-  }
   return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 };
 
 const formatAxisValue = (value: number) => {
-  if (!Number.isFinite(value)) {
-    return '';
-  }
-  return new Intl.NumberFormat('en-US', {
+  return `$${new Intl.NumberFormat('en-US', {
     notation: 'compact',
     maximumFractionDigits: 1,
-  }).format(value);
+  }).format(value)}`;
 };
 
 const PerformanceTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
@@ -30,14 +23,14 @@ const PerformanceTooltip = ({ active, payload, label }: TooltipProps<number, str
     return null;
   }
 
-  const value = payload[0]?.value;
-  const numericValue = typeof value === 'number' && Number.isFinite(value) ? value : null;
-  const formattedDate = label ? formatAxisDate(label) : '';
+  const value = payload[0].value;
+  const numericValue = value;
+  const formattedDate = label && typeof label === 'string' ? formatAxisDate(label) : '';
 
   return (
     <div className="rounded-2xl border border-slate-800 bg-slate-950/90 px-4 py-3 text-xs text-slate-200 shadow-lg">
       <p className="font-semibold text-slate-100">{formattedDate}</p>
-      <p className="mt-1 text-sm">{formatCurrency(numericValue)}</p>
+      <p className="mt-1 text-sm">{numericValue === undefined ? '' : formatCurrency(numericValue)}</p>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { z } from 'zod';
 import { env } from '@services/env/env';
+import { isDateString, type DateString } from '@/types/date-string';
 
 const metaDataSchema = z.object({
   '1. Information': z.string(),
@@ -18,7 +19,9 @@ const ohlcvSchema = z.object({
   '5. volume': z.string(),
 });
 
-interface OHLCV {
+export interface OHLCV {
+  date: DateString;
+  symbol: string;
   open: number;
   high: number;
   low: number;
@@ -28,7 +31,7 @@ interface OHLCV {
 
 const timeSeriesDailyResponseSchema = z.object({
   'Meta Data': metaDataSchema,
-  'Time Series (Daily)': z.record(z.string().regex(/^\\d{4}-\\d{2}-\\d{2}$/), ohlcvSchema),
+  'Time Series (Daily)': z.record(z.string().refine(isDateString), ohlcvSchema),
 });
 
 const alphaVantageClient = axios.create({
@@ -49,8 +52,15 @@ export const fetchTimeSeriesDaily = async (symbol: string): Promise<OHLCV[]> => 
   if (!parsed.success) {
     throw new Error('Invalid Alpha Vantage time series response');
   }
-  return Object.entries(parsed.data['Time Series (Daily)']).map(([, ohlcvResponse]) => {
+
+  return Object.entries(parsed.data['Time Series (Daily)']).map(([date, ohlcvResponse]) => {
+    if (!isDateString(date)) {
+      throw new Error(`Invalid date string in response: ${date}`);
+    }
+
     return {
+      date: date,
+      symbol,
       open: parseFloat(ohlcvResponse['1. open']),
       high: parseFloat(ohlcvResponse['2. high']),
       low: parseFloat(ohlcvResponse['3. low']),
