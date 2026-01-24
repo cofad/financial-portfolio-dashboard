@@ -1,14 +1,14 @@
 import { useMemo } from 'react';
 
-import { useHoldingsDisplayContext } from '@/features/holdings-display/HoldingsDisplayProvider';
 import ProfitOrLoss from '@/components/profit-or-loss/ProfitOrLoss';
 import { sortHoldings } from '@/features/holdings-display/holdingsDisplaySort';
 import { formatCurrency } from '@utils/currency';
 import { format } from 'date-fns';
+import { useHoldingsDisplayContext } from './HoldingsDisplayContext';
 
 export default function HoldingsDisplayCards() {
   const { liveHoldings, requestRemove, sortState } = useHoldingsDisplayContext();
-  const sortedHoldings = useMemo(() => sortHoldings(liveHoldings ?? [], sortState), [liveHoldings, sortState]);
+  const sortedHoldings = useMemo(() => sortHoldings(liveHoldings, sortState), [liveHoldings, sortState]);
 
   if (!sortedHoldings.length) {
     return null;
