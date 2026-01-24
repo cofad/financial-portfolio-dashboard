@@ -1,8 +1,8 @@
-import AddAssetForm from '@/features/add-asset-form/AddAssetForm';
-import Performance from '@/features/performance/Performance';
-import Summary from '@/features/summary/Summary';
-import Tabs from '@/components/tabs/Tabs';
-import HoldingsDisplay from './features/holdings-display/HoldingsDisplay';
+import AddAssetForm from '@features/add-asset-form/AddAssetForm';
+import Performance from '@features/performance/Performance';
+import Summary from '@features/summary/Summary';
+import Tabs from '@components/tabs/Tabs';
+import HoldingsDisplay from '@features/holdings-display/HoldingsDisplay';
 
 function App() {
   return (

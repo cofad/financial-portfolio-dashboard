@@ -1,5 +1,5 @@
 import SymbolAutocomplete from './SymbolAutocomplete';
-import { useAddAssetForm } from '@/features/add-asset-form/useAddAssetForm';
+import { useAddAssetForm } from '@features/add-asset-form/useAddAssetForm';
 
 const AddAssetForm = () => {
   const {
