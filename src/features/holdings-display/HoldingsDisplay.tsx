@@ -1,13 +1,13 @@
 import { Suspense } from 'react';
 
-import { HoldingsDisplayProvider } from '@features/holdings-display/HoldingsDisplayProvider';
-import HoldingsDisplayTable from '@features/holdings-display/HoldingsDisplayTable';
 import LastUpdated from '@components/last-updated/LastUpdated';
-import HoldingsDisplayCards from '@features/holdings-display/HoldingDisplayCards';
-import ConfirmRemoveDialog from '@features/holdings-display/ConfirmRemoveDialog';
-import HoldingsDisplaySort from '@features/holdings-display/HoldingsDisplaySort';
-import HoldingsDisplayErrorBoundary from '@/features/holdings-display/HoldingsDisplayErrorBoundary';
-import HoldingsDisplayLoadingState from '@/features/holdings-display/HoldingsDisplayLoadingState';
+import { HoldingsDisplayProvider } from './HoldingsDisplayProvider';
+import HoldingsDisplayTable from './HoldingsDisplayTable';
+import HoldingsDisplayCards from './HoldingDisplayCards';
+import ConfirmRemoveDialog from './ConfirmRemoveDialog';
+import HoldingsDisplaySort from './HoldingsDisplaySort';
+import HoldingsDisplayErrorBoundary from './HoldingsDisplayErrorBoundary';
+import HoldingsDisplayLoadingState from './HoldingsDisplayLoadingState';
 import { useHoldingsDisplayContext } from './HoldingsDisplayContext';
 
 function HoldingsDisplayContent() {
