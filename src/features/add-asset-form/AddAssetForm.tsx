@@ -62,7 +62,7 @@ const AddAssetForm = () => {
             {purchasePriceText}
           </div>
 
-          {quoteIsError && <p className="text-xs text-rose-400">Unable to load price from Finnhub.</p>}
+          {quoteIsError && <p className="text-xs text-rose-400">Unable to load price.</p>}
         </div>
 
         <div className="flex flex-col gap-2">

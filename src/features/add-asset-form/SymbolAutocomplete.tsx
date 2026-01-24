@@ -1,31 +1,32 @@
 import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { symbolLookup } from '@/services/finnhub/finnhub';
-import type { SymbolLookupResult } from '@/services/finnhub/finnhub';
 import useDebounce from '@/hooks/useDebounce';
 import Autocomplete from '../../components/autocomplete/Autocomplete';
+import { fetchSearchResults, type SearchResult } from '@/services/mock-api/mock-api';
 
 interface SymbolAutocompleteProps {
-  onSelect: (result: SymbolLookupResult) => void;
+  onSelect: (result: SearchResult) => void;
   value: string;
   onValueChange: (value: string) => void;
 }
 
-const getResultLabel = (result: SymbolLookupResult): string => result.displaySymbol ?? result.symbol ?? '';
+const getResultLabel = (result: SearchResult): string => result.name;
 
-const getResultKey = (result: SymbolLookupResult, index: number): string =>
-  `${getResultLabel(result)}-${result.description ?? 'result'}-${index.toString()}`;
+const getResultKey = (result: SearchResult, index: number): string =>
+  `${getResultLabel(result)}-${result.description}-${index.toString()}`;
 
 const SymbolAutocomplete = ({ onSelect, value, onValueChange }: SymbolAutocompleteProps) => {
   const debouncedQuery = useDebounce(value, 350);
 
-  const { data, isFetching, isError } = useQuery({
-    queryKey: ['symbolLookup', debouncedQuery],
-    queryFn: () => symbolLookup(debouncedQuery),
+  const {
+    data: searchResults,
+    isFetching,
+    isError,
+  } = useQuery({
+    queryKey: ['fetchSearchResults', debouncedQuery],
+    queryFn: () => fetchSearchResults(debouncedQuery),
     enabled: debouncedQuery.trim().length > 0,
   });
-
-  const results = useMemo<SymbolLookupResult[]>(() => data?.result ?? [], [data?.result]);
 
   return (
     <Autocomplete
@@ -33,7 +34,7 @@ const SymbolAutocomplete = ({ onSelect, value, onValueChange }: SymbolAutocomple
       placeholder="Search symbols like AAPL or TSLA"
       query={value}
       onQueryChange={onValueChange}
-      items={results}
+      items={searchResults ?? []}
       isLoading={isFetching}
       isError={isError}
       getItemLabel={getResultLabel}
@@ -47,9 +48,7 @@ const SymbolAutocomplete = ({ onSelect, value, onValueChange }: SymbolAutocomple
           <div className="flex items-center justify-between gap-4">
             <span className="text-sm font-semibold text-slate-100">{getResultLabel(result) || 'Unknown'}</span>
 
-            <span className="text-[10px] tracking-[0.2em] text-slate-500 uppercase">
-              {result.type ?? 'Unknown'}
-            </span>
+            <span className="text-[10px] tracking-[0.2em] text-slate-500 uppercase">{result.type}</span>
           </div>
 
           {result.description && <p className="text-xs text-slate-400">{result.description}</p>}

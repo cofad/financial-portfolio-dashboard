@@ -1,4 +1,4 @@
-import type { AssetType } from '@/services/finnhub/finnhub';
+import type { AssetType } from '@/services/mock-api/mock-api';
 import { useHoldings, type LiveHolding } from './useHoldings';
 
 export interface Allocations {

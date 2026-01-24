@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-import { getQuotes, type Quote } from '@services/finnhub/finnhub';
 import { type Holding } from '@store/holdings/slice';
 import { useHoldingsSelector } from '@store/holdings/hooks';
 import { selectHoldings, selectHoldingSymbols } from '@store/holdings/store';
+import { fetchQuotes, type Quote } from '@/services/mock-api/mock-api';
 
 export interface LiveHolding extends Holding {
   currentPrice: number;
@@ -41,7 +41,7 @@ export function useHoldings(): UseHoldings {
     isFetching,
   } = useQuery({
     queryKey: ['quotes', holdingSymbols.join(',')],
-    queryFn: () => getQuotes(holdingSymbols),
+    queryFn: () => fetchQuotes(holdingSymbols),
     refetchInterval: 60_000,
     refetchIntervalInBackground: true,
   });

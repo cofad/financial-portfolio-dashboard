@@ -1,4 +1,4 @@
-import { fetchTimeSeriesDaily, type OHLCV } from '@/services/alpha-vantage/alpha-vantage';
+import { fetchHistory, type History } from '@/services/mock-api/mock-api';
 import { useHoldingsSelector } from '@/store/holdings/hooks';
 import { selectHoldings, selectHoldingSymbols } from '@/store/holdings/store';
 import type { DateString } from '@/types/date-string';
@@ -10,8 +10,8 @@ interface UsePerformance {
   portfolioDailyValue: { date: DateString; value: number }[] | undefined;
 }
 
-function mergeTimeSeries(inputs: OHLCV[][]): { date: DateString; ohlcv: OHLCV[] }[] {
-  const grouped = new Map<DateString, OHLCV[]>();
+function mergeTimeSeries(inputs: History[][]): { date: DateString; history: History[] }[] {
+  const grouped = new Map<DateString, History[]>();
 
   for (const item of inputs.flat()) {
     const dateGroup = grouped.get(item.date);
@@ -25,9 +25,9 @@ function mergeTimeSeries(inputs: OHLCV[][]): { date: DateString; ohlcv: OHLCV[] 
   }
 
   return Array.from(grouped.entries())
-    .map(([date, ohlcv]) => ({
+    .map(([date, history]) => ({
       date,
-      ohlcv,
+      history,
     }))
     .sort((a, b) => a.date.localeCompare(b.date));
 }
@@ -39,7 +39,7 @@ export function usePerformance(): UsePerformance {
   const queryResults = useQueries({
     queries: holdingSymbols.map((symbol) => ({
       queryKey: ['timeSeries', symbol],
-      queryFn: () => fetchTimeSeriesDaily(symbol),
+      queryFn: () => fetchHistory(symbol),
       staleTime: Infinity,
       retries: false,
     })),
@@ -48,21 +48,21 @@ export function usePerformance(): UsePerformance {
   const isLoading = queryResults.some((result) => result.isLoading);
   const isError = queryResults.some((result) => result.isError);
 
-  const timeSeriesMultiple = isError || isLoading ? null : queryResults.map((result) => result.data ?? []);
-  const timeSeries = timeSeriesMultiple && mergeTimeSeries(timeSeriesMultiple);
+  const histories = isError || isLoading ? null : queryResults.map((result) => result.data ?? []);
+  const mergedHistory = histories && mergeTimeSeries(histories);
 
-  const portfolioDailyValue = timeSeries?.map((series) => {
-    const value = series.ohlcv.reduce((acc, ohlcv) => {
-      const holding = holdings.find((h) => h.symbol === ohlcv.symbol);
+  const portfolioDailyValue = mergedHistory?.map((series) => {
+    const value = series.history.reduce((acc, history) => {
+      const holding = holdings.find((h) => h.symbol === history.symbol);
 
       if (!holding) {
-        throw new Error(`Holding not found for symbol: ${ohlcv.symbol}`);
+        throw new Error(`Holding not found for symbol: ${history.symbol}`);
       }
 
       const isHoldingOwnedOnDate = new Date(holding.purchaseDate) <= new Date(series.date);
 
       if (isHoldingOwnedOnDate) {
-        return acc + ohlcv.close * holding.quantity;
+        return acc + history.price * holding.quantity;
       }
 
       return acc;

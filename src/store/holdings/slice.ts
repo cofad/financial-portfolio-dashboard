@@ -1,6 +1,6 @@
 import { normalizeSymbol } from '@utils/symbol';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { AssetType } from '@/services/finnhub/finnhub';
+import type { AssetType } from '@/services/mock-api/mock-api';
 
 export interface Holding {
   symbol: string;

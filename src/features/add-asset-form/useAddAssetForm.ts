@@ -3,12 +3,12 @@ import { useQuery } from '@tanstack/react-query';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, useWatch, type FieldErrors, type SubmitHandler, type UseFormRegister } from 'react-hook-form';
-import { getQuote, type SymbolLookupResult } from '@services/finnhub/finnhub';
 import { useHoldingsDispatch, useHoldingsSelector } from '@store/holdings/hooks';
 import { addHolding, type Holding } from '@store/holdings/slice';
 import { useToast } from '@components/toast/useToast';
 import { normalizeSymbol } from '@utils/symbol';
 import { getNowIso } from '@utils/date';
+import { fetchQuote, type SearchResult } from '@/services/mock-api/mock-api';
 
 const portfolioSchema = z.object({
   symbol: z
@@ -50,7 +50,7 @@ interface UseAddAssetForm {
   isSubmitting: boolean;
   symbolQuery: string;
   onSymbolChange: (value: string) => void;
-  onSymbolSelect: (result: SymbolLookupResult) => void;
+  onSymbolSelect: (result: SearchResult) => void;
   purchasePriceDisplay: string;
   totalPriceDisplay: string;
   quoteIsFetching: boolean;
@@ -94,11 +94,11 @@ export const useAddAssetForm = (): UseAddAssetForm => {
 
   const quoteQuery = useQuery({
     queryKey: ['quote', normalizedSelectedSymbol],
-    queryFn: () => getQuote(normalizedSelectedSymbol),
+    queryFn: () => fetchQuote(normalizedSelectedSymbol),
     enabled: normalizedSelectedSymbol.length > 0,
   });
 
-  const quotePrice = quoteQuery.data?.c;
+  const quotePrice = quoteQuery.data?.currentPrice;
 
   useEffect(() => {
     if (!normalizedSelectedSymbol) {
@@ -126,9 +126,9 @@ export const useAddAssetForm = (): UseAddAssetForm => {
     setValue('purchasePrice', '', { shouldValidate: true, shouldDirty: true });
   };
 
-  const onSymbolSelect = (result: SymbolLookupResult) => {
-    const nextSymbol = result.displaySymbol ?? result.symbol ?? '';
-    const nextAssetType = result.type ?? '';
+  const onSymbolSelect = (result: SearchResult) => {
+    const nextSymbol = result.name;
+    const nextAssetType = result.type;
 
     setSymbolQuery(nextSymbol);
     setSelectedSymbol(nextSymbol);

@@ -1,5 +1,5 @@
-import { formatCurrency } from '@/features/holdings/holdingsUtils';
 import useSummary from '@/hooks/useSummary';
+import { formatCurrency } from '@/utils/currency';
 import AllocationChart from '@components/allocation-chart/AllocationChart';
 import LastUpdated from '@components/last-updated/LastUpdated';
 import ProfitOrLoss from '@components/profit-or-loss/ProfitOrLoss';

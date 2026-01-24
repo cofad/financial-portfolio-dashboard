@@ -1,9 +1,9 @@
-import { formatCurrency } from '@/features/holdings/holdingsUtils';
 import PerformanceChart from './PerformanceChart';
 import PerformanceRangeSelector from './PerformanceRangeSelector';
 import { PerformanceProvider } from './PerformanceProvider';
 import { usePerformanceContext } from './PerformanceContext';
 import ProfitOrLoss from '@/components/profit-or-loss/ProfitOrLoss';
+import { formatCurrency } from '@/utils/currency';
 
 const PerformanceContent = () => {
   const { isLoading, isError, rangedPortfolioDailyValue, holdingsCount, totalValue, percentChange } =
