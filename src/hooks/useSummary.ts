@@ -1,4 +1,4 @@
-import type { AssetType } from '@/services/mock-api/mock-api';
+import type { AssetType } from '@services/mock-api/mock-api';
 import { useHoldings, type LiveHolding } from './useHoldings';
 
 export interface Allocations {
@@ -9,11 +9,11 @@ export interface Allocations {
 interface UseSummary {
   isLoading: boolean;
   isError: boolean;
-  liveHoldings: LiveHolding[] | null;
+  liveHoldings: LiveHolding[];
   lastUpdatedAt: Date;
-  totalValue?: number;
-  dailyProfitLoss?: number;
-  allocations?: Allocations;
+  totalValue: number;
+  dailyProfitLoss: number;
+  allocations: Allocations;
 }
 
 function generateAllocations(liveHoldings: LiveHolding[]): Allocations {
@@ -40,15 +40,15 @@ function generateAllocations(liveHoldings: LiveHolding[]): Allocations {
 export default function useSummary(): UseSummary {
   const { liveHoldings, isLoading, isError, lastUpdatedAt } = useHoldings();
 
-  const totalValue = liveHoldings?.reduce((acc, holding) => {
+  const totalValue = liveHoldings.reduce((acc, holding) => {
     return acc + holding.currentValue;
   }, 0);
 
-  const dailyProfitLoss = liveHoldings?.reduce((acc, holding) => {
+  const dailyProfitLoss = liveHoldings.reduce((acc, holding) => {
     return acc + holding.profitLoss;
   }, 0);
 
-  const allocations = liveHoldings ? generateAllocations(liveHoldings) : undefined;
+  const allocations = generateAllocations(liveHoldings);
 
   return {
     isLoading,

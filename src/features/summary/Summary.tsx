@@ -1,28 +1,14 @@
-import useSummary from '@/hooks/useSummary';
-import { formatCurrency } from '@/utils/currency';
+import { Suspense } from 'react';
+import useSummary from '@hooks/useSummary';
+import { formatCurrency } from '@utils/currency';
 import AllocationChart from '@components/allocation-chart/AllocationChart';
 import LastUpdated from '@components/last-updated/LastUpdated';
 import ProfitOrLoss from '@components/profit-or-loss/ProfitOrLoss';
+import SummaryErrorBoundary from './SummaryErrorBoundary';
+import SummaryLoadingState from './SummaryLoadingState';
 
-const Summary = () => {
-  const { isLoading, isError, liveHoldings, totalValue, dailyProfitLoss, allocations, lastUpdatedAt } =
-    useSummary();
-
-  if (isLoading) {
-    return (
-      <section className="rounded-3xl border border-dashed border-slate-800 bg-slate-950/40 p-8 text-center text-sm text-slate-400">
-        Loading summary...
-      </section>
-    );
-  }
-
-  if (isError || !liveHoldings || !totalValue || !allocations || dailyProfitLoss === undefined) {
-    return (
-      <section className="rounded-3xl border border-rose-500/40 bg-rose-500/10 p-8 text-center text-sm text-rose-100">
-        Failed to load summary. Please try again later.
-      </section>
-    );
-  }
+function SummaryContent() {
+  const { liveHoldings, totalValue, dailyProfitLoss, allocations, lastUpdatedAt } = useSummary();
 
   if (liveHoldings.length === 0) {
     return (
@@ -31,6 +17,8 @@ const Summary = () => {
       </section>
     );
   }
+
+  const dailyProfitLossPercent = totalValue === 0 ? 0 : dailyProfitLoss / totalValue;
 
   return (
     <section className="flex flex-col gap-4">
@@ -55,7 +43,7 @@ const Summary = () => {
             <div className="mt-4 flex text-2xl font-semibold">
               <ProfitOrLoss value={dailyProfitLoss} />
               <span className="mx-3">/</span>
-              <ProfitOrLoss value={dailyProfitLoss / totalValue} type="percent" />
+              <ProfitOrLoss value={dailyProfitLossPercent} type="percent" />
             </div>
           </div>
 
@@ -67,6 +55,14 @@ const Summary = () => {
       </div>
     </section>
   );
-};
+}
 
-export default Summary;
+export default function Summary() {
+  return (
+    <SummaryErrorBoundary>
+      <Suspense fallback={<SummaryLoadingState />}>
+        <SummaryContent />
+      </Suspense>
+    </SummaryErrorBoundary>
+  );
+}
