@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProfitOrLoss > matches snapshot for type currency 1`] = `
+<div>
+  <div
+    class="text-emerald-300"
+  >
+    $1,250.50
+  </div>
+</div>
+`;
+
+exports[`ProfitOrLoss > matches snapshot for type percent 1`] = `
+<div>
+  <div
+    class="text-emerald-300"
+  >
+    800.00%
+  </div>
+</div>
+`;

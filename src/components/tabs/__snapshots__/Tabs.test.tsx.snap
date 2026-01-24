@@ -1,0 +1,71 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tabs > matches snapshot 1`] = `
+<div>
+  <section
+    class="flex flex-col gap-6"
+  >
+    <div
+      aria-label="Dashboard sections"
+      class="flex w-full gap-0 overflow-x-auto overflow-y-hidden border-b border-slate-800 whitespace-nowrap lg:overflow-x-visible"
+      role="tablist"
+    >
+      <button
+        aria-controls="overview-panel"
+        aria-selected="true"
+        class="-mb-px flex-1 px-3 py-2 text-[14px] font-semibold transition focus-visible:bg-slate-900/60 focus-visible:outline-none sm:min-w-[140px] sm:px-4 sm:py-3 border-b-2 border-emerald-300 text-emerald-100"
+        id="overview-tab"
+        role="tab"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="mx-auto"
+        >
+          Overview
+        </span>
+      </button>
+      <button
+        aria-controls="performance-panel"
+        aria-selected="false"
+        class="-mb-px flex-1 px-3 py-2 text-[14px] font-semibold transition focus-visible:bg-slate-900/60 focus-visible:outline-none sm:min-w-[140px] sm:px-4 sm:py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-100"
+        id="performance-tab"
+        role="tab"
+        tabindex="-1"
+        type="button"
+      >
+        <span
+          class="mx-auto"
+        >
+          Performance
+        </span>
+      </button>
+      <button
+        aria-controls="risk-panel"
+        aria-selected="false"
+        class="-mb-px flex-1 px-3 py-2 text-[14px] font-semibold transition focus-visible:bg-slate-900/60 focus-visible:outline-none sm:min-w-[140px] sm:px-4 sm:py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-100"
+        id="risk-tab"
+        role="tab"
+        tabindex="-1"
+        type="button"
+      >
+        <span
+          class="mx-auto"
+        >
+          Risk
+        </span>
+      </button>
+    </div>
+    <div
+      aria-labelledby="overview-tab"
+      class="flex flex-col gap-4"
+      id="overview-panel"
+      role="tabpanel"
+    >
+      <div>
+        Overview content
+      </div>
+    </div>
+  </section>
+</div>
+`;
