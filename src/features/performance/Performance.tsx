@@ -1,7 +1,7 @@
 import PerformanceChart from './PerformanceChart';
 import PerformanceRangeSelector from './PerformanceRangeSelector';
-import PerformanceErrorBoundary from './PerformanceErrorBoundary/PerformanceErrorBoundary';
-import PerformanceLoadingState from './PerformanceLoadingState/PerformanceLoadingState';
+import PerformanceErrorBoundary from './PerformanceErrorBoundary';
+import PerformanceLoadingState from './PerformanceLoadingState';
 import { PerformanceProvider } from './PerformanceProvider';
 import { usePerformanceContext } from './PerformanceContext';
 import { Suspense } from 'react';
