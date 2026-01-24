@@ -1,7 +1,22 @@
-import { format } from 'date-fns';
+import { isDateString, type DateString } from '@/types/date-string';
+import { format, isDate } from 'date-fns';
 
 export function getNowIso(): string {
   return format(new Date(), 'yyyy-MM-dd');
+}
+
+export function convertToDateString(date: Date): DateString {
+  if (!isDate(date)) {
+    throw new Error('Input is not a valid Date object');
+  }
+
+  const dateString = format(date, 'yyyy-MM-dd');
+
+  if (!isDateString(dateString)) {
+    throw new Error('Formatted date is not a valid DateString');
+  }
+
+  return dateString;
 }
 
 export function formatDate(dateString: string): string {
