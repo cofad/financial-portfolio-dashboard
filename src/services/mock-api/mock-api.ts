@@ -1,9 +1,9 @@
-import { isDateString, type DateString } from '@/types/date-string';
+import { convertToTimeString, isDateString, type TimeString } from '@/utils/date';
 import axios from 'axios';
 import log from 'loglevel';
 import { z } from 'zod';
 
-const assetTypeSchema = z.enum(['Stock', 'ETF', 'Crypto']);
+export const assetTypeSchema = z.enum(['Stock', 'ETF', 'Crypto']);
 
 const searchResponseSchema = z.object({
   count: z.number(),
@@ -28,7 +28,7 @@ const historyResponseSchema = z.object({
   type: assetTypeSchema,
   history: z.array(
     z.object({
-      date: z.string(),
+      date: z.string().refine(isDateString),
       price: z.number(),
     }),
   ),
@@ -41,7 +41,7 @@ export interface Quote {
 }
 
 export interface History {
-  date: DateString;
+  date: TimeString;
   symbol: string;
   price: number;
 }
@@ -120,11 +120,9 @@ export const fetchHistory = async (symbol: string): Promise<History[]> => {
   const parsedData = parsed.data;
 
   return parsedData.history.map((h) => {
-    if (!isDateString(h.date)) throw new Error('Invalid date format');
-
     return {
       symbol: symbol,
-      date: h.date,
+      date: convertToTimeString(new Date(h.date + 'T12:00-0500')),
       price: h.price,
     };
   });

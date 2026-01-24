@@ -2,8 +2,7 @@ import axios from 'axios';
 import { z } from 'zod';
 import { env } from '@services/env/env';
 import { subDays } from 'date-fns';
-import { convertToDateString } from '@/utils/date';
-import type { DateString } from '@/types/date-string';
+import { convertToDateString, type DateString } from '@/utils/date';
 
 const timeSeriesDailyResponseSchema = z.object({
   adjusted: z.boolean(),

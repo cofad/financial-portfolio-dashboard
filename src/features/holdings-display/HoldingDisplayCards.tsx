@@ -4,7 +4,7 @@ import { useHoldingsDisplayContext } from '@/features/holdings-display/HoldingsD
 import ProfitOrLoss from '@/components/profit-or-loss/ProfitOrLoss';
 import { sortHoldings } from '@/features/holdings-display/holdingsDisplaySort';
 import { formatCurrency } from '@utils/currency';
-import { formatDate } from '@utils/date';
+import { format } from 'date-fns';
 
 export default function HoldingsDisplayCards() {
   const { liveHoldings, requestRemove, sortState } = useHoldingsDisplayContext();
@@ -71,7 +71,7 @@ export default function HoldingsDisplayCards() {
 
             <div>
               <p className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">Purchase Date</p>
-              <p className="text-slate-300">{formatDate(holding.purchaseDate)}</p>
+              <p className="text-slate-300">{format(holding.purchaseDate, 'MMM dd')}</p>
             </div>
           </div>
         </div>

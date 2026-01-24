@@ -4,7 +4,7 @@ import { useHoldingsDisplayContext } from '@/features/holdings-display/HoldingsD
 import ProfitOrLoss from '@/components/profit-or-loss/ProfitOrLoss';
 import { sortHoldings } from '@/features/holdings-display/holdingsDisplaySort';
 import { formatCurrency } from '@utils/currency';
-import { formatDate } from '@utils/date';
+import { format } from 'date-fns';
 
 const COLUMNS = [
   { label: 'Symbol', align: 'left' },
@@ -60,7 +60,9 @@ export default function HoldingsDisplayTable() {
               <td className="px-4 py-4 text-right text-sm font-semibold">
                 <ProfitOrLoss value={holding.profitLoss} />
               </td>
-              <td className="px-4 py-4 text-right text-sm text-slate-300">{formatDate(holding.purchaseDate)}</td>
+              <td className="px-4 py-4 text-right text-sm text-slate-300">
+                {format(holding.purchaseDate, 'MMM dd')}
+              </td>
               <td className="px-4 py-4 text-center">
                 <button
                   type="button"

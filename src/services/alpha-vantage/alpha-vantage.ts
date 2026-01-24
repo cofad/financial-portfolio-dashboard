@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { z } from 'zod';
 import { env } from '@services/env/env';
-import { isDateString, type DateString } from '@/types/date-string';
+import { isTimeString, type TimeString } from '@/utils/date';
 
 const metaDataSchema = z.object({
   '1. Information': z.string(),
@@ -20,7 +20,7 @@ const ohlcvSchema = z.object({
 });
 
 export interface OHLCV {
-  date: DateString;
+  date: TimeString;
   symbol: string;
   open: number;
   high: number;
@@ -31,7 +31,7 @@ export interface OHLCV {
 
 const timeSeriesDailyResponseSchema = z.object({
   'Meta Data': metaDataSchema,
-  'Time Series (Daily)': z.record(z.string().refine(isDateString), ohlcvSchema),
+  'Time Series (Daily)': z.record(z.string().refine(isTimeString), ohlcvSchema),
 });
 
 const alphaVantageClient = axios.create({
@@ -54,7 +54,7 @@ export const fetchTimeSeriesDaily = async (symbol: string): Promise<OHLCV[]> => 
   }
 
   return Object.entries(parsed.data['Time Series (Daily)']).map(([date, ohlcvResponse]) => {
-    if (!isDateString(date)) {
+    if (!isTimeString(date)) {
       throw new Error(`Invalid date string in response: ${date}`);
     }
 

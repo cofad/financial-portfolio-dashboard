@@ -1,10 +1,10 @@
-import type { DateString } from '@/types/date-string';
+import type { TimeString } from '@/utils/date';
 import { createContext, use } from 'react';
 
 export type PerformanceRange = 7 | 30 | 90;
 
 interface PerformancePoint {
-  date: DateString;
+  date: TimeString;
   value: number;
 }
 

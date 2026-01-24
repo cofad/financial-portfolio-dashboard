@@ -1,4 +1,5 @@
 import { formatCurrency } from '@/utils/currency';
+import { format } from 'date-fns';
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, type TooltipProps } from 'recharts';
 
 interface PerformanceChartProps {
@@ -7,8 +8,7 @@ interface PerformanceChartProps {
 }
 
 const formatAxisDate = (value: string) => {
-  const date = new Date(value);
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  return format(value, 'MMM dd');
 };
 
 const formatAxisValue = (value: number) => {

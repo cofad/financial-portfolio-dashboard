@@ -1,14 +1,18 @@
 import { normalizeSymbol } from '@utils/symbol';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { AssetType } from '@/services/mock-api/mock-api';
+import { assetTypeSchema } from '@/services/mock-api/mock-api';
+import z from 'zod';
+import { isTimeString } from '@/utils/date';
 
-export interface Holding {
-  symbol: string;
-  quantity: number;
-  purchasePrice: number;
-  purchaseDate: string;
-  assetType: AssetType;
-}
+export const holdingSchema = z.object({
+  symbol: z.string(),
+  quantity: z.number(),
+  purchasePrice: z.number(),
+  purchaseDate: z.string().refine(isTimeString),
+  assetType: assetTypeSchema,
+});
+
+export type Holding = z.infer<typeof holdingSchema>;
 
 interface HoldingsState {
   holdings: Holding[];

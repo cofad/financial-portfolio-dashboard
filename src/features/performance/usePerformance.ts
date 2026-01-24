@@ -1,17 +1,17 @@
 import { fetchHistory, type History } from '@/services/mock-api/mock-api';
 import { useHoldingsSelector } from '@/store/holdings/hooks';
 import { selectHoldings, selectHoldingSymbols } from '@/store/holdings/store';
-import type { DateString } from '@/types/date-string';
+import type { TimeString } from '@/utils/date';
 import { useQueries } from '@tanstack/react-query';
 
 interface UsePerformance {
   isError: boolean;
   isLoading: boolean;
-  portfolioDailyValue: { date: DateString; value: number }[] | undefined;
+  portfolioDailyValue: { date: TimeString; value: number }[] | undefined;
 }
 
-function mergeTimeSeries(inputs: History[][]): { date: DateString; history: History[] }[] {
-  const grouped = new Map<DateString, History[]>();
+function mergeTimeSeries(inputs: History[][]): { date: TimeString; history: History[] }[] {
+  const grouped = new Map<TimeString, History[]>();
 
   for (const item of inputs.flat()) {
     const dateGroup = grouped.get(item.date);

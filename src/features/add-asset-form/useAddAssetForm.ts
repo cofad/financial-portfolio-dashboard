@@ -4,10 +4,10 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, useWatch, type FieldErrors, type SubmitHandler, type UseFormRegister } from 'react-hook-form';
 import { useHoldingsDispatch, useHoldingsSelector } from '@store/holdings/hooks';
-import { addHolding, type Holding } from '@store/holdings/slice';
+import { addHolding, holdingSchema, type Holding } from '@store/holdings/slice';
 import { useToast } from '@components/toast/useToast';
 import { normalizeSymbol } from '@utils/symbol';
-import { getNowIso } from '@utils/date';
+import { getNowIsoWithOffset } from '@utils/date';
 import { fetchQuote, type SearchResult } from '@/services/mock-api/mock-api';
 
 const portfolioSchema = z.object({
@@ -32,7 +32,7 @@ const createDefaultValues = (): AddAssetFormInput => ({
   symbol: '',
   quantity: '',
   purchasePrice: '',
-  purchaseDate: getNowIso(),
+  purchaseDate: getNowIsoWithOffset(),
   assetType: '',
 });
 
@@ -151,11 +151,11 @@ export const useAddAssetForm = (): UseAddAssetForm => {
       return;
     }
 
-    const payload: Holding = {
+    const payload: Holding = z.parse(holdingSchema, {
       ...data,
-      purchaseDate: getNowIso(),
+      purchaseDate: getNowIsoWithOffset(),
       symbol: normalizedSymbol,
-    };
+    });
 
     dispatch(addHolding(payload));
 
