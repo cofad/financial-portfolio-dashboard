@@ -1,6 +1,5 @@
 import { createContext, use } from 'react';
-import { , type UseHoldingsDisplay } from './useHoldingsDisplay';
-
+import { type UseHoldingsDisplay } from './useHoldingsDisplay';
 
 export const HoldingsDisplayContext = createContext<UseHoldingsDisplay | null>(null);
 
