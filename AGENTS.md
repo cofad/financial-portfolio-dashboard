@@ -8,6 +8,7 @@
 
 - Utilize the path aliases listed in the tsconfig
 - Don't use the general `@/` if there's a more specific alias
+- Prefer relative imports for files that located in the same directory
 
 ## Styling
 
