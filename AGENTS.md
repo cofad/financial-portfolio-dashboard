@@ -20,11 +20,12 @@
 - Prefer small, composable components
 - Keep components to less than 200 lines in length
 - Create a directory for each component and its sub-components and tests
-- Prefer to use the function keyword over arrow functions
+- Prefer to use the function keyword over arrow functions for component definitions
 
 ## Functions
 
-- Prefer to use the function keyword over arrow functions
+- Prefer to use the function keyword over arrow functions for stand-alone functions
+- Prefer arrow functions for callbacks
 
 ## HTTP Request
 
