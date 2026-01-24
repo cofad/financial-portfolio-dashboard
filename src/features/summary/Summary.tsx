@@ -42,8 +42,10 @@ const Summary = () => {
             <p className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">Total Value</p>
 
             <div className="mt-4">
-              <p className="text-2xl font-semibold text-slate-100">{formatCurrency(totalValue)}</p>
-              <p className="mt-1 text-xs text-slate-400">USD</p>
+              <p className="text-2xl font-semibold text-slate-100">
+                <span className="mr-2">{formatCurrency(totalValue)}</span>
+                <span className="text-xs text-slate-400">USD</span>
+              </p>
             </div>
           </div>
 
