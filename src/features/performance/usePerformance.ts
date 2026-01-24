@@ -36,13 +36,14 @@ export function usePerformance(): UsePerformance {
   const holdings = useHoldingsSelector(selectHoldings);
   const holdingSymbols = useHoldingsSelector(selectHoldingSymbols);
 
-  const queries = holdingSymbols.map((symbol) => ({
-    queryKey: ['timeSeries', symbol],
-    queryFn: () => fetchTimeSeriesDaily(symbol),
-    staleTime: Infinity,
-  }));
-
-  const queryResults = useQueries({ queries });
+  const queryResults = useQueries({
+    queries: holdingSymbols.map((symbol) => ({
+      queryKey: ['timeSeries', symbol],
+      queryFn: () => fetchTimeSeriesDaily(symbol),
+      staleTime: Infinity,
+      retries: false,
+    })),
+  });
 
   const isLoading = queryResults.some((result) => result.isLoading);
   const isError = queryResults.some((result) => result.isError);
