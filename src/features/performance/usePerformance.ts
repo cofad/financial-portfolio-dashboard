@@ -51,15 +51,15 @@ export function usePerformance(): UsePerformance {
   const histories = isError || isLoading ? null : queryResults.map((result) => result.data ?? []);
   const mergedHistory = histories && mergeTimeSeries(histories);
 
-  const portfolioDailyValue = mergedHistory?.map((series) => {
-    const value = series.history.reduce((acc, history) => {
+  const portfolioDailyValue = mergedHistory.map((history) => {
+    const value = history.history.reduce((acc, history) => {
       const holding = holdings.find((h) => h.symbol === history.symbol);
 
       if (!holding) {
         throw new Error(`Holding not found for symbol: ${history.symbol}`);
       }
 
-      const isHoldingOwnedOnDate = new Date(holding.purchaseDate) <= new Date(series.date);
+      const isHoldingOwnedOnDate = startOfDay(holding.purchaseDate) <= startOfDay(history.date);
 
       if (isHoldingOwnedOnDate) {
         return acc + history.price * holding.quantity;
