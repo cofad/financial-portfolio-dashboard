@@ -27,6 +27,10 @@
 - Prefer to use the function keyword over arrow functions for stand-alone functions
 - Prefer arrow functions for callbacks
 
+## Testing
+
+- Prefer arrow functions for callbacks in tests
+
 ## HTTP Request
 
 - Use axios for all HTTP requests
