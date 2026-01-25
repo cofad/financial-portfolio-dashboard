@@ -30,6 +30,8 @@ vi.mock('@hooks/useSummary', () => {
 
 describe('Summary', function () {
   beforeEach(function () {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2024-01-02T12:00:00.000Z'));
     mockSummaryState.liveHoldings = [];
     mockSummaryState.totalValue = 0;
     mockSummaryState.dailyProfitLoss = 0;
@@ -38,6 +40,7 @@ describe('Summary', function () {
 
   afterEach(function () {
     cleanup();
+    vi.useRealTimers();
   });
 
   it('matches snapshot', function () {

@@ -25,7 +25,7 @@ exports[`Summary > renders summary content when data is available 1`] = `
       <span
         class="inline-block w-[2ch] text-right"
       >
-        65109957
+        0
       </span>
        seconds ago
     </div>
