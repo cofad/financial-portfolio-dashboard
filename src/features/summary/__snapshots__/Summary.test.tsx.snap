@@ -1,0 +1,150 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Summary > matches snapshot 1`] = `
+<div>
+  <section
+    class="rounded-3xl border border-dashed border-slate-800 bg-slate-950/40 p-8 text-center text-sm text-slate-400"
+  >
+    No holdings yet. Add assets to see a portfolio overview.
+  </section>
+  <div
+    class="pointer-events-none fixed right-6 bottom-6 left-6 z-50 flex w-full max-w-xs flex-col gap-3 sm:right-auto"
+  />
+</div>
+`;
+
+exports[`Summary > renders summary content when data is available 1`] = `
+<div>
+  <section
+    class="flex flex-col gap-4"
+  >
+    <div
+      class="rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-xs text-slate-300 self-start"
+    >
+      Last updated: 
+      <span
+        class="inline-block w-[2ch] text-right"
+      >
+        65109957
+      </span>
+       seconds ago
+    </div>
+    <div
+      class="flex flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-950/40 p-6"
+    >
+      <div
+        class="grid gap-4 lg:grid-cols-3"
+      >
+        <div
+          class="rounded-3xl border border-slate-800 bg-slate-950/70 p-5 shadow-xl shadow-slate-900/40"
+        >
+          <p
+            class="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase"
+          >
+            Total Value
+          </p>
+          <div
+            class="mt-4"
+          >
+            <p
+              class="text-2xl font-semibold text-slate-100"
+            >
+              <span
+                class="mr-2"
+              >
+                $220.00
+              </span>
+              <span
+                class="text-xs text-slate-400"
+              >
+                USD
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          class="rounded-3xl border border-slate-800 bg-slate-950/70 p-5 shadow-xl shadow-slate-900/40"
+        >
+          <p
+            class="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase"
+          >
+            Daily P/L
+          </p>
+          <div
+            class="mt-4 flex text-2xl font-semibold"
+          >
+            <div
+              class="text-emerald-300"
+            >
+              $4.00
+            </div>
+            <span
+              class="mx-3"
+            >
+              /
+            </span>
+            <div
+              class="text-emerald-300"
+            >
+              0.02%
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded-3xl border border-slate-800 bg-slate-950/70 p-5 shadow-xl shadow-slate-900/40"
+        >
+          <p
+            class="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase"
+          >
+            Allocation
+          </p>
+          <div
+            class="space-y-4 mt-4"
+          >
+            <div
+              class="flex h-3 w-full overflow-hidden rounded-full bg-slate-900"
+            >
+              <div
+                class="bg-emerald-400"
+                style="width: 100%;"
+              />
+            </div>
+            <div
+              class="space-y-3"
+            >
+              <dl
+                class="flex items-center justify-between gap-3 rounded-2xl border border-slate-800/80 bg-slate-950/60 px-3 py-2"
+              >
+                <dt
+                  class="flex items-center gap-2"
+                >
+                  <span
+                    class="h-2 w-2 rounded-full bg-emerald-400"
+                  />
+                  <span
+                    class="text-xs text-slate-200"
+                  >
+                    Stock
+                  </span>
+                </dt>
+                <dd
+                  class="flex items-baseline gap-2"
+                >
+                  <span
+                    class="text-[0.7rem] font-semibold tracking-[0.25em] uppercase text-emerald-200"
+                  >
+                    100.0%
+                  </span>
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div
+    class="pointer-events-none fixed right-6 bottom-6 left-6 z-50 flex w-full max-w-xs flex-col gap-3 sm:right-auto"
+  />
+</div>
+`;

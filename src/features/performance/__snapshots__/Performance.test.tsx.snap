@@ -1,0 +1,95 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Performance > matches snapshot 1`] = `
+<div>
+  <section
+    class="flex flex-col gap-4"
+  >
+    <section
+      class="rounded-3xl border border-dashed border-slate-800 bg-slate-950/40 p-8 text-center text-sm text-slate-400"
+    >
+      No holdings yet. Add assets to see portfolio performance over time.
+    </section>
+  </section>
+  <div
+    class="pointer-events-none fixed right-6 bottom-6 left-6 z-50 flex w-full max-w-xs flex-col gap-3 sm:right-auto"
+  />
+</div>
+`;
+
+exports[`Performance > renders performance content when data is available 1`] = `
+<div>
+  <section
+    class="flex flex-col gap-4"
+  >
+    <div
+      class="flex flex-wrap justify-end gap-2"
+    >
+      <button
+        class="rounded-full border px-4 py-1 text-xs font-semibold transition border-emerald-400/70 bg-emerald-500/10 text-emerald-100"
+        type="button"
+      >
+        7d
+      </button>
+      <button
+        class="rounded-full border px-4 py-1 text-xs font-semibold transition border-slate-800 bg-slate-950/70 text-slate-400 hover:border-slate-600 hover:text-slate-200"
+        type="button"
+      >
+        30d
+      </button>
+      <button
+        class="rounded-full border px-4 py-1 text-xs font-semibold transition border-slate-800 bg-slate-950/70 text-slate-400 hover:border-slate-600 hover:text-slate-200"
+        type="button"
+      >
+        90d
+      </button>
+    </div>
+    <div
+      class="flex flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-950/40 p-6"
+    >
+      <div
+        class="flex flex-wrap items-center justify-between gap-4"
+      >
+        <div
+          class="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-right"
+        >
+          <p
+            class="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase"
+          >
+            Percent Change
+          </p>
+          <div
+            class="mt-3"
+          >
+            <div
+              class="text-emerald-300"
+            >
+              10.00%
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-right"
+        >
+          <p
+            class="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase"
+          >
+            Current Value
+          </p>
+          <div
+            class="mt-2 text-lg font-semibold text-slate-100"
+          >
+            $220.00
+          </div>
+        </div>
+      </div>
+      <div>
+        Mock chart
+      </div>
+    </div>
+  </section>
+  <div
+    class="pointer-events-none fixed right-6 bottom-6 left-6 z-50 flex w-full max-w-xs flex-col gap-3 sm:right-auto"
+  />
+</div>
+`;
