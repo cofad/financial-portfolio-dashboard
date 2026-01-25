@@ -23,6 +23,7 @@
 - Prefer to use the function keyword over arrow functions
 
 ## Functions
+
 - Prefer to use the function keyword over arrow functions
 
 ## HTTP Request
