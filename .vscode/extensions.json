@@ -4,6 +4,7 @@
     "openai.chatgpt",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "vscodevim.vim"
+    "vscodevim.vim",
+    "eamodio.gitlens"
   ]
 }
