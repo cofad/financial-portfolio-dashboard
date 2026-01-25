@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "streetsidesoftware.code-spell-checker",
+    "openai.chatgpt",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "vscodevim.vim"
+  ]
+}
