@@ -25,7 +25,6 @@
     "noUncheckedSideEffectImports": true,
 
     "paths": {
-      "@/*": ["./src/*"],
       "@api/*": ["./src/api/*"],
       "@components/*": ["./src/components/*"],
       "@features/*": ["./src/features/*"],
@@ -33,7 +32,8 @@
       "@services/*": ["./src/services/*"],
       "@store/*": ["./src/store/*"],
       "@types/*": ["./src/types/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"]
