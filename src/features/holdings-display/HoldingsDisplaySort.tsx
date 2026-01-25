@@ -1,9 +1,4 @@
-import {
-  SORT_OPTIONS,
-  type SortDirection,
-  type SortKey,
-  type SortState,
-} from '@/features/holdings-display/holdingsDisplaySort';
+import { SORT_OPTIONS, type SortDirection, type SortKey, type SortState } from './holdingsDisplaySorting';
 import { useHoldingsDisplayContext } from './HoldingsDisplayContext';
 
 const getNextSortState = (current: SortState | null, nextKey: SortKey | ''): SortState | null => {

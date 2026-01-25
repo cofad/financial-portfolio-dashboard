@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useHoldingsDispatch } from '@store/holdings/hooks';
 import { removeHolding } from '@store/holdings/slice';
 import { useToast } from '@components/toast/useToast';
-import type { SortState } from '@features/holdings-display/holdingsDisplaySort';
+import type { SortState } from './holdingsDisplaySorting';
 import { useHoldings, type LiveHolding } from '@hooks/useHoldings';
 
 export interface UseHoldingsDisplay {

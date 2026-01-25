@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
-import ProfitOrLoss from '@/components/profit-or-loss/ProfitOrLoss';
-import { sortHoldings } from '@/features/holdings-display/holdingsDisplaySort';
+import ProfitOrLoss from '@components/profit-or-loss/ProfitOrLoss';
+import { sortHoldings } from './holdingsDisplaySorting';
 import { formatCurrency } from '@utils/currency';
 import { format } from 'date-fns';
 import { useHoldingsDisplayContext } from './HoldingsDisplayContext';

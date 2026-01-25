@@ -10,6 +10,7 @@
     "format": "prettier -w .",
     "format:check": "prettier --check .",
     "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --max-warnings=0 --fix",
     "preview": "vite preview",
     "prepare": "husky",
     "commitlint": "commitlint --edit",
