@@ -5,19 +5,14 @@ import PerformanceLoadingState from './PerformanceLoadingState';
 import { PerformanceProvider } from './PerformanceProvider';
 import { usePerformanceContext } from './PerformanceContext';
 import { Suspense } from 'react';
+import EmptyState from '@components/empty-state/EmptyState';
 import ProfitOrLoss from '@components/profit-or-loss/ProfitOrLoss';
 import { formatCurrency } from '@utils/currency';
+import { useHoldingsSelector } from '@store/holdings/hooks';
+import { selectHoldings } from '@store/holdings/store';
 
-const PerformanceContent = () => {
-  const { rangedPortfolioDailyValue, holdingsCount, totalValue, percentChange } = usePerformanceContext();
-
-  if (holdingsCount === 0) {
-    return (
-      <section className="rounded-3xl border border-dashed border-slate-800 bg-slate-950/40 p-8 text-center text-sm text-slate-400">
-        Add holdings to see portfolio performance over time.
-      </section>
-    );
-  }
+function PerformanceContent() {
+  const { rangedPortfolioDailyValue, totalValue, percentChange } = usePerformanceContext();
 
   return (
     <div className="flex flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-950/40 p-6">
@@ -40,18 +35,26 @@ const PerformanceContent = () => {
       <PerformanceChart data={rangedPortfolioDailyValue} />
     </div>
   );
-};
+}
 
 function Performance() {
+  const holdings = useHoldingsSelector(selectHoldings);
+
   return (
     <PerformanceErrorBoundary>
       <PerformanceProvider>
         <section className="flex flex-col gap-4">
-          <PerformanceRangeSelector />
+          {holdings.length === 0 ? (
+            <EmptyState message="No holdings yet. Add assets to see portfolio performance over time." />
+          ) : (
+            <>
+              <PerformanceRangeSelector />
 
-          <Suspense fallback={<PerformanceLoadingState />}>
-            <PerformanceContent />
-          </Suspense>
+              <Suspense fallback={<PerformanceLoadingState />}>
+                <PerformanceContent />
+              </Suspense>
+            </>
+          )}
         </section>
       </PerformanceProvider>
     </PerformanceErrorBoundary>

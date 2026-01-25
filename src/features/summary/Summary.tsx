@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import useSummary from '@hooks/useSummary';
 import { formatCurrency } from '@utils/currency';
 import AllocationChart from '@components/allocation-chart/AllocationChart';
+import EmptyState from '@components/empty-state/EmptyState';
 import LastUpdated from '@components/last-updated/LastUpdated';
 import ProfitOrLoss from '@components/profit-or-loss/ProfitOrLoss';
 import SummaryErrorBoundary from './SummaryErrorBoundary';
@@ -12,9 +13,7 @@ function SummaryContent() {
 
   if (liveHoldings.length === 0) {
     return (
-      <section className="rounded-3xl border border-dashed border-slate-800 bg-slate-950/40 p-8 text-center text-sm text-slate-400">
-        No holdings yet. Add assets to see a portfolio overview.
-      </section>
+      <EmptyState message="No holdings yet. Add assets to see a portfolio overview." />
     );
   }
 

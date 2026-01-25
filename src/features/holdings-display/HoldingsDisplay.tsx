@@ -9,9 +9,14 @@ import HoldingsDisplaySort from './HoldingsDisplaySort';
 import HoldingsDisplayErrorBoundary from './HoldingsDisplayErrorBoundary';
 import HoldingsDisplayLoadingState from './HoldingsDisplayLoadingState';
 import { useHoldingsDisplayContext } from './HoldingsDisplayContext';
+import EmptyState from '@components/empty-state/EmptyState';
 
 function HoldingsDisplayContent() {
-  const { lastUpdatedAt, pendingRemove } = useHoldingsDisplayContext();
+  const { lastUpdatedAt, pendingRemove, liveHoldings } = useHoldingsDisplayContext();
+
+  if (liveHoldings.length === 0) {
+    return <EmptyState message="No holdings yet. Add assets to build your portfolio." />;
+  }
 
   return (
     <div className="space-y-4">
