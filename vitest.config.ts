@@ -2,7 +2,6 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   plugins: [tsconfigPaths()],
   test: {
     environment: 'jsdom',
