@@ -1,9 +1,9 @@
 import { configureStore, combineReducers, createSelector } from '@reduxjs/toolkit';
 import { persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
-import createWebStorage from 'redux-persist/es/storage/createWebStorage';
 import holdingsReducer, { type Holding } from './slice';
+import { createPersistStorage } from './persistStorage';
 
-const storage = createWebStorage('local');
+const storage = createPersistStorage();
 
 const rootReducer = combineReducers({
   holdings: holdingsReducer,

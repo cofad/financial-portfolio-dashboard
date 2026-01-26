@@ -9,6 +9,8 @@ import { useToast } from '@components/toast/useToast';
 import { normalizeSymbol } from '@utils/symbol';
 import { getNowIsoWithOffset } from '@utils/date';
 import { fetchQuote, type AssetType, type SearchResult } from '@services/mock-api/mock-api';
+import log from 'loglevel';
+import { isQuotaExceededError } from '@store/holdings/persistStorage';
 
 const portfolioSchema = z.object({
   symbol: z
@@ -167,7 +169,21 @@ export const useAddAssetForm = (): UseAddAssetForm => {
       symbol: normalizedSymbol,
     });
 
-    dispatch(addHolding(payload));
+    try {
+      dispatch(addHolding(payload));
+    } catch (error) {
+      log.error(error);
+
+      const message = isQuotaExceededError(error)
+        ? 'Storage is full. Your new holding could not be saved.'
+        : 'Unable to save this holding. Please try again.';
+
+      pushToast({
+        message,
+        variant: 'error',
+      });
+      return;
+    }
 
     pushToast({
       message: `Added ${normalizedSymbol} to your portfolio.`,
