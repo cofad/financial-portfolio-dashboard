@@ -9,75 +9,84 @@ exports[`AddAssetForm > matches snapshot 1`] = `
       class="flex flex-col gap-6"
     >
       <div
-        class="flex flex-col gap-4"
+        class="flex flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-10"
       >
-        <div>
+        <div
+          class="flex flex-col gap-4 lg:grid lg:flex-1 lg:grid-rows-2 lg:gap-6 lg:self-stretch lg:rounded-3xl lg:border lg:border-slate-800 lg:bg-slate-950/40 lg:p-5"
+        >
+          <div>
+            <div
+              class="w-full md:max-w-full lg:max-w-lg"
+            >
+              <label
+                class="text-xs font-semibold tracking-[0.2em] uppercase"
+              >
+                Symbol
+              </label>
+              <div
+                class="relative mt-3"
+              >
+                <input
+                  aria-controls="autocomplete-results"
+                  aria-expanded="false"
+                  class="w-full rounded-2xl border border-slate-800 px-4 py-3 text-base text-slate-100 shadow-[0_0_0_1px_rgba(30,41,59,0.2)] transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700 md:text-sm"
+                  placeholder="Search symbols like AAPL or TSLA"
+                  role="combobox"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
           <div
-            class="w-full max-w-lg"
+            class="flex w-full flex-col gap-2 md:max-w-full lg:max-w-lg"
           >
             <label
-              class="text-xs font-semibold tracking-[0.2em] uppercase"
+              class="text-xs font-semibold tracking-[0.2em] text-slate-300 uppercase"
             >
-              Symbol
+              Quantity
             </label>
-            <div
-              class="relative mt-3"
-            >
-              <input
-                aria-controls="autocomplete-results"
-                aria-expanded="false"
-                class="w-full rounded-2xl border border-slate-800 px-4 py-3 text-sm text-slate-100 shadow-[0_0_0_1px_rgba(30,41,59,0.2)] transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700"
-                placeholder="Search symbols like AAPL or TSLA"
-                role="combobox"
-                value=""
-              />
-            </div>
+            <input
+              aria-invalid="false"
+              class="mt-3 w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-base text-slate-100 transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700 md:text-sm"
+              inputmode="numeric"
+              name="quantity"
+              placeholder="Enter quantity"
+              type="text"
+            />
           </div>
         </div>
         <div
-          class="flex w-full max-w-lg flex-col gap-2"
+          class="flex w-full flex-col gap-6 lg:grid lg:flex-1 lg:grid-rows-2 lg:gap-6 lg:self-stretch lg:rounded-3xl lg:border lg:border-slate-800 lg:bg-slate-950/40 lg:p-5"
         >
-          <label
-            class="text-xs font-semibold tracking-[0.2em] text-slate-300 uppercase"
+          <div
+            class="flex flex-col gap-2"
           >
-            Quantity
-          </label>
-          <input
-            aria-invalid="false"
-            class="mt-3 w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-slate-100 transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700"
-            inputmode="numeric"
-            name="quantity"
-            type="text"
-          />
-        </div>
-      </div>
-      <div
-        class="flex flex-col gap-2"
-      >
-        <span
-          class="text-xs font-semibold tracking-[0.2em] text-slate-300 uppercase"
-        >
-          Purchase Price
-        </span>
-        <div
-          aria-invalid="false"
-          class="text-sm font-semibold text-slate-100"
-        >
-          -
-        </div>
-      </div>
-      <div
-        class="flex flex-col gap-2"
-      >
-        <span
-          class="text-xs font-semibold tracking-[0.2em] text-slate-300 uppercase"
-        >
-          Total Price
-        </span>
-        <div
-          class="text-sm font-semibold text-slate-100"
-        >
-          -
+            <span
+              class="text-xs font-semibold tracking-[0.2em] text-slate-300 uppercase"
+            >
+              Purchase Price
+            </span>
+            <div
+              aria-invalid="false"
+              class="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-sm font-semibold text-slate-100"
+            >
+              -
+            </div>
+          </div>
+          <div
+            class="flex flex-col gap-2"
+          >
+            <span
+              class="text-xs font-semibold tracking-[0.2em] text-slate-300 uppercase"
+            >
+              Total Price
+            </span>
+            <div
+              class="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-sm font-semibold text-slate-100"
+            >
+              -
+            </div>
+          </div>
         </div>
       </div>
       <input
@@ -96,7 +105,7 @@ exports[`AddAssetForm > matches snapshot 1`] = `
         value=""
       />
       <button
-        class="flex items-center justify-center rounded-2xl border border-slate-700 bg-slate-900 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-500 hover:bg-slate-800 disabled:cursor-not-allowed disabled:border-slate-800 disabled:bg-slate-950 disabled:text-slate-500"
+        class="mx-auto flex items-center justify-center rounded-2xl border border-slate-700 bg-transparent px-8 py-4 text-base font-semibold text-slate-100 transition hover:border-slate-500 hover:bg-slate-900/40 disabled:cursor-not-allowed disabled:border-slate-800 disabled:text-slate-500"
         disabled=""
         type="submit"
       >
