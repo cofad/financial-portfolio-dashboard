@@ -10,7 +10,7 @@ import { convertToTimeString } from '@utils/date';
 const mockHoldingsDisplayState: UseHoldingsDisplay = {
   liveHoldings: [],
   isFetching: false,
-  lastUpdatedAt: new Date('2024-01-02T11:59:50.000Z'),
+  lastUpdatedAt: new Date('2024-01-02T11:59:50Z'),
   sortState: null,
   setSortState: vi.fn(),
   pendingRemove: null,
@@ -28,7 +28,7 @@ vi.mock('./useHoldingsDisplay', () => {
 describe('HoldingsDisplay', function () {
   beforeEach(function () {
     vi.useFakeTimers();
-    vi.setSystemTime(new Date('2024-01-02T12:00:00.000Z'));
+    vi.setSystemTime(new Date('2024-01-02T12:00:00Z'));
     mockHoldingsDisplayState.liveHoldings = [];
   });
 
@@ -53,7 +53,7 @@ describe('HoldingsDisplay', function () {
         symbol: 'AAPL',
         quantity: 2,
         purchasePrice: 100,
-        purchaseDate: convertToTimeString(new Date('2024-01-01T12:00:00.000Z')),
+        purchaseDate: convertToTimeString('2024-01-01T12:00:00Z'),
         assetType: 'Stock',
         currentPrice: 110,
         currentValue: 220,
@@ -64,7 +64,7 @@ describe('HoldingsDisplay', function () {
         symbol: 'BTC',
         quantity: 1,
         purchasePrice: 20000,
-        purchaseDate: convertToTimeString(new Date('2024-01-01T12:00:00.000Z')),
+        purchaseDate: convertToTimeString('2024-01-01T12:00:00Z'),
         assetType: 'Crypto',
         currentPrice: 21000,
         currentValue: 21000,
@@ -79,6 +79,6 @@ describe('HoldingsDisplay', function () {
       </FeatureTestProviders>,
     );
 
-    expect(container).toMatchSnapshot();
+    expect(container.container).toMatchSnapshot();
   });
 });

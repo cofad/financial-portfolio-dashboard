@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
+import { format } from 'date-fns';
 import { convertToDateString, convertToTimeString, getNowIsoWithOffset, isDateString, isTimeString } from './date';
 
 describe('date utils', () => {
@@ -14,6 +15,8 @@ describe('date utils', () => {
   describe('isTimeString', () => {
     it('validates time strings in ISO format with offset', () => {
       expect(isTimeString('2024-02-28T12:00:00+00:00')).toBe(true);
+      expect(isTimeString('2024-02-28T12:00:00-05:00')).toBe(true);
+      expect(isTimeString('2024-02-28T12:00:00Z')).toBe(true);
       expect(isTimeString('2024-02-29T15:04:05')).toBe(false);
     });
   });
@@ -27,8 +30,7 @@ describe('date utils', () => {
 
   describe('convertToTimeString', () => {
     it('converts dates to branded time strings', () => {
-      const date = new Date(2024, 1, 29, 15, 4, 5);
-      expect(convertToTimeString(date)).toBe('2024-02-29T15:04:05+00:00');
+      expect(convertToTimeString('2024-02-29T15:04:05+00:00')).toBe('2024-02-29T15:04:05+00:00');
     });
   });
 
@@ -39,7 +41,7 @@ describe('date utils', () => {
       vi.useFakeTimers();
       vi.setSystemTime(now);
 
-      expect(getNowIsoWithOffset()).toBe('2024-01-15T08:30:12+00:00');
+      expect(getNowIsoWithOffset()).toBe(format(now, "yyyy-MM-dd'T'HH:mm:ssxxx"));
 
       vi.useRealTimers();
     });

@@ -1,4 +1,4 @@
-import { convertToTimeString, isDateString, type TimeString } from '@/utils/date';
+import { convertToTimeString, isDateString, type TimeString } from '@utils/date';
 import axios from 'axios';
 import log from 'loglevel';
 import { z } from 'zod';
@@ -122,7 +122,7 @@ export const fetchHistory = async (symbol: string): Promise<History[]> => {
   return parsedData.history.map((h) => {
     return {
       symbol: symbol,
-      date: convertToTimeString(new Date(h.date + 'T12:00-0500')),
+      date: convertToTimeString(`${h.date}T12:00:00Z`),
       price: h.price,
     };
   });

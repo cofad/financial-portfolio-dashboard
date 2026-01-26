@@ -15,8 +15,8 @@ export function isDateString(value: string): value is DateString {
 }
 
 export function isTimeString(value: string): value is TimeString {
-  const parsed = parse(value, TIME_STRING_FORMAT, new Date());
-  return isValid(parsed) && format(parsed, TIME_STRING_FORMAT) === value;
+  const parsedDate = parse(value, TIME_STRING_FORMAT, new Date());
+  return isValid(parsedDate);
 }
 
 export function convertToDateString(date: Date): DateString {
@@ -29,11 +29,9 @@ export function convertToDateString(date: Date): DateString {
   return dateString;
 }
 
-export function convertToTimeString(date: Date): TimeString {
-  const timeString = format(date, TIME_STRING_FORMAT);
-
+export function convertToTimeString(timeString: string): TimeString {
   if (!isTimeString(timeString)) {
-    throw new Error('Formatted date is not a valid DateString');
+    throw new Error('Formatted date is not a valid TimeString');
   }
 
   return timeString;

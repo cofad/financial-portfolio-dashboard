@@ -9,7 +9,7 @@ function createHolding(symbol: string): Holding {
     symbol,
     quantity: 5,
     purchasePrice: 250,
-    purchaseDate: convertToTimeString(new Date('2024-03-01T10:00:00+00:00')),
+    purchaseDate: convertToTimeString('2024-03-01T10:00:00+00:00'),
     assetType: 'Stock',
   };
 }

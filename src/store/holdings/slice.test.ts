@@ -8,7 +8,7 @@ function createHolding(overrides?: Partial<Holding>): Holding {
     symbol: 'AAPL',
     quantity: 10,
     purchasePrice: 123.45,
-    purchaseDate: convertToTimeString(new Date('2024-02-28T12:00:00+00:00')),
+    purchaseDate: convertToTimeString('2024-02-28T12:00:00+00:00'),
     assetType: 'Stock',
     ...overrides,
   };

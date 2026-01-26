@@ -7,7 +7,7 @@ import AddAssetForm from './AddAssetForm';
 describe('AddAssetForm', () => {
   beforeEach(function () {
     vi.useFakeTimers();
-    vi.setSystemTime(new Date('2024-01-02T12:00:00.000Z'));
+    vi.setSystemTime(new Date('2024-01-02T12:00:00Z'));
   });
 
   afterEach(function () {

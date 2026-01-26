@@ -24,8 +24,8 @@ const mockPerformanceContext: PerformanceContext = {
     { label: '90d', value: 90 },
   ],
   rangedPortfolioDailyValue: [
-    { date: convertToTimeString(new Date('2024-01-01T12:00:00.000Z')), value: 200 },
-    { date: convertToTimeString(new Date('2024-01-02T12:00:00.000Z')), value: 220 },
+    { date: convertToTimeString('2024-01-01T12:00:00Z'), value: 200 },
+    { date: convertToTimeString('2024-01-02T12:00:00Z'), value: 220 },
   ],
   holdingsCount: 1,
   totalValue: 220,
@@ -83,7 +83,7 @@ describe('Performance', () => {
         symbol: 'AAPL',
         quantity: 2,
         purchasePrice: 100,
-        purchaseDate: convertToTimeString(new Date('2024-01-01T12:00:00.000Z')),
+        purchaseDate: convertToTimeString('2024-01-01T12:00:00Z'),
         assetType: 'Stock',
       },
     ];

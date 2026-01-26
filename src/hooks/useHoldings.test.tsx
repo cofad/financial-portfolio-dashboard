@@ -41,14 +41,14 @@ describe('useHoldings', () => {
         symbol: 'AAPL',
         quantity: 2,
         purchasePrice: 100,
-        purchaseDate: convertToTimeString(new Date('2024-01-01T12:00:00-05:00')),
+        purchaseDate: convertToTimeString('2024-01-01T12:00:00-05:00'),
         assetType: 'Stock',
       },
       {
         symbol: 'BTC',
         quantity: 1,
         purchasePrice: 20000,
-        purchaseDate: convertToTimeString(new Date('2024-01-01T12:00:00-05:00')),
+        purchaseDate: convertToTimeString('2024-01-01T12:00:00-05:00'),
         assetType: 'Crypto',
       },
     ];

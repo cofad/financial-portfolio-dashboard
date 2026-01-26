@@ -13,7 +13,7 @@ const mockSummaryState: UseSummary = {
   isLoading: false,
   isError: false,
   liveHoldings: [],
-  lastUpdatedAt: new Date('2024-01-02T12:00:00.000Z'),
+  lastUpdatedAt: new Date('2024-01-02T12:00:00Z'),
   totalValue: 0,
   dailyProfitLoss: 0,
   allocations: {
@@ -31,7 +31,7 @@ vi.mock('@hooks/useSummary', () => {
 describe('Summary', function () {
   beforeEach(function () {
     vi.useFakeTimers();
-    vi.setSystemTime(new Date('2024-01-02T12:00:00.000Z'));
+    vi.setSystemTime(new Date('2024-01-02T12:00:00Z'));
     mockSummaryState.liveHoldings = [];
     mockSummaryState.totalValue = 0;
     mockSummaryState.dailyProfitLoss = 0;
@@ -59,7 +59,7 @@ describe('Summary', function () {
         symbol: 'AAPL',
         quantity: 2,
         purchasePrice: 100,
-        purchaseDate: convertToTimeString(new Date('2024-01-01T12:00:00.000Z')),
+        purchaseDate: convertToTimeString('2024-01-01T12:00:00Z'),
         assetType: 'Stock',
         currentPrice: 110,
         currentValue: 220,

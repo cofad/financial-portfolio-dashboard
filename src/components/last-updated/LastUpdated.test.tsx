@@ -4,7 +4,7 @@ import { subSeconds } from 'date-fns';
 
 import LastUpdated from './LastUpdated';
 
-const baseTime = new Date('2025-01-01T00:00:00.000Z');
+const baseTime = new Date('2025-01-01T00:00:00Z');
 
 describe('LastUpdated', function () {
   beforeEach(function () {

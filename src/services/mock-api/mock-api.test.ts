@@ -144,12 +144,12 @@ describe('mock-api', () => {
     const expected: History[] = [
       {
         symbol: 'AAPL',
-        date: convertToTimeString(new Date('2024-01-01T12:00-0500')),
+        date: convertToTimeString('2024-01-01T12:00:00Z'),
         price: 100,
       },
       {
         symbol: 'AAPL',
-        date: convertToTimeString(new Date('2024-01-02T12:00-0500')),
+        date: convertToTimeString('2024-01-02T12:00:00Z'),
         price: 110,
       },
     ];
