@@ -48,10 +48,10 @@ exports[`Performance > renders performance content when data is available 1`] = 
       class="flex flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-950/40 p-6"
     >
       <div
-        class="flex flex-wrap items-center justify-between gap-4"
+        class="flex flex-col gap-4 sm:flex-row"
       >
         <div
-          class="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-right"
+          class="w-full rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-left sm:flex-1"
         >
           <p
             class="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase"
@@ -69,7 +69,7 @@ exports[`Performance > renders performance content when data is available 1`] = 
           </div>
         </div>
         <div
-          class="rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-right"
+          class="w-full rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-left sm:flex-1"
         >
           <p
             class="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase"
