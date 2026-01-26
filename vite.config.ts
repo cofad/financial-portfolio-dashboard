@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://vite.dev/config/
 export default defineConfig({
   // Path for GitHub Pages deployment
-  base: '/financial-portfolio-dashboard/',
+  // base: '/financial-portfolio-dashboard/',
   plugins: [react(), tailwindcss()],
   resolve: {
     tsconfigPaths: true,
