@@ -51,7 +51,7 @@ jobs:
         uses: ./.github/actions/setup-node
 
       - name: Test
-        run: npm test:ci
+        run: npm run test:ci
 
   test-coverage:
     runs-on: ubuntu-latest
