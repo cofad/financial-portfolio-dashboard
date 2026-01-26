@@ -8,7 +8,7 @@ import { addHolding, holdingSchema, type Holding } from '@store/holdings/slice';
 import { useToast } from '@components/toast/useToast';
 import { normalizeSymbol } from '@utils/symbol';
 import { getNowIsoWithOffset } from '@utils/date';
-import { fetchQuote, type SearchResult } from '@/services/mock-api/mock-api';
+import { fetchQuote, type AssetType, type SearchResult } from '@services/mock-api/mock-api';
 
 const portfolioSchema = z.object({
   symbol: z
@@ -53,6 +53,8 @@ interface UseAddAssetForm {
   onSymbolSelect: (result: SearchResult) => void;
   purchasePriceDisplay: string;
   totalPriceDisplay: string;
+  assetTypeDisplay: AssetType | '';
+  assetDescriptionDisplay: string;
   quoteIsFetching: boolean;
   quoteIsError: boolean;
 }
@@ -65,6 +67,8 @@ export const useAddAssetForm = (): UseAddAssetForm => {
 
   const [symbolQuery, setSymbolQuery] = useState<string>('');
   const [selectedSymbol, setSelectedSymbol] = useState<string>('');
+  const [selectedAssetType, setSelectedAssetType] = useState<AssetType | ''>('');
+  const [selectedDescription, setSelectedDescription] = useState<string>('');
 
   const {
     register,
@@ -119,6 +123,8 @@ export const useAddAssetForm = (): UseAddAssetForm => {
 
     if (selectedSymbol && normalizedValue !== normalizedSelected) {
       setSelectedSymbol('');
+      setSelectedAssetType('');
+      setSelectedDescription('');
       setValue('assetType', '', { shouldValidate: true, shouldDirty: true });
     }
 
@@ -130,9 +136,12 @@ export const useAddAssetForm = (): UseAddAssetForm => {
   const onSymbolSelect = (result: SearchResult) => {
     const nextSymbol = normalizeSymbol(result.name);
     const nextAssetType = result.type;
+    const nextDescription = result.description;
 
     setSymbolQuery(nextSymbol);
     setSelectedSymbol(nextSymbol);
+    setSelectedAssetType(nextAssetType);
+    setSelectedDescription(nextDescription);
 
     setValue('symbol', nextSymbol, { shouldValidate: true, shouldDirty: true });
     setValue('assetType', nextAssetType, { shouldValidate: true, shouldDirty: true });
@@ -168,6 +177,8 @@ export const useAddAssetForm = (): UseAddAssetForm => {
     reset(createDefaultValues());
     setSymbolQuery('');
     setSelectedSymbol('');
+    setSelectedAssetType('');
+    setSelectedDescription('');
   };
 
   const purchasePriceDisplay =
@@ -196,6 +207,8 @@ export const useAddAssetForm = (): UseAddAssetForm => {
     onSymbolSelect,
     purchasePriceDisplay,
     totalPriceDisplay,
+    assetTypeDisplay: selectedAssetType,
+    assetDescriptionDisplay: selectedDescription,
     quoteIsFetching: quoteQuery.isFetching,
     quoteIsError: quoteQuery.isError,
   };

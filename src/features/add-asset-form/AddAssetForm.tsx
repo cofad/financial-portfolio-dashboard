@@ -13,12 +13,15 @@ function AddAssetForm() {
     onSymbolSelect,
     purchasePriceDisplay,
     totalPriceDisplay,
+    assetTypeDisplay,
+    assetDescriptionDisplay,
     quoteIsError,
   } = useAddAssetForm();
 
   const totalPriceText = totalPriceDisplay || '-';
 
   const purchasePriceText = purchasePriceDisplay || '-';
+  const showAssetMeta = Boolean(assetTypeDisplay) || Boolean(assetDescriptionDisplay);
 
   return (
     <form
@@ -31,6 +34,20 @@ function AddAssetForm() {
             <div>
               <SymbolAutocomplete value={symbolQuery} onValueChange={onSymbolChange} onSelect={onSymbolSelect} />
               {errors.symbol?.message && <p className="mt-2 text-xs text-rose-400">{errors.symbol.message}</p>}
+
+              {showAssetMeta && (
+                <div className="mt-3 flex flex-col gap-2 text-sm">
+                  {assetTypeDisplay && (
+                    <div className="flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">
+                      <span>Type</span>
+                      <span className="text-slate-100">{assetTypeDisplay}</span>
+                    </div>
+                  )}
+                  {assetDescriptionDisplay && (
+                    <p className="text-xs text-slate-400">{assetDescriptionDisplay}</p>
+                  )}
+                </div>
+              )}
             </div>
 
             <div className="flex w-full flex-col gap-2 md:max-w-full lg:max-w-lg">
@@ -56,7 +73,7 @@ function AddAssetForm() {
             </div>
           </div>
 
-          <div className="flex w-full flex-col gap-6 lg:grid lg:flex-1 lg:grid-rows-2 lg:gap-6 lg:self-stretch lg:rounded-3xl lg:border lg:border-slate-800 lg:bg-slate-950/40 lg:p-5">
+          <div className="flex w-full flex-col gap-6 lg:flex-1 lg:self-stretch lg:rounded-3xl lg:border lg:border-slate-800 lg:bg-slate-950/40 lg:p-5">
             <div className="flex flex-col gap-2">
               <span className="text-xs font-semibold tracking-[0.2em] text-slate-300 uppercase">
                 Purchase Price
