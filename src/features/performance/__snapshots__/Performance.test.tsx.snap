@@ -23,68 +23,87 @@ exports[`Performance > renders performance content when data is available 1`] = 
     class="flex flex-col gap-4"
   >
     <div
-      class="flex flex-wrap justify-end gap-2"
-    >
-      <button
-        class="rounded-full border px-4 py-1 text-xs font-semibold transition border-emerald-400/70 bg-emerald-500/10 text-emerald-100"
-        type="button"
-      >
-        7d
-      </button>
-      <button
-        class="rounded-full border px-4 py-1 text-xs font-semibold transition border-slate-800 bg-slate-950/70 text-slate-400 hover:border-slate-600 hover:text-slate-200"
-        type="button"
-      >
-        30d
-      </button>
-      <button
-        class="rounded-full border px-4 py-1 text-xs font-semibold transition border-slate-800 bg-slate-950/70 text-slate-400 hover:border-slate-600 hover:text-slate-200"
-        type="button"
-      >
-        90d
-      </button>
-    </div>
-    <div
-      class="flex flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-950/40 p-6"
+      class="space-y-4"
     >
       <div
-        class="flex flex-col gap-4 sm:flex-row"
+        class="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between"
       >
         <div
-          class="w-full rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-left sm:flex-1"
+          class="rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-xs text-slate-300 sm:whitespace-nowrap"
         >
-          <p
-            class="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase"
+          Last updated: 
+          <span
+            class="inline-block w-[2ch] text-right"
           >
-            Percent Change
-          </p>
+            0
+          </span>
+           seconds ago
+        </div>
+        <div
+          class="flex flex-wrap justify-end gap-2"
+        >
+          <button
+            class="rounded-full border px-4 py-1 text-xs font-semibold transition border-emerald-400/70 bg-emerald-500/10 text-emerald-100"
+            type="button"
+          >
+            7d
+          </button>
+          <button
+            class="rounded-full border px-4 py-1 text-xs font-semibold transition border-slate-800 bg-slate-950/70 text-slate-400 hover:border-slate-600 hover:text-slate-200"
+            type="button"
+          >
+            30d
+          </button>
+          <button
+            class="rounded-full border px-4 py-1 text-xs font-semibold transition border-slate-800 bg-slate-950/70 text-slate-400 hover:border-slate-600 hover:text-slate-200"
+            type="button"
+          >
+            90d
+          </button>
+        </div>
+      </div>
+      <div
+        class="flex flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-950/40 p-6"
+      >
+        <div
+          class="flex flex-col gap-4 sm:flex-row"
+        >
           <div
-            class="mt-3"
+            class="w-full rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-left sm:flex-1"
           >
-            <div
-              class="text-emerald-300"
+            <p
+              class="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase"
             >
-              10.00%
+              Percent Change
+            </p>
+            <div
+              class="mt-3"
+            >
+              <div
+                class="text-emerald-300"
+              >
+                10.00%
+              </div>
+            </div>
+          </div>
+          <div
+            class="w-full rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-left sm:flex-1"
+          >
+            <p
+              class="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase"
+            >
+              Current Value
+            </p>
+            <div
+              class="mt-2 text-lg font-semibold text-slate-100"
+            >
+              $220.00
             </div>
           </div>
         </div>
-        <div
-          class="w-full rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-left sm:flex-1"
-        >
-          <p
-            class="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase"
-          >
-            Current Value
-          </p>
-          <div
-            class="mt-2 text-lg font-semibold text-slate-100"
-          >
-            $220.00
-          </div>
+        <div>
+          Mock chart
         </div>
-      </div>
-      <div>
-        Mock chart
       </div>
     </div>
   </section>

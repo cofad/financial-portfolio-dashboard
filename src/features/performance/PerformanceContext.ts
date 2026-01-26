@@ -14,6 +14,7 @@ export interface PerformanceContext {
   ranges: { label: string; value: PerformanceRange }[];
   rangedPortfolioDailyValue: PerformancePoint[];
   holdingsCount: number;
+  lastUpdatedAt: Date;
   totalValue: number | undefined;
   percentChange: number | undefined;
 }

@@ -30,7 +30,7 @@ export function PerformanceProvider({ children }: PerformanceProviderProps) {
   const holdings = useHoldingsSelector(selectHoldings);
 
   const { portfolioDailyValue } = usePerformance();
-  const { totalValue } = useSummary();
+  const { totalValue, lastUpdatedAt } = useSummary();
 
   const [range, setRange] = useState<PerformanceRange>(7);
 
@@ -45,6 +45,7 @@ export function PerformanceProvider({ children }: PerformanceProviderProps) {
     ranges,
     rangedPortfolioDailyValue,
     holdingsCount: holdings.length,
+    lastUpdatedAt,
     totalValue,
     percentChange,
   };

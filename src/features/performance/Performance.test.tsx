@@ -28,6 +28,7 @@ const mockPerformanceContext: PerformanceContext = {
     { date: convertToTimeString('2024-01-02T12:00:00Z'), value: 220 },
   ],
   holdingsCount: 1,
+  lastUpdatedAt: new Date('2024-01-02T12:00:00Z'),
   totalValue: 220,
   percentChange: 10,
 };
@@ -60,11 +61,14 @@ vi.mock('./PerformanceChart', () => {
 
 describe('Performance', () => {
   beforeEach(() => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2024-01-02T12:00:00Z'));
     mockHoldingsState.holdings.holdings = [];
   });
 
   afterEach(function () {
     cleanup();
+    vi.useRealTimers();
   });
 
   it('matches snapshot', function () {
