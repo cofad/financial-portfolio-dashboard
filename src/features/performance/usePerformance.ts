@@ -39,7 +39,7 @@ export function usePerformance(): UsePerformance {
     queries: holdingSymbols.map((symbol) => ({
       queryKey: ['timeSeries', symbol],
       queryFn: () => fetchHistory(symbol),
-      staleTime: Infinity,
+      staleTime: 1_000 * 60 * 30, // 30 minutes,
     })),
   });
 
