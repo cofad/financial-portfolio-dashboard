@@ -30,13 +30,13 @@ const AddAssetForm = () => {
       className="rounded-3xl border border-slate-800 bg-slate-950/70 p-6 shadow-xl shadow-slate-900/40"
     >
       <div className="flex flex-col gap-6">
-        <div className="grid gap-4 md:grid-cols-[3fr_1fr]">
+        <div className="flex flex-col gap-4">
           <div>
             <SymbolAutocomplete value={symbolQuery} onValueChange={onSymbolChange} onSelect={onSymbolSelect} />
             {errors.symbol?.message && <p className="mt-2 text-xs text-rose-400">{errors.symbol.message}</p>}
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex w-full max-w-lg flex-col gap-2">
             <label className="text-xs font-semibold tracking-[0.2em] text-slate-300 uppercase">Quantity</label>
 
             <input
@@ -44,7 +44,7 @@ const AddAssetForm = () => {
               step="any"
               min="0"
               {...register('quantity')}
-              className="mt-3 rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-slate-100 transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700"
+              className="mt-3 w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-slate-100 transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700"
               aria-invalid={Boolean(errors.quantity?.message)}
             />
 

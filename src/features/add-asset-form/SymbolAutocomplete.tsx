@@ -29,7 +29,7 @@ const SymbolAutocomplete = ({ onSelect, value, onValueChange }: SymbolAutocomple
 
   return (
     <Autocomplete
-      label="Symbol lookup"
+      label="Symbol"
       placeholder="Search symbols like AAPL or TSLA"
       query={value}
       onQueryChange={onValueChange}

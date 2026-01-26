@@ -96,7 +96,7 @@ const Autocomplete = <Item,>({
   );
 
   return (
-    <div className="w-full max-w-xl">
+    <div className="w-full max-w-lg">
       <label className="text-xs font-semibold tracking-[0.2em] uppercase">{label}</label>
       <div className="relative mt-3">
         <input
