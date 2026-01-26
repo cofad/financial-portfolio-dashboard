@@ -38,7 +38,7 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
         class="flex w-full flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center lg:w-auto lg:justify-end"
       >
         <label
-          class="flex w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-teal-100 sm:w-auto"
+          class="relative flex w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-teal-100 sm:w-auto"
         >
           <span
             class="font-semibold tracking-[0.2em] whitespace-nowrap text-slate-400 uppercase"
@@ -46,7 +46,7 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
             Sort by
           </span>
           <select
-            class="w-full min-w-0 bg-transparent text-right text-xs font-semibold text-slate-100 focus:outline-none"
+            class="w-full min-w-0 appearance-none bg-transparent pr-6 text-right text-xs font-semibold text-slate-100 focus:outline-none"
           >
             <option
               value=""
@@ -94,9 +94,27 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
               Purchase Date
             </option>
           </select>
+          <span
+            aria-hidden="true"
+            class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 "
+          >
+            <svg
+              class="h-3.5 w-3.5"
+              fill="none"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M4 6.25L8 10.25L12 6.25"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.6"
+              />
+            </svg>
+          </span>
         </label>
         <label
-          class="flex w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-teal-100 sm:w-auto"
+          class="relative flex w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-teal-100 sm:w-auto"
         >
           <span
             class="font-semibold tracking-[0.2em] whitespace-nowrap text-slate-400 uppercase"
@@ -104,7 +122,7 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
             Order
           </span>
           <select
-            class="w-full min-w-0 bg-transparent text-right text-xs font-semibold text-slate-100 focus:outline-none disabled:text-slate-500"
+            class="w-full min-w-0 appearance-none bg-transparent pr-6 text-right text-xs font-semibold text-slate-100 focus:outline-none disabled:text-slate-500"
             disabled=""
           >
             <option
@@ -118,6 +136,24 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
               Descending
             </option>
           </select>
+          <span
+            aria-hidden="true"
+            class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-slate-600"
+          >
+            <svg
+              class="h-3.5 w-3.5"
+              fill="none"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M4 6.25L8 10.25L12 6.25"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.6"
+              />
+            </svg>
+          </span>
         </label>
       </div>
     </div>
