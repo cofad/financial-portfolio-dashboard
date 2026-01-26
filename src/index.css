@@ -34,6 +34,10 @@
     animation: fade-in 0.25s ease-out both;
   }
 
+  .animate-fade-in-delayed {
+    animation: fade-in 0.25s ease-out 0.5s both;
+  }
+
   .animate-fade-up {
     animation: fade-up 0.3s ease-out both;
   }
