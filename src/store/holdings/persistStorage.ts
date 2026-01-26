@@ -26,26 +26,47 @@ export function isQuotaExceededError(error: unknown): boolean {
   );
 }
 
+export function isStorageDisabledError(error: unknown): boolean {
+  if (typeof error !== 'object' || error === null) {
+    return false;
+  }
+
+  const candidate = error as {
+    name?: string;
+    message?: string;
+  };
+
+  const name = typeof candidate.name === 'string' ? candidate.name : '';
+  const message = typeof candidate.message === 'string' ? candidate.message.toLowerCase() : '';
+
+  if (name === 'SecurityError') {
+    return true;
+  }
+
+  if (message.length === 0) {
+    return false;
+  }
+
+  const mentionsStorage =
+    message.includes('localstorage') || message.includes('local storage') || message.includes('storage');
+  const indicatesBlocked =
+    message.includes('disabled') ||
+    message.includes('denied') ||
+    message.includes('not available') ||
+    message.includes('blocked') ||
+    message.includes('insecure') ||
+    message.includes('access');
+
+  return mentionsStorage && indicatesBlocked;
+}
+
 export function createPersistStorage(): WebStorage {
   const baseStorage = createWebStorage('local');
 
   return {
     getItem: (key) => baseStorage.getItem(key),
     setItem: async (key, value) => {
-      try {
-        await baseStorage.setItem(key, value);
-      } catch (error) {
-        if (!isQuotaExceededError(error)) {
-          log.error(error);
-          throw error;
-        }
-
-        try {
-          await baseStorage.removeItem(key);
-        } catch (e) {
-          log.error(e);
-        }
-      }
+      await baseStorage.setItem(key, value);
     },
     removeItem: (key) => baseStorage.removeItem(key),
   };

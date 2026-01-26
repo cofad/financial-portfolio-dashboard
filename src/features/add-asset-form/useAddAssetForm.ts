@@ -10,7 +10,7 @@ import { normalizeSymbol } from '@utils/symbol';
 import { getNowIsoWithOffset } from '@utils/date';
 import { fetchQuote, type AssetType, type SearchResult } from '@services/mock-api/mock-api';
 import log from 'loglevel';
-import { isQuotaExceededError } from '@store/holdings/persistStorage';
+import { isQuotaExceededError, isStorageDisabledError } from '@store/holdings/persistStorage';
 
 const portfolioSchema = z.object({
   symbol: z
@@ -174,8 +174,9 @@ export const useAddAssetForm = (): UseAddAssetForm => {
     } catch (error) {
       log.error(error);
 
-      const message = isQuotaExceededError(error)
-        ? 'Storage is full. Your new holding could not be saved.'
+      const isStorageError = isQuotaExceededError(error) || isStorageDisabledError(error);
+      const message = isStorageError
+        ? 'Storage is full or unavailable. Your new holding could not be saved.'
         : 'Unable to save this holding. Please try again.';
 
       pushToast({
