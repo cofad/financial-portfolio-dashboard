@@ -22,7 +22,7 @@ function PerformanceContent() {
         <PerformanceRangeSelector />
       </div>
 
-      <div className="flex flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-950/40 p-6">
+      <div className="flex flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-950/40 p-6 shadow-xl shadow-slate-900/40">
         <div className="flex flex-col gap-4 sm:flex-row">
           <div className="w-full rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3 text-left sm:flex-1">
             <p className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">Percent Change</p>

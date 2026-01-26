@@ -32,13 +32,13 @@ exports[`Summary > renders summary content when data is available 1`] = `
        seconds ago
     </div>
     <div
-      class="flex flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-950/40 p-6"
+      class="flex flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-950/40 p-6 shadow-xl shadow-slate-900/40"
     >
       <div
         class="grid gap-4 lg:grid-cols-3"
       >
         <div
-          class="rounded-3xl border border-slate-800 bg-slate-950/70 p-5 shadow-xl shadow-slate-900/40"
+          class="rounded-3xl border border-slate-800 bg-slate-950/70 p-5"
         >
           <p
             class="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase"
@@ -65,7 +65,7 @@ exports[`Summary > renders summary content when data is available 1`] = `
           </div>
         </div>
         <div
-          class="rounded-3xl border border-slate-800 bg-slate-950/70 p-5 shadow-xl shadow-slate-900/40"
+          class="rounded-3xl border border-slate-800 bg-slate-950/70 p-5"
         >
           <p
             class="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase"
@@ -93,7 +93,7 @@ exports[`Summary > renders summary content when data is available 1`] = `
           </div>
         </div>
         <div
-          class="rounded-3xl border border-slate-800 bg-slate-950/70 p-5 shadow-xl shadow-slate-900/40"
+          class="rounded-3xl border border-slate-800 bg-slate-950/70 p-5"
         >
           <p
             class="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase"
