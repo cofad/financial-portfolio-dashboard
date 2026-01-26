@@ -1,4 +1,4 @@
-import type { LiveHolding } from '@/hooks/useHoldings';
+import type { LiveHolding } from '@/hooks/useLiveHoldings/useLiveHoldings';
 
 export const SORT_OPTIONS = [
   { key: 'symbol', label: 'Symbol' },
