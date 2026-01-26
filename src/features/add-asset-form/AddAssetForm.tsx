@@ -43,9 +43,7 @@ function AddAssetForm() {
                       <span className="text-slate-100">{assetTypeDisplay}</span>
                     </div>
                   )}
-                  {assetDescriptionDisplay && (
-                    <p className="text-xs text-slate-400">{assetDescriptionDisplay}</p>
-                  )}
+                  {assetDescriptionDisplay && <p className="text-xs text-slate-400">{assetDescriptionDisplay}</p>}
                 </div>
               )}
             </div>

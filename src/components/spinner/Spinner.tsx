@@ -1,11 +1,11 @@
 type SpinnerSize = 'sm' | 'md' | 'lg';
 
-type SpinnerProps = {
+interface SpinnerProps {
   size?: SpinnerSize;
   label?: string;
   showLabel?: boolean;
   className?: string;
-};
+}
 
 const SIZE_CLASSES: Record<SpinnerSize, string> = {
   sm: 'h-3.5 w-3.5 border-2',
@@ -13,7 +13,12 @@ const SIZE_CLASSES: Record<SpinnerSize, string> = {
   lg: 'h-5 w-5 border-[2.5px]',
 };
 
-export default function Spinner({ size = 'md', label = 'Loading', showLabel = false, className = '' }: SpinnerProps) {
+export default function Spinner({
+  size = 'md',
+  label = 'Loading',
+  showLabel = false,
+  className = '',
+}: SpinnerProps) {
   const shouldShowLabel = showLabel && label.length > 0;
 
   return (
