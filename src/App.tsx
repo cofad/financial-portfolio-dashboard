@@ -17,7 +17,14 @@ function App() {
   return (
     <div className="min-h-screen px-6 py-12 text-slate-100">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
-        <h1 className="text-3xl font-semibold">Portfolio Dashboard</h1>
+        <div className="space-y-2">
+          <h1 className="text-3xl font-semibold">Portfolio Simulator</h1>
+          <p className="text-slate-400">
+            Welcome to the portfolio simulator! This app allows you to create a mock portfolio by adding stocks,
+            tracking their performance, and reviewing your holdings. All data is stored in your browser and can be
+            accessed again by visiting the site from the same computer/browser combination.
+          </p>
+        </div>
 
         <Tabs
           defaultTabId="summary"
