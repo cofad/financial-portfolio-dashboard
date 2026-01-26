@@ -1,5 +1,7 @@
 # TODOS
 
+- Make inputs for the sort have a larger hit area
+- Improve symbol search autocomplete
 - Adjust fields on add form
 - Adjust history query stale time
 - Add visual indicator when quote data refreshes
