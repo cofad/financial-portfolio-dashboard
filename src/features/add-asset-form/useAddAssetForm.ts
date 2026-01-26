@@ -112,7 +112,8 @@ export const useAddAssetForm = (): UseAddAssetForm => {
   }, [normalizedSelectedSymbol, quotePrice, setValue]);
 
   const onSymbolChange = (value: string) => {
-    const normalizedValue = normalizeSymbol(value);
+    const filteredValue = value.replace(/[^a-zA-Z.]/g, '');
+    const normalizedValue = normalizeSymbol(filteredValue);
 
     const normalizedSelected = normalizeSymbol(selectedSymbol);
 
@@ -121,13 +122,13 @@ export const useAddAssetForm = (): UseAddAssetForm => {
       setValue('assetType', '', { shouldValidate: true, shouldDirty: true });
     }
 
-    setSymbolQuery(value);
-    setValue('symbol', value, { shouldValidate: true, shouldDirty: true });
+    setSymbolQuery(normalizedValue);
+    setValue('symbol', normalizedValue, { shouldValidate: true, shouldDirty: true });
     setValue('purchasePrice', '', { shouldValidate: true, shouldDirty: true });
   };
 
   const onSymbolSelect = (result: SearchResult) => {
-    const nextSymbol = result.name;
+    const nextSymbol = normalizeSymbol(result.name);
     const nextAssetType = result.type;
 
     setSymbolQuery(nextSymbol);
