@@ -84,7 +84,7 @@ exports[`AddAssetForm > matches snapshot 1`] = `
       <input
         name="purchaseDate"
         type="hidden"
-        value="2024-01-02T12:00:00+00:00"
+        value="2024-01-02T06:00:00-06:00"
       />
       <input
         name="assetType"
