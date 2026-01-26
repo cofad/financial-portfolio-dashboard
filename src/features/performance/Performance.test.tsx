@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/vitest';
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
