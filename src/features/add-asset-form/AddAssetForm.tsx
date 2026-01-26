@@ -1,7 +1,7 @@
 import SymbolAutocomplete from './SymbolAutocomplete';
 import { useAddAssetForm } from '@features/add-asset-form/useAddAssetForm';
 
-const AddAssetForm = () => {
+function AddAssetForm() {
   const {
     register,
     onSubmit,
@@ -40,10 +40,16 @@ const AddAssetForm = () => {
             <label className="text-xs font-semibold tracking-[0.2em] text-slate-300 uppercase">Quantity</label>
 
             <input
-              type="number"
-              step="any"
-              min="0"
+              type="text"
               {...register('quantity')}
+              inputMode="numeric"
+              onBeforeInput={(e) => {
+                const numericPattern = /^[0-9]*$/;
+
+                if (!numericPattern.test(e.data)) {
+                  e.preventDefault();
+                }
+              }}
               className="mt-3 w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm text-slate-100 transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700"
               aria-invalid={Boolean(errors.quantity?.message)}
             />
@@ -84,6 +90,6 @@ const AddAssetForm = () => {
       </div>
     </form>
   );
-};
+}
 
 export default AddAssetForm;
