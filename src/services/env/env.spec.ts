@@ -29,8 +29,7 @@ describe('env', () => {
   it('should throw when required environment variables are invalid', async () => {
     // eslint-disable-next-line no-restricted-syntax
     const mutableEnv = import.meta.env as Record<string, string>;
-    mutableEnv.VITE_ALPHA_VANTAGE_API_KEY = '';
-    mutableEnv.VITE_MASSIVE_API_KEY = '';
+    mutableEnv.NODE_ENV = '';
 
     await expect(import('./env')).rejects.toThrow('Invalid environment variables');
   });

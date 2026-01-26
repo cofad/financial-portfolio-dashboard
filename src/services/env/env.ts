@@ -2,6 +2,7 @@ import { z } from 'zod';
 import log from 'loglevel';
 
 export const envSchema = z.object({
+  NODE_ENV: z.enum(['test', 'development', 'production']),
   // VITE_ALPHA_VANTAGE_API_KEY: z.string().min(1),
   // VITE_MASSIVE_API_KEY: z.string().min(1),
 });
