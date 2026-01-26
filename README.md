@@ -150,3 +150,4 @@ Given the opportunity, there are several items that could be investigated furthe
 - Store tab state so page reloads will keep the same tab open
 - Improve sort selects components to improve usability
 - Improve the auto-complete complete to smooth off rough edges
+- Update pre-commit hook to run lint, format, and test
