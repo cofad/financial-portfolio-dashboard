@@ -1,11 +1,13 @@
+import type { ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 interface EmptyStateProps {
   message: string;
   className?: string;
+  children?: ReactNode;
 }
 
-export default function EmptyState({ message, className }: EmptyStateProps) {
+export default function EmptyState({ message, className, children }: EmptyStateProps) {
   return (
     <section
       className={twMerge(
@@ -13,7 +15,8 @@ export default function EmptyState({ message, className }: EmptyStateProps) {
         className,
       )}
     >
-      {message}
+      <p>{message}</p>
+      {children && <div className="mt-6 flex justify-center">{children}</div>}
     </section>
   );
 }

@@ -12,96 +12,31 @@ exports[`App > matches snapshot 1`] = `
         class="space-y-2"
       >
         <h1
-          class="text-3xl font-semibold"
+          class="mb-6 text-3xl font-semibold"
         >
           Portfolio Simulator
         </h1>
         <p
           class="text-slate-400"
         >
-          Welcome to the portfolio simulator! This app allows you to create a mock portfolio by adding stocks, tracking their performance, and reviewing your holdings. All data is stored in your browser and can be accessed again by visiting the site from the same computer/browser combination.
+          Welcome to the portfolio simulator! This app allows you to create a mock portfolio by adding stocks, tracking their performance, and reviewing your holdings. The available stocks and history data are mock data that has been randomly generated. All data is stored in your browser and can be accessed again by visiting the site from the same computer/browser combination.
         </p>
       </div>
       <section
-        class="flex flex-col gap-6"
+        class="rounded-3xl border border-dashed border-slate-800 p-8 text-center text-sm text-slate-400 bg-slate-950/50"
       >
+        <p>
+          No holdings yet. Get started by adding your first asset to build a portfolio.
+        </p>
         <div
-          aria-label="Dashboard sections"
-          class="flex w-full gap-0 overflow-x-auto overflow-y-hidden border-b border-slate-800 whitespace-nowrap lg:overflow-x-visible"
-          role="tablist"
+          class="mt-6 flex justify-center"
         >
           <button
-            aria-controls="summary-panel"
-            aria-selected="true"
-            class="-mb-px flex-1 px-3 py-2 text-[16px] font-semibold transition focus-visible:bg-slate-900/60 focus-visible:outline-none sm:min-w-[140px] sm:px-4 sm:py-3 border-b-2 border-emerald-300 text-emerald-100"
-            id="summary-tab"
-            role="tab"
-            tabindex="0"
+            class="rounded-2xl border border-emerald-300/70 px-6 py-3 text-sm font-semibold text-emerald-100 transition hover:border-emerald-200 hover:bg-emerald-300/10"
             type="button"
           >
-            <span
-              class="mx-auto"
-            >
-              Summary
-            </span>
+            Get started
           </button>
-          <button
-            aria-controls="add-asset-panel"
-            aria-selected="false"
-            class="-mb-px flex-1 px-3 py-2 text-[16px] font-semibold transition focus-visible:bg-slate-900/60 focus-visible:outline-none sm:min-w-[140px] sm:px-4 sm:py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-100"
-            id="add-asset-tab"
-            role="tab"
-            tabindex="-1"
-            type="button"
-          >
-            <span
-              class="mx-auto"
-            >
-              Add Asset
-            </span>
-          </button>
-          <button
-            aria-controls="performance-panel"
-            aria-selected="false"
-            class="-mb-px flex-1 px-3 py-2 text-[16px] font-semibold transition focus-visible:bg-slate-900/60 focus-visible:outline-none sm:min-w-[140px] sm:px-4 sm:py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-100"
-            id="performance-tab"
-            role="tab"
-            tabindex="-1"
-            type="button"
-          >
-            <span
-              class="mx-auto"
-            >
-              Performance
-            </span>
-          </button>
-          <button
-            aria-controls="holdings-panel"
-            aria-selected="false"
-            class="-mb-px flex-1 px-3 py-2 text-[16px] font-semibold transition focus-visible:bg-slate-900/60 focus-visible:outline-none sm:min-w-[140px] sm:px-4 sm:py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-100"
-            id="holdings-tab"
-            role="tab"
-            tabindex="-1"
-            type="button"
-          >
-            <span
-              class="mx-auto"
-            >
-              Holdings
-            </span>
-          </button>
-        </div>
-        <div
-          aria-labelledby="summary-tab"
-          class="flex flex-col gap-4"
-          id="summary-panel"
-          role="tabpanel"
-        >
-          <section
-            class="rounded-3xl border border-dashed border-slate-800 bg-slate-950/40 p-8 text-center text-sm text-slate-400"
-          >
-            No holdings yet. Add assets to see a portfolio overview.
-          </section>
         </div>
       </section>
     </div>

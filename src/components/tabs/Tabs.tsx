@@ -11,11 +11,12 @@ interface TabsProps {
   defaultTabId?: string;
 }
 
-const Tabs = ({ tabs, defaultTabId }: TabsProps) => {
+function Tabs({ tabs, defaultTabId }: TabsProps) {
   const initialTabId = useMemo(() => {
     if (defaultTabId && tabs.some((tab) => tab.id === defaultTabId)) {
       return defaultTabId;
     }
+
     return tabs[0]?.id ?? '';
   }, [defaultTabId, tabs]);
 
@@ -36,6 +37,7 @@ const Tabs = ({ tabs, defaultTabId }: TabsProps) => {
       >
         {tabs.map((tab, index) => {
           const isActive = tab.id === activeTabId;
+
           return (
             <button
               key={tab.id}
@@ -52,6 +54,7 @@ const Tabs = ({ tabs, defaultTabId }: TabsProps) => {
                 const { key } = event;
                 if (key === 'Enter' || key === ' ') {
                   event.preventDefault();
+
                   setActiveTabId(tab.id);
                   return;
                 }
@@ -102,6 +105,6 @@ const Tabs = ({ tabs, defaultTabId }: TabsProps) => {
       ) : null}
     </section>
   );
-};
+}
 
 export default Tabs;

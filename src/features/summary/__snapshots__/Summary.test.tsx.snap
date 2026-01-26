@@ -5,7 +5,9 @@ exports[`Summary > matches snapshot 1`] = `
   <section
     class="rounded-3xl border border-dashed border-slate-800 bg-slate-950/40 p-8 text-center text-sm text-slate-400"
   >
-    No holdings yet. Add assets to see a portfolio overview.
+    <p>
+      No holdings yet. Add assets to see a portfolio overview.
+    </p>
   </section>
   <div
     class="pointer-events-none fixed right-6 bottom-6 left-6 z-50 flex w-full max-w-xs flex-col gap-3 sm:right-auto"
