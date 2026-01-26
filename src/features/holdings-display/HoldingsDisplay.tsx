@@ -41,11 +41,11 @@ function HoldingsDisplayContent() {
 export default function HoldingsDisplay() {
   return (
     <HoldingsDisplayErrorBoundary>
-      <HoldingsDisplayProvider>
-        <Suspense fallback={<HoldingsDisplayLoadingState />}>
+      <Suspense fallback={<HoldingsDisplayLoadingState />}>
+        <HoldingsDisplayProvider>
           <HoldingsDisplayContent />
-        </Suspense>
-      </HoldingsDisplayProvider>
+        </HoldingsDisplayProvider>
+      </Suspense>
     </HoldingsDisplayErrorBoundary>
   );
 }

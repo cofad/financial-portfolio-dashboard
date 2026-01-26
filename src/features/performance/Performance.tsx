@@ -50,19 +50,17 @@ function Performance() {
 
   return (
     <PerformanceErrorBoundary>
-      <PerformanceProvider>
-        <section className="flex flex-col gap-4">
-          {holdings.length === 0 ? (
-            <EmptyState message="No holdings yet. Add assets to see portfolio performance over time." />
-          ) : (
-            <>
-              <Suspense fallback={<PerformanceLoadingState />}>
-                <PerformanceContent />
-              </Suspense>
-            </>
-          )}
-        </section>
-      </PerformanceProvider>
+      <section className="flex flex-col gap-4">
+        {holdings.length === 0 ? (
+          <EmptyState message="No holdings yet. Add assets to see portfolio performance over time." />
+        ) : (
+          <Suspense fallback={<PerformanceLoadingState />}>
+            <PerformanceProvider>
+              <PerformanceContent />
+            </PerformanceProvider>
+          </Suspense>
+        )}
+      </section>
     </PerformanceErrorBoundary>
   );
 }

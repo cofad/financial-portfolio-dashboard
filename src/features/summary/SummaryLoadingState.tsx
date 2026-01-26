@@ -1,7 +1,5 @@
+import LoadingState from '@components/loading-state/LoadingState';
+
 export default function SummaryLoadingState() {
-  return (
-    <section className="animate-fade-in-delayed rounded-3xl border border-dashed border-slate-800 bg-slate-950/40 p-8 text-center text-sm text-slate-400">
-      Loading summary...
-    </section>
-  );
+  return <LoadingState label="Loading summary" layout="centered" />;
 }
