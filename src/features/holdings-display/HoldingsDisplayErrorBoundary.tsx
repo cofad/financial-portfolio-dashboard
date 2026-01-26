@@ -1,20 +1,22 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import type { ReactNode } from 'react';
+import ErrorState from '@components/error-state/ErrorState';
 
-const HoldingsDisplayErrorState = () => {
+function HoldingsDisplayErrorState() {
   return (
-    <section className="rounded-3xl border border-dashed border-slate-800 bg-slate-950/40 p-8 text-center text-sm text-slate-400">
-      Unable to load holdings right now.
-    </section>
+    <ErrorState
+      className="border border-dashed border-slate-800 bg-slate-950/40 text-slate-400"
+      message="Failed to load holdings."
+    />
   );
-};
+}
 
 interface HoldingsDisplayErrorBoundaryProps {
   children: ReactNode;
 }
 
-const HoldingsDisplayErrorBoundary = ({ children }: HoldingsDisplayErrorBoundaryProps) => {
+function HoldingsDisplayErrorBoundary({ children }: HoldingsDisplayErrorBoundaryProps) {
   return <ErrorBoundary fallback={<HoldingsDisplayErrorState />}>{children}</ErrorBoundary>;
-};
+}
 
 export default HoldingsDisplayErrorBoundary;

@@ -1,20 +1,22 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import type { ReactNode } from 'react';
+import ErrorState from '@components/error-state/ErrorState';
 
-const PerformanceErrorState = () => {
+function PerformanceErrorState() {
   return (
-    <section className="rounded-3xl border border-dashed border-slate-800 bg-slate-950/40 p-8 text-center text-sm text-slate-400">
-      Unable to load performance data right now.
-    </section>
+    <ErrorState
+      className="border border-dashed border-slate-800 bg-slate-950/40 text-slate-400"
+      message="Failed to load performance data."
+    />
   );
-};
+}
 
 interface PerformanceErrorBoundaryProps {
   children: ReactNode;
 }
 
-const PerformanceErrorBoundary = ({ children }: PerformanceErrorBoundaryProps) => {
+function PerformanceErrorBoundary({ children }: PerformanceErrorBoundaryProps) {
   return <ErrorBoundary fallback={<PerformanceErrorState />}>{children}</ErrorBoundary>;
-};
+}
 
 export default PerformanceErrorBoundary;

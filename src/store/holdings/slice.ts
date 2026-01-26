@@ -43,8 +43,9 @@ const holdingsSlice = createSlice({
       const normalizedSymbol = normalizeSymbol(action.payload);
       state.holdings = state.holdings.filter((holding) => normalizeSymbol(holding.symbol) !== normalizedSymbol);
     },
+    resetHoldings: () => initialState,
   },
 });
 
-export const { addHolding, removeHolding } = holdingsSlice.actions;
+export const { addHolding, removeHolding, resetHoldings } = holdingsSlice.actions;
 export default holdingsSlice.reducer;

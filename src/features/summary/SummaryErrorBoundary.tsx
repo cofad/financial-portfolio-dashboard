@@ -1,20 +1,22 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import type { ReactNode } from 'react';
+import ErrorState from '@components/error-state/ErrorState';
 
-const SummaryErrorState = () => {
+function SummaryErrorState() {
   return (
-    <section className="rounded-3xl border border-rose-500/40 bg-rose-500/10 p-8 text-center text-sm text-rose-100">
-      Failed to load summary. Please try again later.
-    </section>
+    <ErrorState
+      className="border border-dashed border-slate-800 bg-slate-950/40 text-slate-400"
+      message="Failed to load summary."
+    />
   );
-};
+}
 
 interface SummaryErrorBoundaryProps {
   children: ReactNode;
 }
 
-const SummaryErrorBoundary = ({ children }: SummaryErrorBoundaryProps) => {
+function SummaryErrorBoundary({ children }: SummaryErrorBoundaryProps) {
   return <ErrorBoundary fallback={<SummaryErrorState />}>{children}</ErrorBoundary>;
-};
+}
 
 export default SummaryErrorBoundary;
