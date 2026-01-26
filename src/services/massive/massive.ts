@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { z } from 'zod';
-import { env } from '@services/env/env';
 import { subDays } from 'date-fns';
 import { convertToDateString, type DateString } from '@/utils/date';
 
@@ -46,7 +45,7 @@ export const fetchTimeSeriesDaily = async (symbol: string): Promise<OHLCV[]> => 
 
   const response = await alphaVantageClient.get<unknown>(path, {
     params: {
-      apikey: env.VITE_MASSIVE_API_KEY,
+      // apikey: env.VITE_MASSIVE_API_KEY,
       adjusted: true,
       sort: 'asc',
       limit: 120,

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { z } from 'zod';
-import { env } from '@services/env/env';
 import { isTimeString, type TimeString } from '@/utils/date';
 
 const metaDataSchema = z.object({
@@ -43,7 +42,7 @@ export const fetchTimeSeriesDaily = async (symbol: string): Promise<OHLCV[]> => 
     params: {
       function: 'TIME_SERIES_DAILY',
       symbol,
-      apikey: env.VITE_ALPHA_VANTAGE_API_KEY,
+      // apikey: env.VITE_ALPHA_VANTAGE_API_KEY,
     },
   });
 
