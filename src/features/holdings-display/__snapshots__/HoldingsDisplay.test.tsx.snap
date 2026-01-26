@@ -24,7 +24,7 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
       class="flex flex-col items-start gap-3 lg:flex-row lg:items-center lg:justify-between"
     >
       <div
-        class="rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-xs text-slate-300 sm:whitespace-nowrap"
+        class="rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-xs text-slate-300 transition-shadow duration-700 ease-out sm:whitespace-nowrap shadow-none"
       >
         Last updated: 
         <span

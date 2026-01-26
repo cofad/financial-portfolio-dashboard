@@ -21,7 +21,7 @@ exports[`Summary > renders summary content when data is available 1`] = `
     class="flex flex-col gap-4"
   >
     <div
-      class="rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-xs text-slate-300 sm:whitespace-nowrap self-start"
+      class="rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-xs text-slate-300 transition-shadow duration-700 ease-out sm:whitespace-nowrap shadow-none self-start"
     >
       Last updated: 
       <span
