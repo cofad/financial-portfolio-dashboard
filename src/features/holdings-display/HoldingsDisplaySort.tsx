@@ -12,11 +12,17 @@ const getNextSortState = (current: SortState | null, nextKey: SortKey | ''): Sor
 function SelectChevron({ disabled = false }: { disabled?: boolean }) {
   return (
     <span
-      className={`pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 ${disabled ? 'text-slate-600' : ''}`}
+      className={`pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-slate-400 ${disabled ? 'text-slate-600' : ''}`}
       aria-hidden="true"
     >
       <svg className="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none">
-        <path d="M4 6.25L8 10.25L12 6.25" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M4 6.25L8 10.25L12 6.25"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     </span>
   );
