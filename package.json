@@ -15,6 +15,7 @@
     "prepare": "husky",
     "commitlint": "commitlint --edit",
     "test": "vitest",
+    "test:ci": "vitest --run",
     "test:update": "vitest --update",
     "test:coverage": "vitest --coverage"
   },
