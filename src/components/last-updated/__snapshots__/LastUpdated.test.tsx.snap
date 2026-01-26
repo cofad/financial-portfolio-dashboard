@@ -3,7 +3,7 @@
 exports[`LastUpdated > matches snapshot 1`] = `
 <div>
   <div
-    class="rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-xs text-slate-300"
+    class="rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-xs text-slate-300 sm:whitespace-nowrap"
   >
     Last updated: 
     <span

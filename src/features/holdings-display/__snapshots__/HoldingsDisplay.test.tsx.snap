@@ -22,7 +22,7 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
       class="flex flex-col items-start gap-3 lg:flex-row lg:items-center lg:justify-between"
     >
       <div
-        class="rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-xs text-slate-300"
+        class="rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-xs text-slate-300 sm:whitespace-nowrap"
       >
         Last updated: 
         <span
@@ -33,18 +33,18 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
          seconds ago
       </div>
       <div
-        class="flex flex-wrap items-center gap-2"
+        class="flex w-full flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center lg:w-auto lg:justify-end"
       >
         <label
-          class="flex items-center gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-teal-100"
+          class="flex w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-teal-100 sm:w-auto"
         >
           <span
-            class="font-semibold tracking-[0.2em] text-slate-400 uppercase"
+            class="whitespace-nowrap font-semibold tracking-[0.2em] text-slate-400 uppercase"
           >
             Sort by
           </span>
           <select
-            class="bg-transparent text-xs font-semibold text-slate-100 focus:outline-none"
+            class="w-full min-w-0 bg-transparent text-right text-xs font-semibold text-slate-100 focus:outline-none"
           >
             <option
               value=""
@@ -94,15 +94,15 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
           </select>
         </label>
         <label
-          class="flex items-center gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-teal-100"
+          class="flex w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-teal-100 sm:w-auto"
         >
           <span
-            class="font-semibold tracking-[0.2em] text-slate-400 uppercase"
+            class="whitespace-nowrap font-semibold tracking-[0.2em] text-slate-400 uppercase"
           >
             Order
           </span>
           <select
-            class="bg-transparent text-xs font-semibold text-slate-100 focus:outline-none disabled:text-slate-500"
+            class="w-full min-w-0 bg-transparent text-right text-xs font-semibold text-slate-100 focus:outline-none disabled:text-slate-500"
             disabled=""
           >
             <option

@@ -24,7 +24,7 @@ export default function LastUpdated({ lastUpdatedAt, className }: LastUpdatedPro
   return (
     <div
       className={twMerge(
-        'rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-xs text-slate-300',
+        'rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-xs text-slate-300 sm:whitespace-nowrap',
         className,
       )}
     >
