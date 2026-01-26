@@ -96,7 +96,7 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
           </select>
           <span
             aria-hidden="true"
-            class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 "
+            class="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-slate-400 "
           >
             <svg
               class="h-3.5 w-3.5"
@@ -138,7 +138,7 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
           </select>
           <span
             aria-hidden="true"
-            class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-slate-600"
+            class="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-slate-400 text-slate-600"
           >
             <svg
               class="h-3.5 w-3.5"
