@@ -120,7 +120,7 @@ feature or in the "components" directory if they can be used at a global level.
 The directories are typically flat to co-locate related modules together. This organization eases the process of
 discoverability by making things easy to see in the file explorer and helping to indicate how things are related.
 
-## CI/CD
+### CI/CD
 
 GitHub was chosen as the Git host due to it's economic feasibility as well near universal familiarity amongst
 developers. In addition to Git hosting,GitHub also provides CI/CD through the GitHub actions functionality. This
@@ -129,6 +129,13 @@ form of GitHub pages with a custom domain provided from my personal sit. The Git
 to run the formatting check, linting, and typechecking before building to ensure all quality gates are met. Once
 the quality gates and build pass, the app is deployed automatically to GitHub pages. The work flow is triggered on
 pushes to main.
+
+## AI Usage
+
+AI was heavily in the development of this site. The two primary tools utilized were Gemini via the browser for
+generic questions and code snippets and ChapGPT Codex via a VS Code extension for code generation. Unfortunately it
+is not practical to export logs of all the requests made to these tools; however, there is no part of the
+application that was developed without their usage.
 
 ## Known Issues
 
@@ -141,3 +148,5 @@ pushes to main.
 Given the opportunity, there are several items that could be investigated further and refined:
 
 - Store tab state so page reloads will keep the same tab open
+- Improve sort selects components to improve usability
+- Improve the auto-complete complete to smooth off rough edges
