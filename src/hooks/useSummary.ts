@@ -1,5 +1,5 @@
 import type { AssetType } from '@services/mock-api/mock-api';
-import { useHoldings, type LiveHolding } from './useHoldings';
+import { useLiveHoldings, type LiveHolding } from './useLiveHoldings/useLiveHoldings';
 
 export interface Allocations {
   total: number;
@@ -38,7 +38,7 @@ function generateAllocations(liveHoldings: LiveHolding[]): Allocations {
 }
 
 export default function useSummary(): UseSummary {
-  const { liveHoldings, isLoading, isError, lastUpdatedAt } = useHoldings();
+  const { liveHoldings, isLoading, isError, lastUpdatedAt } = useLiveHoldings();
 
   const totalValue = liveHoldings.reduce((acc, holding) => {
     return acc + holding.currentValue;

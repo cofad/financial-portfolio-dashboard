@@ -3,10 +3,9 @@ import type { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 
 import { ToastProvider } from '@components/toast/ToastProvider';
+import { buildQuotesQueryKey } from '@hooks/useLiveHoldings/quotes-query';
 import type { Quote } from '@services/mock-api/mock-api';
 import { store } from '@store/holdings/store';
-
-const emptyQuotesKey = ['quotes', ''] as const;
 
 function createTestQueryClient(): QueryClient {
   const queryClient = new QueryClient({
@@ -18,7 +17,7 @@ function createTestQueryClient(): QueryClient {
     },
   });
 
-  queryClient.setQueryData<Quote[]>(emptyQuotesKey, []);
+  queryClient.setQueryData<Quote[]>(buildQuotesQueryKey([]), []);
 
   return queryClient;
 }

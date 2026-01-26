@@ -4,7 +4,7 @@ import { useHoldingsDispatch } from '@store/holdings/hooks';
 import { removeHolding } from '@store/holdings/slice';
 import { useToast } from '@components/toast/useToast';
 import type { SortState } from './holdingsDisplaySorting';
-import { useHoldings, type LiveHolding } from '@hooks/useHoldings';
+import { useLiveHoldings, type LiveHolding } from '@hooks/useLiveHoldings/useLiveHoldings';
 
 export interface UseHoldingsDisplay {
   liveHoldings: LiveHolding[];
@@ -21,7 +21,7 @@ export interface UseHoldingsDisplay {
 export function useHoldingsDisplay(): UseHoldingsDisplay {
   const dispatch = useHoldingsDispatch();
 
-  const { liveHoldings, isFetching, lastUpdatedAt } = useHoldings();
+  const { liveHoldings, isFetching, lastUpdatedAt } = useLiveHoldings();
   const { pushToast } = useToast();
 
   const [pendingRemove, setPendingRemove] = useState<LiveHolding | null>(null);

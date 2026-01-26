@@ -2,20 +2,20 @@ import '@testing-library/jest-dom/vitest';
 import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import type { LiveHolding } from './useHoldings';
-import { useHoldings } from './useHoldings';
+import type { LiveHolding } from './useLiveHoldings/useLiveHoldings';
+import { useLiveHoldings } from './useLiveHoldings/useLiveHoldings';
 import useSummary from './useSummary';
 import { convertToTimeString } from '@utils/date';
 
-vi.mock('./useHoldings', () => {
+vi.mock('./useLiveHoldings/useLiveHoldings', () => {
   return {
-    useHoldings: vi.fn(),
+    useLiveHoldings: vi.fn(),
   };
 });
 
 describe('useSummary', function () {
   it('calculates totals and allocations from live holdings', function () {
-    const mockedUseHoldings = vi.mocked(useHoldings);
+    const mockedUseLiveHoldings = vi.mocked(useLiveHoldings);
 
     const liveHoldings: LiveHolding[] = [
       {
@@ -53,7 +53,7 @@ describe('useSummary', function () {
       },
     ];
 
-    mockedUseHoldings.mockReturnValue({
+    mockedUseLiveHoldings.mockReturnValue({
       liveHoldings,
       isLoading: false,
       isError: false,

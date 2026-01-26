@@ -4,7 +4,9 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { type Holding } from '@store/holdings/slice';
 import { useHoldingsSelector } from '@store/holdings/hooks';
 import { selectHoldings, selectHoldingSymbols } from '@store/holdings/store';
-import { fetchQuotes, type Quote } from '@/services/mock-api/mock-api';
+import { type Quote } from '@services/mock-api/mock-api';
+
+import { buildQuotesQueryOptions } from './quotes-query';
 
 export interface LiveHolding extends Holding {
   currentPrice: number;
@@ -29,7 +31,7 @@ export interface UseHoldings {
   lastUpdatedAt: Date;
 }
 
-export function useHoldings(): UseHoldings {
+export function useLiveHoldings(): UseHoldings {
   const holdings = useHoldingsSelector(selectHoldings);
   const holdingSymbols = useHoldingsSelector(selectHoldingSymbols);
 
@@ -39,12 +41,7 @@ export function useHoldings(): UseHoldings {
     isError,
     dataUpdatedAt,
     isFetching,
-  } = useSuspenseQuery({
-    queryKey: ['quotes', holdingSymbols.join(',')],
-    queryFn: () => fetchQuotes(holdingSymbols),
-    refetchInterval: 60_000,
-    refetchIntervalInBackground: true,
-  });
+  } = useSuspenseQuery(buildQuotesQueryOptions(holdingSymbols));
 
   const liveHoldings: LiveHolding[] = useMemo(() => {
     return holdings.map((holding) => {

@@ -9,7 +9,7 @@ import { fetchQuotes, type Quote } from '@services/mock-api/mock-api';
 import type { Holding } from '@store/holdings/slice';
 import type { HoldingsState } from '@store/holdings/store';
 
-import { useHoldings } from './useHoldings';
+import { useLiveHoldings } from './useLiveHoldings/useLiveHoldings';
 import { convertToTimeString } from '@utils/date';
 
 const mockState: HoldingsState = {
@@ -77,7 +77,7 @@ describe('useHoldings', () => {
       );
     }
 
-    const { result } = renderHook(() => useHoldings(), { wrapper: Wrapper });
+    const { result } = renderHook(() => useLiveHoldings(), { wrapper: Wrapper });
 
     await waitFor(() => {
       expect(result.current.liveHoldings.length).toBe(2);

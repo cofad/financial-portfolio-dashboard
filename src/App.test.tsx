@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import { describe, expect, it } from 'vitest';
 
+import { buildQuotesQueryKey } from '@hooks/useLiveHoldings/quotes-query';
 import type { Quote } from '@services/mock-api/mock-api';
 import { store } from '@store/holdings/store';
 
@@ -19,8 +20,7 @@ function AppTestProviders({ children }: { children: ReactNode }) {
     },
   });
 
-  const emptyQuotesKey = ['quotes', ''] as const;
-  queryClient.setQueryData<Quote[]>(emptyQuotesKey, []);
+  queryClient.setQueryData<Quote[]>(buildQuotesQueryKey([]), []);
 
   return (
     <Provider store={store}>
