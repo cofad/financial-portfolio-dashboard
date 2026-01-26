@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [tsconfigPaths()],
   test: {
     environment: 'jsdom',
+    setupFiles: ['./vitest.setup.ts'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'lcov'],
