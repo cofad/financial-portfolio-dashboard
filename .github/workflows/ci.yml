@@ -39,7 +39,7 @@ jobs:
         uses: ./.github/actions/setup-node
 
       - name: Typecheck
-        run: npx tsc -b
+        run: npm run typecheck
 
   test:
     runs-on: ubuntu-latest

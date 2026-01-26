@@ -17,7 +17,8 @@
     "test": "vitest",
     "test:ci": "vitest --run",
     "test:update": "vitest --update",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
