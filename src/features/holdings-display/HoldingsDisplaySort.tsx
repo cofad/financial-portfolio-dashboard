@@ -31,18 +31,23 @@ function SelectChevron({ disabled = false }: { disabled?: boolean }) {
 export default function HoldingsDisplaySort() {
   const { sortState, setSortState } = useHoldingsDisplayContext();
   const isOrderDisabled = !sortState;
+  const selectedSortLabel = SORT_OPTIONS.find((option) => option.key === sortState?.key)?.label ?? 'Default';
+  const selectedOrderLabel = sortState?.direction === 'desc' ? 'Descending' : 'Ascending';
 
   return (
     <div className="flex w-full flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center lg:w-auto lg:justify-end">
       <label className="focus-ring relative flex w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition sm:w-auto">
         <span className="font-semibold tracking-[0.2em] whitespace-nowrap text-slate-400 uppercase">Sort by</span>
+        <span className="mr-6 w-full min-w-0 text-right text-xs font-semibold text-slate-100">
+          {selectedSortLabel}
+        </span>
         <select
           value={sortState?.key ?? ''}
           onChange={(event) => {
             const nextKey = event.target.value as SortKey | '';
             setSortState(getNextSortState(sortState, nextKey));
           }}
-          className="w-full min-w-0 appearance-none bg-transparent pr-6 text-right text-xs font-semibold text-slate-100 focus:outline-none"
+          className="absolute inset-0 h-full w-full cursor-pointer appearance-none bg-transparent opacity-0 focus:outline-none"
         >
           <option value="">Default</option>
           {SORT_OPTIONS.map((option) => (
@@ -56,6 +61,11 @@ export default function HoldingsDisplaySort() {
 
       <label className="focus-ring relative flex w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition sm:w-auto">
         <span className="font-semibold tracking-[0.2em] whitespace-nowrap text-slate-400 uppercase">Order</span>
+        <span
+          className={`mr-6 w-full min-w-0 text-right text-xs font-semibold ${isOrderDisabled ? 'text-slate-500' : 'text-slate-100'}`}
+        >
+          {selectedOrderLabel}
+        </span>
         <select
           value={sortState?.direction ?? 'asc'}
           onChange={(event) => {
@@ -65,7 +75,7 @@ export default function HoldingsDisplaySort() {
             }
           }}
           disabled={isOrderDisabled}
-          className="w-full min-w-0 appearance-none bg-transparent pr-6 text-right text-xs font-semibold text-slate-100 focus:outline-none disabled:text-slate-500"
+          className="absolute inset-0 h-full w-full cursor-pointer appearance-none bg-transparent opacity-0 focus:outline-none disabled:cursor-not-allowed"
         >
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
