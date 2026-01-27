@@ -1,6 +1,5 @@
 import createWebStorage from 'redux-persist/es/storage/createWebStorage';
 import type { WebStorage } from 'redux-persist/es/types';
-import log from 'loglevel';
 
 export function isQuotaExceededError(error: unknown): boolean {
   if (typeof error !== 'object' || error === null) {
