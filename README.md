@@ -77,7 +77,7 @@ that document the specific build and deploy steps.
 
 ### Data Sources
 
-Initially several sites were investigated as possible data sources for this project including the following:
+Initially several APIs were investigated as possible data sources for this project including the following:
 
 - [Massive](https://massive.com/)
 - [Alpha Vantage](https://www.alphavantage.co/)
