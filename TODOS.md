@@ -1,6 +1,5 @@
 # TODOS
 
-- Update readme
 - Handle corrupted localStorage data
 - Improve symbol search autocomplete
 - Validate loading screens
