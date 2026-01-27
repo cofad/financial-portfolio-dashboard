@@ -1,9 +1,7 @@
-import { useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useDebounce from '@hooks/useDebounce';
 import Autocomplete from '@components/autocomplete/Autocomplete';
 import { fetchSearchResults, type SearchResult } from '@services/mock-api/mock-api';
-import { isMobile } from '@utils/screens';
 
 interface SymbolAutocompleteProps {
   onSelect: (result: SearchResult) => void;
@@ -18,7 +16,6 @@ const getResultKey = (result: SearchResult, index: number): string =>
 
 const SymbolAutocomplete = ({ onSelect, value, onValueChange }: SymbolAutocompleteProps) => {
   const debouncedQuery = useDebounce(value, 350);
-  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const {
     data: searchResults,
@@ -30,28 +27,12 @@ const SymbolAutocomplete = ({ onSelect, value, onValueChange }: SymbolAutocomple
     enabled: debouncedQuery.trim().length > 0,
   });
 
-  function scrollInputToTop() {
-    const inputElement = inputRef.current;
-    if (!inputElement) return;
-
-    const inputRect = inputElement.getBoundingClientRect();
-    const targetTop = Math.max(0, window.scrollY + inputRect.top - 10);
-    window.scrollTo({ top: targetTop, behavior: 'smooth' });
-  }
-
-  function handleInputFocus() {
-    if (!isMobile()) return;
-    scrollInputToTop();
-  }
-
   return (
     <Autocomplete
-      ref={inputRef}
       label="Symbol"
       placeholder="Search symbols like AAPL or TSLA"
       query={value}
       onQueryChange={onValueChange}
-      onInputFocus={handleInputFocus}
       items={searchResults ?? []}
       isLoading={isFetching}
       isError={isError}

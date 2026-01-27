@@ -1,12 +1,10 @@
-import { useEffect, useMemo, useRef, useState, type FocusEvent, type ReactNode, type Ref } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 
 interface AutocompleteProps<Item> {
-  ref?: Ref<HTMLInputElement | null>;
   label: string;
   placeholder?: string;
   query: string;
   onQueryChange: (value: string) => void;
-  onInputFocus?: (event: FocusEvent<HTMLInputElement>) => void;
   items: Item[];
   isLoading: boolean;
   isError: boolean;
@@ -19,13 +17,11 @@ interface AutocompleteProps<Item> {
   loadingText?: string;
 }
 
-function Autocomplete<Item>({
+const Autocomplete = <Item,>({
   label,
   placeholder,
   query,
   onQueryChange,
-  onInputFocus,
-  ref,
   items,
   isLoading,
   isError,
@@ -36,7 +32,7 @@ function Autocomplete<Item>({
   emptyText = 'No matches found.',
   errorText = 'Unable to load results. Try again.',
   loadingText = 'Searching...',
-}: AutocompleteProps<Item>) {
+}: AutocompleteProps<Item>) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [activeIndex, setActiveIndex] = useState<number>(-1);
   const optionRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -104,14 +100,12 @@ function Autocomplete<Item>({
       <label className="text-xs font-semibold tracking-[0.2em] uppercase">{label}</label>
       <div className="relative mt-3">
         <input
-          ref={ref}
           value={query}
           onChange={(event) => {
             onQueryChange(event.target.value);
           }}
-          onFocus={(event) => {
+          onFocus={() => {
             setIsOpen(true);
-            onInputFocus?.(event);
           }}
           onBlur={() => {
             setIsOpen(false);
@@ -200,6 +194,6 @@ function Autocomplete<Item>({
       </div>
     </div>
   );
-}
+};
 
 export default Autocomplete;
