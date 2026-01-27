@@ -48,7 +48,7 @@ function AddAssetForm() {
               )}
             </div>
 
-            <div className="flex w-full flex-col gap-2 md:max-w-full lg:max-w-lg">
+            <div className="flex w-full flex-col gap-2 sm:max-w-full lg:max-w-lg">
               <label className="text-xs font-semibold tracking-[0.2em] text-slate-300 uppercase">Quantity</label>
 
               <input
@@ -63,7 +63,7 @@ function AddAssetForm() {
                     e.preventDefault();
                   }
                 }}
-                className="mt-3 w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-base text-slate-100 transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700 md:text-sm"
+                className="mt-3 w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-base text-slate-100 transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700 sm:text-sm"
                 aria-invalid={Boolean(errors.quantity?.message)}
               />
 

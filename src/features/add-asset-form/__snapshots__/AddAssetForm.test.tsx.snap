@@ -16,7 +16,7 @@ exports[`AddAssetForm > matches snapshot 1`] = `
         >
           <div>
             <div
-              class="w-full md:max-w-full lg:max-w-lg"
+              class="w-full lg:max-w-lg"
             >
               <label
                 class="text-xs font-semibold tracking-[0.2em] uppercase"
@@ -29,7 +29,7 @@ exports[`AddAssetForm > matches snapshot 1`] = `
                 <input
                   aria-controls="autocomplete-results"
                   aria-expanded="false"
-                  class="w-full rounded-2xl border border-slate-800 px-4 py-3 text-base text-slate-100 shadow-[0_0_0_1px_rgba(30,41,59,0.2)] transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700 md:text-sm"
+                  class="w-full rounded-2xl border border-slate-800 px-4 py-3 text-base text-slate-100 shadow-[0_0_0_1px_rgba(30,41,59,0.2)] transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700 sm:text-sm"
                   placeholder="Search symbols like AAPL or TSLA"
                   role="combobox"
                   value=""
@@ -38,7 +38,7 @@ exports[`AddAssetForm > matches snapshot 1`] = `
             </div>
           </div>
           <div
-            class="flex w-full flex-col gap-2 md:max-w-full lg:max-w-lg"
+            class="flex w-full flex-col gap-2 sm:max-w-full lg:max-w-lg"
           >
             <label
               class="text-xs font-semibold tracking-[0.2em] text-slate-300 uppercase"
@@ -47,7 +47,7 @@ exports[`AddAssetForm > matches snapshot 1`] = `
             </label>
             <input
               aria-invalid="false"
-              class="mt-3 w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-base text-slate-100 transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700 md:text-sm"
+              class="mt-3 w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-base text-slate-100 transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700 sm:text-sm"
               inputmode="numeric"
               name="quantity"
               placeholder="Enter quantity"
