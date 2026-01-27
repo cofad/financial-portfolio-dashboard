@@ -9,6 +9,7 @@ import { selectHoldingSymbols } from '@store/holdings/store';
 import { buildQuotesQueryOptions } from '@hooks/useLiveHoldings/quotes-query';
 import HoldingsDisplay from '@features/holdings-display/HoldingsDisplay';
 import EmptyState from '@components/empty-state/EmptyState';
+import Footer from '@components/footer/Footer';
 
 function App() {
   const holdingSymbols = useHoldingsSelector(selectHoldingSymbols);
@@ -28,8 +29,8 @@ function App() {
   }, [hasHoldings, showTabs]);
 
   return (
-    <div className="px-6 py-12 text-slate-100">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
+    <div className="flex min-h-screen px-6 pt-12 pb-4 text-slate-100">
+      <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-8">
         <div className="space-y-2">
           <h1 className="mb-6 text-3xl font-semibold">Portfolio Simulator</h1>
           <p className="text-slate-400">
@@ -83,6 +84,8 @@ function App() {
             </button>
           </EmptyState>
         )}
+
+        <Footer />
       </div>
     </div>
   );
