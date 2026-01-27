@@ -3,7 +3,7 @@
 exports[`Performance > matches snapshot 1`] = `
 <div>
   <section
-    class="flex flex-col gap-4"
+    class="flex min-h-152 flex-col gap-4"
   >
     <section
       class="rounded-3xl border border-dashed border-slate-800 bg-slate-950/40 p-8 text-center text-sm text-slate-400"
@@ -22,7 +22,7 @@ exports[`Performance > matches snapshot 1`] = `
 exports[`Performance > renders performance content when data is available 1`] = `
 <div>
   <section
-    class="flex flex-col gap-4"
+    class="flex min-h-152 flex-col gap-4"
   >
     <div
       class="space-y-4"
