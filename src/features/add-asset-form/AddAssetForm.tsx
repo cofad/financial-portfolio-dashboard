@@ -26,7 +26,7 @@ function AddAssetForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-3xl border border-slate-800 bg-slate-950/70 p-6 shadow-xl shadow-slate-900/40"
+      className="mb-14 rounded-3xl border border-slate-800 bg-slate-950/70 p-6 shadow-xl shadow-slate-900/40 sm:mb-0"
     >
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-10">
