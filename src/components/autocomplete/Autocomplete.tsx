@@ -149,7 +149,7 @@ const Autocomplete = <Item,>({
           aria-expanded={showDropdown}
           aria-controls="autocomplete-results"
           aria-activedescendant={activeId}
-          className="w-full rounded-2xl border border-slate-800 px-4 py-3 text-base text-slate-100 shadow-[0_0_0_1px_rgba(30,41,59,0.2)] transition outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-700 sm:text-sm"
+          className="w-full rounded-2xl border border-slate-800 px-4 py-3 text-base text-slate-100 shadow-[0_0_0_1px_rgba(30,41,59,0.2)] transition sm:text-sm"
         />
         {showDropdown && (
           <div className="absolute right-0 left-0 z-10 mt-3 rounded-2xl border border-slate-800 bg-slate-950/95 p-2 shadow-xl shadow-slate-900/40 backdrop-blur">
@@ -180,7 +180,7 @@ const Autocomplete = <Item,>({
                       event.preventDefault();
                       handleSelect(item);
                     }}
-                    className={`w-full rounded-xl px-3 py-2 text-left transition focus-visible:bg-slate-900 focus-visible:outline-none ${
+                    className={`w-full rounded-xl px-3 py-2 text-left transition ${
                       index === effectiveActiveIndex ? 'bg-slate-900' : 'hover:bg-slate-900'
                     }`}
                   >

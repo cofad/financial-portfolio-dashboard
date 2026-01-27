@@ -13,7 +13,7 @@ exports[`Tabs > matches snapshot 1`] = `
       <button
         aria-controls="overview-panel"
         aria-selected="true"
-        class="-mb-px flex-1 px-3 py-2 text-[16px] font-semibold transition focus-visible:bg-slate-900/60 focus-visible:outline-none sm:min-w-[140px] sm:px-4 sm:py-3 border-b-2 border-emerald-300 text-emerald-100"
+        class="-mb-px flex-1 px-3 py-2 text-[16px] font-semibold transition focus:outline-none focus-visible:bg-slate-700/60 focus-visible:outline-none sm:min-w-35 sm:px-4 sm:py-3 border-b-2 border-emerald-300 text-emerald-100"
         id="overview-tab"
         role="tab"
         tabindex="0"
@@ -28,7 +28,7 @@ exports[`Tabs > matches snapshot 1`] = `
       <button
         aria-controls="performance-panel"
         aria-selected="false"
-        class="-mb-px flex-1 px-3 py-2 text-[16px] font-semibold transition focus-visible:bg-slate-900/60 focus-visible:outline-none sm:min-w-[140px] sm:px-4 sm:py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-100"
+        class="-mb-px flex-1 px-3 py-2 text-[16px] font-semibold transition focus:outline-none focus-visible:bg-slate-700/60 focus-visible:outline-none sm:min-w-35 sm:px-4 sm:py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-100"
         id="performance-tab"
         role="tab"
         tabindex="-1"
@@ -43,7 +43,7 @@ exports[`Tabs > matches snapshot 1`] = `
       <button
         aria-controls="risk-panel"
         aria-selected="false"
-        class="-mb-px flex-1 px-3 py-2 text-[16px] font-semibold transition focus-visible:bg-slate-900/60 focus-visible:outline-none sm:min-w-[140px] sm:px-4 sm:py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-100"
+        class="-mb-px flex-1 px-3 py-2 text-[16px] font-semibold transition focus:outline-none focus-visible:bg-slate-700/60 focus-visible:outline-none sm:min-w-35 sm:px-4 sm:py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-100"
         id="risk-tab"
         role="tab"
         tabindex="-1"

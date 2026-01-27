@@ -34,7 +34,7 @@ export default function HoldingsDisplaySort() {
 
   return (
     <div className="flex w-full flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center lg:w-auto lg:justify-end">
-      <label className="relative flex w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-teal-100 sm:w-auto">
+      <label className="focus-ring relative flex w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition sm:w-auto">
         <span className="font-semibold tracking-[0.2em] whitespace-nowrap text-slate-400 uppercase">Sort by</span>
         <select
           value={sortState?.key ?? ''}
@@ -54,7 +54,7 @@ export default function HoldingsDisplaySort() {
         <SelectChevron />
       </label>
 
-      <label className="relative flex w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-teal-100 sm:w-auto">
+      <label className="focus-ring relative flex w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition sm:w-auto">
         <span className="font-semibold tracking-[0.2em] whitespace-nowrap text-slate-400 uppercase">Order</span>
         <select
           value={sortState?.direction ?? 'asc'}
