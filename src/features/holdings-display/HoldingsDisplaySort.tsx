@@ -36,7 +36,7 @@ export default function HoldingsDisplaySort() {
 
   return (
     <div className="flex w-full flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center lg:w-auto lg:justify-end">
-      <label className="focus-ring relative flex w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition sm:w-auto">
+      <label className="focus-ring relative flex h-12 w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition sm:w-auto lg:h-auto">
         <span className="font-semibold tracking-[0.2em] whitespace-nowrap text-slate-400 uppercase">Sort by</span>
         <span className="mr-6 w-full min-w-0 text-right text-xs font-semibold text-slate-100">
           {selectedSortLabel}
@@ -59,7 +59,7 @@ export default function HoldingsDisplaySort() {
         <SelectChevron />
       </label>
 
-      <label className="focus-ring relative flex w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition sm:w-auto">
+      <label className="focus-ring relative flex h-11 w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition sm:w-auto lg:h-auto">
         <span className="font-semibold tracking-[0.2em] whitespace-nowrap text-slate-400 uppercase">Order</span>
         <span
           className={`mr-6 w-full min-w-0 text-right text-xs font-semibold ${isOrderDisabled ? 'text-slate-500' : 'text-slate-100'}`}
