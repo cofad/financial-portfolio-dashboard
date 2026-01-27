@@ -9,7 +9,7 @@ import { fetchQuotes, type Quote } from '@services/mock-api/mock-api';
 import type { Holding } from '@store/holdings/slice';
 import type { HoldingsState } from '@store/holdings/store';
 
-import { useLiveHoldings } from './useLiveHoldings/useLiveHoldings';
+import { useLiveHoldings } from './useLiveHoldings';
 import { convertToTimeString } from '@utils/date';
 
 const mockState: HoldingsState = {
@@ -34,7 +34,7 @@ vi.mock('@services/mock-api/mock-api', async () => {
   };
 });
 
-describe('useHoldings', () => {
+describe('useLiveHoldings', () => {
   it('builds live holdings from holdings and quotes', async function () {
     const holdings: Holding[] = [
       {
