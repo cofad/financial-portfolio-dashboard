@@ -28,7 +28,7 @@ function App() {
   }, [hasHoldings, showTabs]);
 
   return (
-    <div className="min-h-dvh px-6 py-12 text-slate-100">
+    <div className="px-6 py-12 text-slate-100">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
         <div className="space-y-2">
           <h1 className="mb-6 text-3xl font-semibold">Portfolio Simulator</h1>
