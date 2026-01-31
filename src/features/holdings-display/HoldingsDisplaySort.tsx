@@ -47,7 +47,7 @@ export default function HoldingsDisplaySort() {
             const nextKey = event.target.value as SortKey | '';
             setSortState(getNextSortState(sortState, nextKey));
           }}
-          className="absolute inset-0 h-full w-full cursor-pointer appearance-none bg-transparent opacity-0 focus:outline-none"
+          className="base-select absolute inset-0 h-full w-full cursor-pointer opacity-0 focus:outline-none"
         >
           <option value="">Default</option>
           {SORT_OPTIONS.map((option) => (
@@ -75,7 +75,7 @@ export default function HoldingsDisplaySort() {
             }
           }}
           disabled={isOrderDisabled}
-          className="absolute inset-0 h-full w-full cursor-pointer appearance-none bg-transparent opacity-0 focus:outline-none disabled:cursor-not-allowed"
+          className="base-select absolute inset-0 h-full w-full cursor-pointer opacity-0 focus:outline-none disabled:cursor-not-allowed"
         >
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>

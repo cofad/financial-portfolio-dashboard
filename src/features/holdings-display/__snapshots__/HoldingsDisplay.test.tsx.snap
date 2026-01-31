@@ -51,7 +51,7 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
             Default
           </span>
           <select
-            class="absolute inset-0 h-full w-full cursor-pointer appearance-none bg-transparent opacity-0 focus:outline-none"
+            class="base-select absolute inset-0 h-full w-full cursor-pointer opacity-0 focus:outline-none"
           >
             <option
               value=""
@@ -132,7 +132,7 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
             Ascending
           </span>
           <select
-            class="absolute inset-0 h-full w-full cursor-pointer appearance-none bg-transparent opacity-0 focus:outline-none disabled:cursor-not-allowed"
+            class="base-select absolute inset-0 h-full w-full cursor-pointer opacity-0 focus:outline-none disabled:cursor-not-allowed"
             disabled=""
           >
             <option
