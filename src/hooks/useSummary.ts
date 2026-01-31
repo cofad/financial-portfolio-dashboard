@@ -13,6 +13,7 @@ interface UseSummary {
   lastUpdatedAt: Date;
   totalValue: number;
   dailyProfitLoss: number;
+  dailyProfitLossPercent: number;
   allocations: Allocations;
 }
 
@@ -48,6 +49,8 @@ export default function useSummary(): UseSummary {
     return acc + holding.profitLoss;
   }, 0);
 
+  const dailyProfitLossPercent = totalValue === 0 ? 0 : (dailyProfitLoss / totalValue) * 100;
+
   const allocations = generateAllocations(liveHoldings);
 
   return {
@@ -57,6 +60,7 @@ export default function useSummary(): UseSummary {
     lastUpdatedAt,
     totalValue,
     dailyProfitLoss,
+    dailyProfitLossPercent,
     allocations,
   };
 }

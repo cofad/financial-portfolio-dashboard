@@ -9,13 +9,12 @@ import SummaryErrorBoundary from './SummaryErrorBoundary';
 import SummaryLoadingState from './SummaryLoadingState';
 
 function SummaryContent() {
-  const { liveHoldings, totalValue, dailyProfitLoss, allocations, lastUpdatedAt } = useSummary();
+  const { liveHoldings, totalValue, dailyProfitLoss, dailyProfitLossPercent, allocations, lastUpdatedAt } =
+    useSummary();
 
   if (liveHoldings.length === 0) {
     return <EmptyState message="No holdings yet. Add assets to see a portfolio overview." />;
   }
-
-  const dailyProfitLossPercent = totalValue === 0 ? 0 : dailyProfitLoss / totalValue;
 
   return (
     <section className="flex flex-col gap-4">

@@ -16,6 +16,7 @@ const mockSummaryState: UseSummary = {
   lastUpdatedAt: new Date('2024-01-02T12:00:00Z'),
   totalValue: 0,
   dailyProfitLoss: 0,
+  dailyProfitLossPercent: 0,
   allocations: {
     total: 0,
     groups: [],
@@ -35,6 +36,7 @@ describe('Summary', function () {
     mockSummaryState.liveHoldings = [];
     mockSummaryState.totalValue = 0;
     mockSummaryState.dailyProfitLoss = 0;
+    mockSummaryState.dailyProfitLossPercent = 0;
     mockSummaryState.allocations = { total: 0, groups: [] };
   });
 
@@ -69,6 +71,7 @@ describe('Summary', function () {
     ];
     mockSummaryState.totalValue = 220;
     mockSummaryState.dailyProfitLoss = 4;
+    mockSummaryState.dailyProfitLossPercent = (4 / 220) * 100;
     mockSummaryState.allocations = {
       total: 1,
       groups: [{ assetType: 'Stock', count: 1, percentage: 100 }],

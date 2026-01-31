@@ -65,6 +65,7 @@ describe('useSummary', function () {
 
     expect(result.current.totalValue).toBe(21290);
     expect(result.current.dailyProfitLoss).toBe(1040);
+    expect(result.current.dailyProfitLossPercent).toBeCloseTo((1040 / 21290) * 100, 6);
 
     const [stockGroup, cryptoGroup] = result.current.allocations.groups;
 
