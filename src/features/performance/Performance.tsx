@@ -50,7 +50,7 @@ function Performance() {
 
   return (
     <PerformanceErrorBoundary>
-      <section className="flex min-h-152 flex-col gap-4">
+      <section className="flex min-h-152 flex-col gap-4 sm:min-h-auto">
         {holdings.length === 0 ? (
           <EmptyState message="No holdings yet. Add assets to see portfolio performance over time." />
         ) : (
