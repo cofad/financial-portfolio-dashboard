@@ -51,7 +51,7 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
             Default
           </span>
           <select
-            class="base-select absolute inset-0 h-full w-full cursor-pointer opacity-0 focus:outline-none"
+            class="absolute inset-0 h-full w-full cursor-pointer opacity-0 focus:outline-none disabled:cursor-not-allowed [appearance:base-select] [&::picker(select)]:[appearance:base-select] [&::picker(select)]:opacity-0 [&::picker(select)]:mt-2 [&::picker(select)]:rounded-md [&::picker(select)]:bg-slate-950 [&::picker(select)]:p-2 [&::picker(select)]:text-slate-100 [&::picker(select):popover-open]:opacity-100"
           >
             <option
               value=""
@@ -101,7 +101,7 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
           </select>
           <span
             aria-hidden="true"
-            class="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-slate-400 "
+            class="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-slate-400"
           >
             <svg
               class="h-3.5 w-3.5"
@@ -119,7 +119,7 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
           </span>
         </label>
         <label
-          class="focus-ring relative flex h-11 w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition sm:w-auto lg:h-auto"
+          class="focus-ring relative flex w-full items-center justify-between gap-2 rounded-2xl border border-slate-800 bg-slate-950/70 px-3 py-2 text-xs text-slate-300 transition sm:w-auto h-11 lg:h-auto"
         >
           <span
             class="font-semibold tracking-[0.2em] whitespace-nowrap text-slate-400 uppercase"
@@ -132,7 +132,7 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
             Ascending
           </span>
           <select
-            class="base-select absolute inset-0 h-full w-full cursor-pointer opacity-0 focus:outline-none disabled:cursor-not-allowed"
+            class="absolute inset-0 h-full w-full cursor-pointer opacity-0 focus:outline-none disabled:cursor-not-allowed [appearance:base-select] [&::picker(select)]:[appearance:base-select] [&::picker(select)]:opacity-0 [&::picker(select)]:mt-2 [&::picker(select)]:rounded-md [&::picker(select)]:bg-slate-950 [&::picker(select)]:p-2 [&::picker(select)]:text-slate-100 [&::picker(select):popover-open]:opacity-100"
             disabled=""
           >
             <option
@@ -148,7 +148,7 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
           </select>
           <span
             aria-hidden="true"
-            class="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-slate-400 text-slate-600"
+            class="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-slate-600"
           >
             <svg
               class="h-3.5 w-3.5"

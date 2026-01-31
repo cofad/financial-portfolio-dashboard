@@ -7,20 +7,6 @@
   .focus-ring:focus-within {
     @apply outline-2 outline-offset-3 outline-slate-100;
   }
-
-  .base-select {
-    appearance: base-select;
-
-    &::picker(select) {
-      appearance: base-select;
-      opacity: 0;
-      @apply mt-2 rounded-md bg-slate-950 p-2 text-slate-100;
-    }
-
-    &::picker(select):popover-open {
-      opacity: 1;
-    }
-  }
 }
 
 @layer utilities {
