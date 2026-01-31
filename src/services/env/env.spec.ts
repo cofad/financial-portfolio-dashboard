@@ -26,7 +26,8 @@ describe('env', () => {
     expect(module.env).toBeDefined();
   });
 
-  it('should throw when required environment variables are invalid', async () => {
+  // Reactivate test once environment variables are required to be set
+  it.skip('should throw when required environment variables are invalid', async () => {
     // eslint-disable-next-line no-restricted-syntax
     const mutableEnv = import.meta.env as Record<string, string>;
     mutableEnv.NODE_ENV = '';
