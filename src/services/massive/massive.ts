@@ -41,6 +41,7 @@ export const fetchTimeSeriesDaily = async (symbol: string): Promise<OHLCV[]> => 
   const from = convertToDateString(now);
   const to = convertToDateString(subDays(now, 100));
 
+  // cspell:disable-next-line
   const path = `/aggs/ticker/${symbol}/range/1/day/${to}/${from}`;
 
   const response = await alphaVantageClient.get<unknown>(path, {

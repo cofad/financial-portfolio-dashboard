@@ -76,3 +76,15 @@ jobs:
 
       - name: Build
         run: npm run build:ci
+
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup
+        uses: ./.github/actions/setup-node
+
+      - name: CSpell
+        run: npm run spellcheck

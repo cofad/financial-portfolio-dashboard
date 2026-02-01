@@ -1,6 +1,7 @@
 import { format, isValid, parse } from 'date-fns';
 
 const DATE_STRING_FORMAT = 'yyyy-MM-dd';
+// cspell:disable-next-line
 const TIME_STRING_FORMAT = "yyyy-MM-dd'T'HH:mm:ssxxx";
 
 /** Represents an ISO 8601 TimeString */

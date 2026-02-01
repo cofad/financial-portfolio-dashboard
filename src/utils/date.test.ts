@@ -41,6 +41,7 @@ describe('date utils', () => {
       vi.useFakeTimers();
       vi.setSystemTime(now);
 
+      // cspell:disable-next-line
       expect(getNowIsoWithOffset()).toBe(format(now, "yyyy-MM-dd'T'HH:mm:ssxxx"));
 
       vi.useRealTimers();

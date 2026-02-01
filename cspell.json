@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "version": "0.2",
-  "words": ["apikey", "finnhub", "Invertocat", "ohlcv", "persistor"],
+  "words": ["apikey", "finnhub", "Invertocat", "ohlcv", "persistor", "segoe", "vitest"],
   "ignorePaths": ["node_modules"]
 }
