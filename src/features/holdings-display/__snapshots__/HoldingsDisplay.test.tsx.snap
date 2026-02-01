@@ -51,49 +51,58 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
             Default
           </span>
           <select
-            class="absolute inset-0 h-full w-full cursor-pointer opacity-0 focus:outline-none disabled:cursor-not-allowed [appearance:base-select] [&::picker(select)]:[appearance:base-select] [&::picker(select)]:opacity-0 [&::picker(select)]:mt-2 [&::picker(select)]:rounded-md [&::picker(select)]:bg-slate-950 [&::picker(select)]:p-2 [&::picker(select)]:text-slate-100 [&::picker(select):popover-open]:opacity-100"
+            class="absolute inset-0 h-full w-full cursor-pointer bg-slate-950 text-slate-100 opacity-0 focus:outline-none disabled:cursor-not-allowed"
           >
             <option
+              class="bg-slate-950 text-slate-100"
               value=""
             >
               Default
             </option>
             <option
+              class="bg-slate-950 text-slate-100"
               value="symbol"
             >
               Symbol
             </option>
             <option
+              class="bg-slate-950 text-slate-100"
               value="assetType"
             >
               Type
             </option>
             <option
+              class="bg-slate-950 text-slate-100"
               value="quantity"
             >
               Quantity
             </option>
             <option
+              class="bg-slate-950 text-slate-100"
               value="purchasePrice"
             >
               Purchase Price
             </option>
             <option
+              class="bg-slate-950 text-slate-100"
               value="currentPrice"
             >
               Current Price
             </option>
             <option
+              class="bg-slate-950 text-slate-100"
               value="currentValue"
             >
               Total Value
             </option>
             <option
+              class="bg-slate-950 text-slate-100"
               value="profitLoss"
             >
               P/L
             </option>
             <option
+              class="bg-slate-950 text-slate-100"
               value="purchaseDate"
             >
               Purchase Date
@@ -132,15 +141,17 @@ exports[`HoldingsDisplay > renders holdings content when data is available 1`] =
             Ascending
           </span>
           <select
-            class="absolute inset-0 h-full w-full cursor-pointer opacity-0 focus:outline-none disabled:cursor-not-allowed [appearance:base-select] [&::picker(select)]:[appearance:base-select] [&::picker(select)]:opacity-0 [&::picker(select)]:mt-2 [&::picker(select)]:rounded-md [&::picker(select)]:bg-slate-950 [&::picker(select)]:p-2 [&::picker(select)]:text-slate-100 [&::picker(select):popover-open]:opacity-100"
+            class="absolute inset-0 h-full w-full cursor-pointer bg-slate-950 text-slate-100 opacity-0 focus:outline-none disabled:cursor-not-allowed"
             disabled=""
           >
             <option
+              class="bg-slate-950 text-slate-100"
               value="asc"
             >
               Ascending
             </option>
             <option
+              class="bg-slate-950 text-slate-100"
               value="desc"
             >
               Descending

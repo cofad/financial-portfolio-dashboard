@@ -46,18 +46,7 @@ export default function Select({
   options,
   ...props
 }: SelectProps) {
-  const mergedClassName = twMerge(
-    '[appearance:base-select]',
-    '[&::picker(select)]:[appearance:base-select]',
-    '[&::picker(select)]:opacity-0',
-    '[&::picker(select)]:mt-2',
-    '[&::picker(select)]:rounded-md',
-    '[&::picker(select)]:bg-slate-950',
-    '[&::picker(select)]:p-2',
-    '[&::picker(select)]:text-slate-100',
-    '[&::picker(select):popover-open]:opacity-100',
-    className,
-  );
+  const mergedOptions = defaultOption ? [defaultOption, ...options] : options;
 
   return (
     <label
@@ -79,17 +68,12 @@ export default function Select({
         {...props}
         disabled={disabled}
         className={twMerge(
-          'absolute inset-0 h-full w-full cursor-pointer opacity-0 focus:outline-none disabled:cursor-not-allowed',
-          mergedClassName,
+          'absolute inset-0 h-full w-full cursor-pointer bg-slate-950 text-slate-100 opacity-0 focus:outline-none disabled:cursor-not-allowed',
+          className,
         )}
       >
-        {defaultOption ? (
-          <option key={defaultOption.key} value={defaultOption.key}>
-            {defaultOption.label}
-          </option>
-        ) : null}
-        {options.map((option) => (
-          <option key={option.key} value={option.key}>
+        {mergedOptions.map((option) => (
+          <option className="bg-slate-950 text-slate-100" key={option.key} value={option.key}>
             {option.label}
           </option>
         ))}

@@ -16,19 +16,22 @@ exports[`Select > matches snapshot 1`] = `
       Symbol
     </span>
     <select
-      class="absolute inset-0 h-full w-full cursor-pointer opacity-0 focus:outline-none disabled:cursor-not-allowed [appearance:base-select] [&::picker(select)]:[appearance:base-select] [&::picker(select)]:opacity-0 [&::picker(select)]:mt-2 [&::picker(select)]:rounded-md [&::picker(select)]:bg-slate-950 [&::picker(select)]:p-2 [&::picker(select)]:text-slate-100 [&::picker(select):popover-open]:opacity-100"
+      class="absolute inset-0 h-full w-full cursor-pointer bg-slate-950 text-slate-100 opacity-0 focus:outline-none disabled:cursor-not-allowed"
     >
       <option
+        class="bg-slate-950 text-slate-100"
         value=""
       >
         Default
       </option>
       <option
+        class="bg-slate-950 text-slate-100"
         value="symbol"
       >
         Symbol
       </option>
       <option
+        class="bg-slate-950 text-slate-100"
         value="quantity"
       >
         Quantity
